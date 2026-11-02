@@ -13,3 +13,4 @@ android/app/libs/*.aar
 *.jks
 demo-data.json
 markers/
+hardware-runs/

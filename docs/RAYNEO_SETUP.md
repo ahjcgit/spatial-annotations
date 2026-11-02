@@ -100,6 +100,8 @@ Qualcomm documents the official OpenXR **Unity** path (recommended Unity 2022.3.
 
 ## Hardware acceptance checklist
 
+For the complete ordered procedure, pass/fail criteria and results template, use [HARDWARE_VALIDATION.md](HARDWARE_VALIDATION.md).
+
 Record PASS/FAIL and firmware, never prefill PASS:
 
 - Install/start and configure LAN server; reconnect after process/device restart.

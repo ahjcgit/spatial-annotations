@@ -30,6 +30,10 @@ cd backend
 
 Create accounts in the companion; no default credentials exist. Local HTTP is for controlled LAN testing. See [HTTPS configuration and security boundaries](docs/ARCHITECTURE.md) for the optional Caddy deployment and release-mode HTTPS requirement. Keep `.env` and generated demo credentials out of version control.
 
+## Check whether your glasses can perform the experiment
+
+Start with [the step-by-step hardware validation guide](docs/HARDWARE_VALIDATION.md). It provides ordered tests, exact commands, expected results, failure diagnosis and a copyable report, separating the required QR/multi-user workflow from optional 6DoF/world-space AR.
+
 ## Build and sideload Android
 
 Use JDK 17, Android SDK 35, build-tools 34.0.0 and the included Gradle 8.9 wrapper. Android Studio Ladybug 2024.2.1 or newer with AGP 8.7 support is suitable. Set `ANDROID_HOME` or `android/local.properties` first.
