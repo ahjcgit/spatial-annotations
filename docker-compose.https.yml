@@ -1,0 +1,22 @@
+# Requires current Docker Compose V2 with !reset support. See docs/ARCHITECTURE.md.
+services:
+  backend:
+    ports: !reset []
+  caddy:
+    image: caddy:2-alpine
+    ports:
+      - "0.0.0.0:80:80"
+      - "0.0.0.0:443:443"
+    environment:
+      SITE_ADDRESS: ${SITE_ADDRESS:?Set SITE_ADDRESS to your HTTPS hostname}
+    volumes:
+      - ./deploy/Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy-data:/data
+      - caddy-config:/config
+    depends_on:
+      backend:
+        condition: service_healthy
+    restart: unless-stopped
+volumes:
+  caddy-data:
+  caddy-config:

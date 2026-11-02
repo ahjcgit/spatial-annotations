@@ -1,0 +1,2 @@
+# Optional emulator-only UI smoke tool; not part of backend or application runtime.
+uiautomator2==3.2.10

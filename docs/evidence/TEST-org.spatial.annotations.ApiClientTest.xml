@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="org.spatial.annotations.ApiClientTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2026-11-01T19:06:51" hostname="heartscrypter" time="0.309">
+  <properties/>
+  <testcase name="unauthorizedClearsTokenAndRedirectsAreNotFollowed" classname="org.spatial.annotations.ApiClientTest" time="0.21"/>
+  <testcase name="parsesLoginObjectsAndNotesWithAuthorization" classname="org.spatial.annotations.ApiClientTest" time="0.099"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

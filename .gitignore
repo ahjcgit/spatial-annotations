@@ -1,0 +1,15 @@
+.venv/
+__pycache__/
+.pytest_cache/
+*.db
+*.db-shm
+*.db-wal
+.env
+.gradle/
+.kotlin/
+local.properties
+**/build/
+android/app/libs/*.aar
+*.jks
+demo-data.json
+markers/

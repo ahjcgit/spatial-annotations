@@ -1,0 +1,8 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical" android:padding="20dp" android:background="#000000">
+    <TextView android:id="@+id/status" android:layout_width="match_parent" android:layout_height="wrap_content" android:textColor="#D4F88C" android:textSize="16sp" />
+    <TextView android:id="@+id/objectTitle" android:layout_width="match_parent" android:layout_height="wrap_content" android:textColor="#FFFFFF" android:textSize="22sp" />
+    <ScrollView android:id="@+id/scroll" android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1">
+        <TextView android:id="@+id/content" android:layout_width="match_parent" android:layout_height="wrap_content" android:textColor="#FFFFFF" android:textSize="24sp" />
+    </ScrollView>
+    <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Tap: scan/details · slide: next/previous · up/down: scroll · double tap: back" android:textColor="#BECABA" android:textSize="14sp" />
+</LinearLayout>

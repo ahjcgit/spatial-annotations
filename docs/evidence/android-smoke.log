@@ -1,0 +1,8 @@
+Android settings launched
+PASS: Android login over LAN
+PASS: Alice sees public/private/group notes in Android simulation
+PASS: Annotation created through Android UI and retrieved
+PASS: Android Keystore session survives process restart
+PASS: Bob sees public/group/Android-created notes; Alice private content absent
+PASS: Runtime camera permission and Camera2 stream started in emulator (virtual scene, not physical marker)
+PASS: Camera stopped cleanly

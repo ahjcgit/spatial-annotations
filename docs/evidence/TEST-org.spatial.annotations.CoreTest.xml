@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="org.spatial.annotations.CoreTest" tests="11" skipped="0" failures="0" errors="0" timestamp="2026-11-01T19:06:52" hostname="heartscrypter" time="0.107">
+  <properties/>
+  <testcase name="markerProtocolIsStrict" classname="org.spatial.annotations.CoreTest" time="0.0"/>
+  <testcase name="logoutClearsStoredCredentials" classname="org.spatial.annotations.CoreTest" time="0.001"/>
+  <testcase name="permissionDecisionAndSdkFallback" classname="org.spatial.annotations.CoreTest" time="0.001"/>
+  <testcase name="oldResponseCannotOverwriteNewObjectOrLogout" classname="org.spatial.annotations.CoreTest" time="0.06"/>
+  <testcase name="annotationNavigationWrapsAndHandlesEmpty" classname="org.spatial.annotations.CoreTest" time="0.0"/>
+  <testcase name="serverPolicyRejectsPublicHttpCredentialsAndPaths" classname="org.spatial.annotations.CoreTest" time="0.001"/>
+  <testcase name="authenticationPersistsAndExpires" classname="org.spatial.annotations.CoreTest" time="0.002"/>
+  <testcase name="lookupStateUnknownAndAuthorizationFailureClearNotes" classname="org.spatial.annotations.CoreTest" time="0.002"/>
+  <testcase name="unrelatedQrDoesNotBecomeAnObject" classname="org.spatial.annotations.CoreTest" time="0.022"/>
+  <testcase name="lookupGateThrottlesFrames" classname="org.spatial.annotations.CoreTest" time="0.0"/>
+  <testcase name="realQrDecodingAndBlankFrame" classname="org.spatial.annotations.CoreTest" time="0.017"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
