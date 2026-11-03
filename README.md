@@ -50,7 +50,7 @@ Built APK: [app-debug.apk](android/app/build/outputs/apk/debug/app-debug.apk). G
 
 See [RAYNEO_SETUP.md](docs/RAYNEO_SETUP.md) for ADB/developer mode, exact proprietary SDK installation, optional `-PwithRayneo=true` build, gestures, camera limitations and hardware acceptance checks. The generic APK's display and camera behavior on actual RayNeo firmware are unverified.
 
-For typing with a computer keyboard and mouse, see [Desktop glasses control](docs/DESKTOP_CONTROL.md). Run `python3 scripts/control_glasses.py` with ADB and scrcpy installed; the launcher wakes the glasses, opens Spatial Notes, and mirrors it with physical-keyboard input. The guide includes setup on another computer and black-screen troubleshooting.
+For typing with a computer keyboard and mouse, see [Desktop glasses control](docs/DESKTOP_CONTROL.md). Run `python3 scripts/control_glasses.py` with ADB and scrcpy installed; the launcher wakes the glasses and opens Spatial Notes on a desktop-sized virtual display with physical-keyboard input. Close it to return the app to the glasses for scanning. The guide includes setup on another computer and black-screen troubleshooting.
 
 ## Run tests and demonstrate sharing
 

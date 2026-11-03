@@ -9,7 +9,7 @@ computers does not require rebuilding it.
 
 1. Install Python 3, [Android platform-tools](https://developer.android.com/tools/releases/platform-tools),
    and [scrcpy](https://github.com/Genymobile/scrcpy#readme) from their official sources.
-   Put `adb` and `scrcpy` on PATH. The original setup used scrcpy 5.0.1.
+   Put `adb` and `scrcpy` on PATH. Use scrcpy 5.x; the working setup used 5.0.1.
 2. Clone/pull this repository. Connect the glasses with a USB **data** cable, enable
    ADB mode, and accept the new computer's debugging authorization in the glasses.
 3. Check `adb devices -l`: the device must have state `device`.
@@ -28,8 +28,10 @@ computers does not require rebuilding it.
    Executables outside PATH can be supplied with `--adb /path/to/adb` and
    `--scrcpy /path/to/scrcpy` (quote paths containing spaces).
 
-The launcher wakes the device, opens the installed app, and starts scrcpy with a
-simulated physical keyboard. Click a field in the desktop window and type normally.
+The launcher wakes the device, dismisses an unsecured keyguard, and opens the
+installed app on a 1280×900 virtual display with a simulated physical keyboard.
+It keeps the session active and uses software decoding. Closing the window returns
+the app to the glasses display. A secured lock screen still requires user unlock. Click a field in the desktop window and type normally.
 If the Android keyboard still appears, use Android's physical-keyboard settings to
 disable the on-screen keyboard while a physical keyboard is connected. See the
 [scrcpy keyboard guide](https://github.com/Genymobile/scrcpy/blob/master/doc/keyboard.md).
@@ -40,27 +42,31 @@ from the glasses; the companion web interface also supports editing notes on a c
 
 ## Black window
 
-During the first physical test, ADB recognized scrcpy's keyboard, but a later
-screenshot was black and Android reported `mWakefulness=Dozing` and display state
-`OFF`. Keyboard detection alone does not prove that desktop video works.
+The physical glasses display was returning to sleep after a wake command, and
+ADB screenshots were black. A desktop virtual display, wake/keyguard dismissal,
+keep-active mode, and software decoding together produced a visible UI confirmed
+by the user. This combination is now the default; the individual contribution of
+each setting has not been isolated.
 
-Keep the glasses awake/worn and rerun the launcher. To check manually:
+For the physical scanning stage, close the desktop setup window so the app moves
+back to the glasses. Wear/wake the glasses, then open **Scan / view annotations**.
+You can also run the launcher in physical-screen mirror mode:
 
 ```bash
-adb -s YOUR_SERIAL shell input keyevent KEYCODE_WAKEUP
-adb -s YOUR_SERIAL shell am start -W -n org.spatial.annotations/.MainActivity
+python3 scripts/control_glasses.py --mirror
+```
+
+The glasses' physical screen must stay awake for this mirror mode. If the display
+is black, check its power state and unlock it if needed:
+
+```bash
 adb -s YOUR_SERIAL shell dumpsys power
 adb -s YOUR_SERIAL shell dumpsys display
+adb -s YOUR_SERIAL shell input keyevent KEYCODE_WAKEUP
+adb -s YOUR_SERIAL shell wm dismiss-keyguard
 ```
 
-If the display is on but the desktop window is still black, try software decoding
-with scrcpy 5.x:
-
-```bash
-python3 scripts/control_glasses.py -- --hwdec=disabled
-```
-
-Check `scrcpy --list-displays` for other displays; pass `-- --display-id=ID` to the
+Check `scrcpy --list-displays` for other displays; pass `--mirror -- --display-id=ID` to the
 launcher if needed. Further [video troubleshooting options](https://github.com/Genymobile/scrcpy/blob/master/doc/video.md)
 include listing encoders and choosing a different encoder. These are diagnostic
 options, not verified fixes for this firmware. A different computer may help with
