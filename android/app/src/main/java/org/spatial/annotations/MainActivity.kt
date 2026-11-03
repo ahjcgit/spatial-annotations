@@ -86,7 +86,7 @@ class MainActivity : AppCompatActivity(), AnnotationRenderer {
         label("Spatial Notes", 30f)
         label("${DeviceIntegration.description}\n${UnavailableSpatialTracker().status}", 16f)
         val server = field("Backend URL, e.g. https://notes.example.org", prefs.getString("server", "") ?: "")
-        label("Debug builds allow HTTP only to a private LAN IPv4 address. Credentials use that connection.", 14f)
+        label("Debug HTTP supports a private LAN IPv4 address or 127.0.0.1 through USB setup. Credentials use that connection.", 14f)
         fun saveServer(): Boolean = try {
             val normalized = ServerAddress.normalize(server.text.toString(), BuildConfig.DEBUG)
             if (normalized != prefs.getString("server", "")) { auth.clear(); prefs.edit().putString("server", normalized).apply() }

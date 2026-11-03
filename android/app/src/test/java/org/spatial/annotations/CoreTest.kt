@@ -71,7 +71,9 @@ class CoreTest {
     @Test fun serverPolicyRejectsPublicHttpCredentialsAndPaths() {
         assertEquals("http://192.168.1.76:8000", ServerAddress.normalize("http://192.168.1.76:8000/", true))
         assertEquals("https://notes.example.org", ServerAddress.normalize("https://notes.example.org", false))
-        for (url in listOf("http://example.org", "http://127.0.0.1", "https://user:secret@example.org", "https://example.org/path", "https://example.org?token=x")) {
+        assertEquals("http://127.0.0.1:8000", ServerAddress.normalize("http://127.0.0.1:8000/", true))
+        assertThrows(IllegalArgumentException::class.java) { ServerAddress.normalize("http://127.0.0.1:8000", false) }
+        for (url in listOf("http://example.org", "http://8.8.8.8", "https://user:secret@example.org", "https://example.org/path", "https://example.org?token=x")) {
             assertThrows(IllegalArgumentException::class.java) { ServerAddress.normalize(url, true) }
         }
         assertThrows(IllegalArgumentException::class.java) { ServerAddress.normalize("http://192.168.1.76", false) }

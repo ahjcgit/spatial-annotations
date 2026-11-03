@@ -105,7 +105,7 @@ On invalid tracking, hide world-locked content and show the head-locked panel. D
 
 ## Deployment and HTTPS
 
-Development Compose binds `0.0.0.0:${BACKEND_PORT:-8000}`. Check the port first; 5173 is reserved for another project. The Android URL is user-configured and never defaults to localhost. The debug application permits cleartext at Android's transport layer, but `ServerAddress` restricts HTTP to private IPv4 ranges (10/8, 172.16/12, 192.168/16), disallows embedded credentials/query/path, and OkHttp rejects redirects. This is a deliberate LAN-development exception; password and bearer confidentiality require HTTPS even on Wi-Fi.
+Development Compose binds `0.0.0.0:${BACKEND_PORT:-8000}`. Check the port first; 5173 is reserved for another project. The Android URL is user-configured and never defaults to localhost. The debug application permits cleartext at Android's transport layer, but `ServerAddress` restricts HTTP to private IPv4 ranges (10/8, 172.16/12, 192.168/16) and the exact loopback address 127.0.0.1 for USB ADB reverse, disallows embedded credentials/query/path, and OkHttp rejects redirects. This is a deliberate LAN-development exception; password and bearer confidentiality require HTTPS even on Wi-Fi.
 
 Release builds set cleartext traffic to false and require HTTPS. They retain normal system certificate and hostname validation; no trust-all TLS handler is installed. Use a real trusted certificate or install a deliberately managed test CA on the device rather than disabling validation.
 

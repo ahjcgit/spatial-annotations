@@ -72,7 +72,7 @@ adb -s YOUR_SERIAL logcat -s AndroidRuntime CameraManager CameraDevice
 
 Use the actual serial, especially if an emulator is running. If the device is missing, try a known data cable/port and the vendor's OS-specific USB driver/udev instructions. Do not globally loosen USB permissions. `scrcpy --serial YOUR_SERIAL` can help with configuration if supported; it does not prove binocular comfort.
 
-Set the app's backend field to the server's LAN address, e.g. `http://192.168.1.76:8000` on this machine, or your HTTPS hostname. Verify `http://SERVER_LAN_IP:8000/health` from a companion browser first. Guest Wi-Fi isolation, firewalls and VPN routing can prevent access. `127.0.0.1` on the glasses is the glasses itself. Emulator alias `10.0.2.2` works for a backend on the emulator host; the LAN address is also supported.
+Set the app's backend field to the server's LAN address, e.g. `http://192.168.1.76:8000` on this machine, or your HTTPS hostname. Verify `http://SERVER_LAN_IP:8000/health` from a companion browser first. Guest Wi-Fi isolation, firewalls and VPN routing can prevent access. `127.0.0.1` on the glasses is the glasses itself unless an ADB reverse tunnel is configured. The debug app supports that USB workflow; see [Desktop control](DESKTOP_CONTROL.md#backend-on-this-computer-over-usb). Emulator alias `10.0.2.2` works for a backend on the emulator host; the LAN address is also supported.
 
 ## Camera and input
 

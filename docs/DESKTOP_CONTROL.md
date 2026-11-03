@@ -40,6 +40,38 @@ For a fresh device, build and install the APK using the [Android setup guide](RA
 APKs and local SDK installations are not committed. The backend URL must be reachable
 from the glasses; the companion web interface also supports editing notes on a computer.
 
+## Backend on this computer over USB
+
+The debug app accepts `http://127.0.0.1:8000` for an ADB reverse tunnel. Release
+builds still require HTTPS. Start the backend using Python 3.11 from the repo:
+
+```bash
+python3.11 -m venv .venv
+.venv/bin/pip install -r backend/requirements-dev.txt
+cd backend
+../.venv/bin/uvicorn app.main:app --host 127.0.0.1 --port 8000 --no-access-log
+```
+
+Keep that terminal running. From another terminal in the repository root:
+
+```bash
+python3 scripts/control_glasses.py --usb-backend
+```
+
+Enter `http://127.0.0.1:8000` in both the app and the computer's browser. The
+launcher forwards glasses port 8000 to the computer over USB; no glasses Wi-Fi is
+needed. Repeat after reconnecting USB. The tunnel remains when the desktop window
+closes, so physical scanning can use the backend while USB stays connected.
+
+Prepare the two-account test dataset with:
+
+```bash
+.venv/bin/python scripts/e2e.py --url http://127.0.0.1:8000
+```
+
+Credentials and marker IDs are saved in ignored `demo-data.json`. Follow
+[the demo guide](DEMO.md) to generate matching labels and test optical scanning.
+
 ## Black window
 
 The physical glasses display was returning to sleep after a wake command, and

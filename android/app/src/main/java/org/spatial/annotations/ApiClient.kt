@@ -21,7 +21,8 @@ object ServerAddress {
         require(url.encodedPath == "/") { "Use a root server URL, without a path" }
         val parts = url.host.split('.').mapNotNull { it.toIntOrNull() }
         val lan = parts.size == 4 && parts.all { it in 0..255 } && (parts[0] == 10 || (parts[0] == 192 && parts[1] == 168) || (parts[0] == 172 && parts[1] in 16..31))
-        require(url.scheme == "https" || (allowLanHttp && lan)) { "Use HTTPS, or a private LAN IPv4 address with the debug build" }
+        val usbLoopback = url.host == "127.0.0.1"
+        require(url.scheme == "https" || (allowLanHttp && (lan || usbLoopback))) { "Use HTTPS, or debug HTTP to a private LAN IPv4 address / 127.0.0.1 via ADB reverse" }
         return url.toString().trimEnd('/')
     }
 }

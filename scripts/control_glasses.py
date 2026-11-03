@@ -13,6 +13,7 @@ def main():
     parser.add_argument("--adb", default=os.environ.get("ADB", "adb"), help="ADB executable")
     parser.add_argument("--scrcpy", default="scrcpy", help="scrcpy executable")
     parser.add_argument("--mirror", action="store_true", help="Mirror the glasses screen instead of opening a desktop display")
+    parser.add_argument("--usb-backend", action="store_true", help="Forward glasses localhost:8000 to this computer's backend")
     parser.add_argument("scrcpy_args", nargs=argparse.REMAINDER, help="Extra scrcpy options after --")
     args = parser.parse_args()
     adb = shutil.which(args.adb)
@@ -32,6 +33,9 @@ def main():
         serial = ready[0]
     if serial not in ready:
         parser.error("Selected device is not connected and authorized. Check adb devices -l.")
+    if args.usb_backend:
+        subprocess.run([adb, "-s", serial, "reverse", "tcp:8000", "tcp:8000"], check=True)
+        print("USB backend: enter http://127.0.0.1:8000 in the debug app.", flush=True)
     subprocess.run([adb, "-s", serial, "shell", "input", "keyevent", "KEYCODE_WAKEUP"], check=True)
     subprocess.run([adb, "-s", serial, "shell", "wm", "dismiss-keyguard"], check=True)
     installed = subprocess.run([adb, "-s", serial, "shell", "pm", "path", "org.spatial.annotations"],
