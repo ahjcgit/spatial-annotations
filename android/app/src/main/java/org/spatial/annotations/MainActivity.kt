@@ -3,6 +3,8 @@ package org.spatial.annotations
 import android.Manifest
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.Bitmap
+import android.graphics.Matrix
 import android.net.Uri
 import android.os.Bundle
 import android.os.SystemClock
@@ -32,6 +34,8 @@ class MainActivity : AppCompatActivity(), AnnotationRenderer {
     private var title: TextView? = null
     private var card: TextView? = null
     private var scanStatus: TextView? = null
+    private var preview: ImageView? = null
+    private var scanGeneration = 0
     private var inScan = false
     private var scanning = false
     private var simulated = false
@@ -119,6 +123,12 @@ class MainActivity : AppCompatActivity(), AnnotationRenderer {
     private fun scanScreen() {
         inScan = true; baseScreen()
         scanStatus = label("Camera stopped", 16f)
+        preview = ImageView(this).apply {
+            contentDescription = "Live grayscale camera view for aiming at the QR label"
+            scaleType = ImageView.ScaleType.FIT_CENTER
+            visibility = View.GONE
+            root.addView(this, LinearLayout.LayoutParams(-1, (160 * resources.displayMetrics.density).toInt()))
+        }
         title = label("Select a physical object", 26f)
         card = label("Scan its QR marker to retrieve authorized annotations.", 24f)
         button("Start camera / scan next object") { simulated = false; controller?.clear(); startCamera() }
@@ -150,14 +160,40 @@ class MainActivity : AppCompatActivity(), AnnotationRenderer {
                 startActivity(Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS, Uri.parse("package:$packageName")))
             }
             CameraPermissionPolicy.Action.START_CAMERA -> {
-                scanning = true; scanStatus?.text = "Starting camera…"
-                camera.start({ frame -> recognizer.recognize(frame)?.let { identity -> runOnUiThread {
-                    if (scanning && inScan) { controller?.markerSeen(identity.markerId, SystemClock.elapsedRealtime()); stopCamera(); scanStatus?.text = "Camera QR detected · scan again for another object" }
-                } } }, { status -> runOnUiThread { if (scanning) scanStatus?.text = status } })
+                val scan = ++scanGeneration
+                var frames = 0
+                scanning = true; message.text = "Aim at one experiment QR label; keep its white border visible."
+                scanStatus?.text = "Starting camera…"
+                camera.start({ frame ->
+                    val identity = recognizer.recognize(frame)
+                    val count = ++frames
+                    val step = maxOf(1, frame.width / 320)
+                    val width = frame.width / step; val height = frame.height / step
+                    val pixels = IntArray(width * height) { i ->
+                        val gray = frame.luminance[(i / width * step) * frame.width + (i % width * step)].toInt() and 255
+                        0xff000000.toInt() or (gray shl 16) or (gray shl 8) or gray
+                    }
+                    val raw = Bitmap.createBitmap(pixels, width, height, Bitmap.Config.ARGB_8888)
+                    val bitmap = if (frame.sensorRotation == 0) raw else Bitmap.createBitmap(raw, 0, 0, width, height,
+                        Matrix().apply { postRotate(frame.sensorRotation.toFloat()) }, true).also { if (it !== raw) raw.recycle() }
+                    runOnUiThread {
+                        if (scan != scanGeneration || !scanning || !inScan) { bitmap.recycle(); return@runOnUiThread }
+                        preview?.visibility = View.VISIBLE; preview?.setImageBitmap(bitmap)
+                        scanStatus?.text = "Scanning · $count frames · ${frame.width}×${frame.height} · no marker yet"
+                        if (identity != null) {
+                            controller?.markerSeen(identity.markerId, SystemClock.elapsedRealtime())
+                            stopCamera(); scanStatus?.text = "Camera QR detected · scan again for another object"
+                        }
+                    }
+                }, { status -> runOnUiThread { if (scan == scanGeneration && scanning) scanStatus?.text = status } })
             }
         }
     }
-    private fun stopCamera() { scanning = false; camera.stop() }
+    private fun stopCamera() {
+        ++scanGeneration; scanning = false; camera.stop()
+        preview?.setImageDrawable(null); preview?.visibility = View.GONE
+        scanStatus?.text = "Camera stopped · select Start camera to scan"
+    }
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         if (requestCode == 10 && inScan) {

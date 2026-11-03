@@ -14,7 +14,7 @@ object MarkerId {
 }
 
 // Packed luminance, not RGB; no camera images leave the device.
-data class CameraFrame(val luminance: ByteArray, val width: Int, val height: Int, val timestampNanos: Long)
+data class CameraFrame(val luminance: ByteArray, val width: Int, val height: Int, val timestampNanos: Long, val sensorRotation: Int = 0)
 data class ObjectIdentity(val markerId: String, val confidence: Float, val source: String)
 interface ObjectRecognizer { fun recognize(frame: CameraFrame): ObjectIdentity? }
 interface CameraCapture { fun start(onFrame: (CameraFrame) -> Unit, onStatus: (String) -> Unit); fun stop() }

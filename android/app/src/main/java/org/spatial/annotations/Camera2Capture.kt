@@ -39,7 +39,9 @@ class Camera2Capture(private val context: Context) : CameraCapture {
                 val id = candidates.firstOrNull { manager.getCameraCharacteristics(it).get(CameraCharacteristics.LENS_FACING) == CameraCharacteristics.LENS_FACING_BACK }
                     ?: candidates.firstOrNull() ?: error("No YUV camera available; use explicit simulation mode")
                 val sizes = manager.getCameraCharacteristics(id).get(CameraCharacteristics.SCALER_STREAM_CONFIGURATION_MAP)!!.getOutputSizes(ImageFormat.YUV_420_888)
-                val size = sizes.minByOrNull { kotlin.math.abs(it.width * it.height - 640 * 480) }!!
+                val characteristics = manager.getCameraCharacteristics(id)
+                val rotation = characteristics.get(CameraCharacteristics.SENSOR_ORIENTATION) ?: 0
+                val size = sizes.minByOrNull { kotlin.math.abs(it.width * it.height - 1280 * 960) }!!
                 val output = ImageReader.newInstance(size.width, size.height, ImageFormat.YUV_420_888, 2)
                 run.reader = output
                 var lastFrame = 0L
@@ -51,7 +53,7 @@ class Camera2Capture(private val context: Context) : CameraCapture {
                         val plane = image.planes[0]; val buffer = plane.buffer; val origin = buffer.position()
                         val packed = ByteArray(image.width * image.height)
                         for (y in 0 until image.height) for (x in 0 until image.width) packed[y * image.width + x] = buffer.get(origin + y * plane.rowStride + x * plane.pixelStride)
-                        onFrame(CameraFrame(packed, image.width, image.height, image.timestamp))
+                        onFrame(CameraFrame(packed, image.width, image.height, image.timestamp, rotation))
                     } catch (_: Exception) { onStatus("Camera frame unavailable") } finally { image.close() }
                 }, handler)
                 run.opening = true
@@ -70,6 +72,10 @@ class Camera2Capture(private val context: Context) : CameraCapture {
                                         val request = camera.createCaptureRequest(CameraDevice.TEMPLATE_PREVIEW).apply {
                                             addTarget(output.surface)
                                             set(CaptureRequest.CONTROL_MODE, CaptureRequest.CONTROL_MODE_AUTO)
+                                            val focusModes = characteristics.get(CameraCharacteristics.CONTROL_AF_AVAILABLE_MODES)
+                                            if (focusModes?.contains(CaptureRequest.CONTROL_AF_MODE_CONTINUOUS_PICTURE) == true) {
+                                                set(CaptureRequest.CONTROL_AF_MODE, CaptureRequest.CONTROL_AF_MODE_CONTINUOUS_PICTURE)
+                                            }
                                         }
                                         capture.setRepeatingRequest(request.build(), null, handler)
                                         onStatus("Scanning QR · camera $id · ${size.width}×${size.height}")
