@@ -14,3 +14,16 @@ android/app/libs/*.aar
 demo-data.json
 markers/
 hardware-runs/
+
+# Generated reports and local editor files
+artifacts/
+docs/evidence/
+docs/openapi.json
+docs/android-*.png
+docs/companion.png
+*.py[cod]
+.coverage
+htmlcov/
+.idea/
+.vscode/
+.DS_Store

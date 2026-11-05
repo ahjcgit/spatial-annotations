@@ -46,10 +46,11 @@ The debug app accepts `http://127.0.0.1:8000` for an ADB reverse tunnel. Release
 builds still require HTTPS. Start the backend using Python 3.11 from the repo:
 
 ```bash
+ss -lnt '( sport = :8000 )'  # Choose a free port; 5173 is reserved.
 python3.11 -m venv .venv
 .venv/bin/pip install -r backend/requirements-dev.txt
 cd backend
-../.venv/bin/uvicorn app.main:app --host 127.0.0.1 --port 8000 --no-access-log
+../.venv/bin/uvicorn app.main:app --host 0.0.0.0 --port 8000 --no-access-log
 ```
 
 Keep that terminal running. From another terminal in the repository root:
@@ -58,9 +59,14 @@ Keep that terminal running. From another terminal in the repository root:
 python3 scripts/control_glasses.py --usb-backend
 ```
 
-Enter `http://127.0.0.1:8000` in both the app and the computer's browser. The
-launcher forwards glasses port 8000 to the computer over USB; no glasses Wi-Fi is
-needed. Repeat after reconnecting USB. The tunnel remains when the desktop window
+Enter `http://127.0.0.1:8000` in both the app and the computer's browser.
+Other computers on the LAN can use `http://SERVER_LAN_IP:8000`.
+If port 8000 is occupied, start Uvicorn on a free port and run
+`adb -s YOUR_SERIAL reverse tcp:8000 tcp:YOUR_BACKEND_PORT` manually, then
+launch desktop control without `--usb-backend`.
+
+The ADB tunnel forwards glasses port 8000 to the computer over USB; no glasses Wi-Fi
+is needed. Repeat after reconnecting USB. The tunnel remains when the desktop window
 closes, so physical scanning can use the backend while USB stays connected.
 
 Prepare the two-account test dataset with:

@@ -1,80 +1,72 @@
-# Shared Spatial Annotations
+# Spatial annotations experiment
 
-A working course prototype for persistent notes on physical objects: unique QR labels, a Kotlin Android app, and a self-hosted FastAPI backend with private, group and public permissions. A companion web interface handles convenient typing, editing, printing and group membership.
+A RayNeo glasses capability test for [SmartGlassProject](https://github.com/ahjcgit/SmartGlassProject).
+Scan QR labels on physical objects, then create and read private, group, or public notes.
+The experiment includes a Kotlin Android app, a FastAPI backend, and a browser companion.
 
-**Implemented:** real authentication, database persistence, object registration, annotation CRUD/sharing, local QR recognition, Android screen-space viewing/creation, explicit manual simulation, companion UI, Docker deployment and automated tests. **The default debug APK builds successfully.** RayNeo-specific binocular/input integration is opt-in source code requiring a licensed Mercury AAR; it has not been compiled or verified on glasses. World-space rendering and persistent SLAM anchors are not implemented.
+Notes are shown in a screen-space panel. World tracking, persistent AR anchors, and
+markerless recognition are not implemented. The optional Mercury viewer needs a
+separately licensed SDK and device validation.
 
-## Run the backend
+In SmartGlassProject, this repository lives in the single `spatial-annotations/`
+submodule directory. Run the commands below from that directory, or from a standalone
+clone of this repository.
 
-From this directory:
+## Backend and companion
 
 ```bash
-# Inspect first; port 5173 is reserved for another project.
+# Choose a free port; 5173 is reserved for Rakazo.
 ss -lnt '( sport = :8000 )'
-cp .env.example .env  # skip if you already have .env
-# Set BACKEND_PORT in .env if 8000 is occupied.
+cp -n .env.example .env
+# Change BACKEND_PORT in .env if needed.
 docker compose up -d --build
 docker compose ps
 ```
 
-Open `http://YOUR_SERVER_LAN_IP:8000` for the companion, `/docs` for interactive API documentation and `/health` for health. The service binds **0.0.0.0** and stores SQLite in a persistent named volume. On the development machine the running service is **[http://192.168.1.76:8000](http://192.168.1.76:8000)**. Check the host's current IP if it changes.
+Open `http://SERVER_LAN_IP:8000` (or your configured port). The server binds to
+`0.0.0.0`; the companion uses the same host for API requests. `/health` checks the
+service, `/docs` provides the API reference, and `/openapi.json` serves its schema.
+SQLite data persists in a Docker volume. Create an account in the companion.
 
-No Docker alternative (Python 3.11+):
+Without Docker, use Python 3.11+:
 
 ```bash
-python3.11 -m venv .venv
+python3 -m venv .venv
 .venv/bin/pip install -r backend/requirements-dev.txt
-cd backend
-../.venv/bin/uvicorn app.main:app --host 0.0.0.0 --port 8000 --no-access-log
+.venv/bin/uvicorn app.main:app --app-dir backend --host 0.0.0.0 --port 8000 --no-access-log
 ```
 
-Create accounts in the companion; no default credentials exist. Local HTTP is for controlled LAN testing. See [HTTPS configuration and security boundaries](docs/ARCHITECTURE.md) for the optional Caddy deployment and release-mode HTTPS requirement. Keep `.env` and generated demo credentials out of version control.
+HTTP is supported for local testing in debug builds. Release builds require HTTPS;
+see [deployment](docs/ARCHITECTURE.md#deployment) for the Caddy configuration.
 
-## Check whether your glasses can perform the experiment
+## Android
 
-Start with [the step-by-step hardware validation guide](docs/HARDWARE_VALIDATION.md). It provides ordered tests, exact commands, expected results, failure diagnosis and a copyable report, separating the required QR/multi-user workflow from optional 6DoF/world-space AR.
-
-## Build and sideload Android
-
-Use JDK 17, Android SDK 35, build-tools 34.0.0 and the included Gradle 8.9 wrapper. Android Studio Ladybug 2024.2.1 or newer with AGP 8.7 support is suitable. Set `ANDROID_HOME` or `android/local.properties` first.
+Install JDK 17, Android SDK 35, and build-tools 34.0.0. Set `ANDROID_HOME` or
+`sdk.dir` in `android/local.properties`, then:
 
 ```bash
 cd android
 ./gradlew testDebugUnitTest lintDebug assembleDebug
 adb devices -l
-adb -s YOUR_DEVICE_SERIAL install -r app/build/outputs/apk/debug/app-debug.apk
-adb -s YOUR_DEVICE_SERIAL shell am start -n org.spatial.annotations/.MainActivity
+adb -s YOUR_SERIAL install -r app/build/outputs/apk/debug/app-debug.apk
+adb -s YOUR_SERIAL shell am start -n org.spatial.annotations/.MainActivity
 ```
 
-Built APK: [app-debug.apk](android/app/build/outputs/apk/debug/app-debug.apk). Generated build artifacts are ignored by Git; rerun Gradle when cloning the project. The APK is debug-signed and needs no RayNeo SDK or Play services. Enter your backend's LAN IP/HTTPS URL in Settings; there is no localhost default. Register/sign in, open Scan, allow camera access, and scan a printed marker. Unknown objects can be registered; selected objects support note creation/viewing. The **Manual marker · SIMULATION** action allows backend testing without a camera and is visibly labeled.
+Enter the backend's LAN URL in Settings, sign in, and scan a printed marker.
+The default APK needs no RayNeo SDK. For desktop keyboard/mouse setup, run
+`python3 scripts/control_glasses.py` from the experiment root with ADB and scrcpy
+installed; see [desktop control](docs/DESKTOP_CONTROL.md).
 
-See [RAYNEO_SETUP.md](docs/RAYNEO_SETUP.md) for ADB/developer mode, exact proprietary SDK installation, optional `-PwithRayneo=true` build, gestures, camera limitations and hardware acceptance checks. The generic APK's display and camera behavior on actual RayNeo firmware are unverified.
+## Working with the experiment
 
-For typing with a computer keyboard and mouse, see [Desktop glasses control](docs/DESKTOP_CONTROL.md). Run `python3 scripts/control_glasses.py` with ADB and scrcpy installed; the launcher wakes the glasses and opens Spatial Notes on a desktop-sized virtual display with physical-keyboard input. Close it to return the app to the glasses for scanning. The guide includes setup on another computer and black-screen troubleshooting.
+- [Hardware validation](docs/HARDWARE_VALIDATION.md): device checks and a results template.
+- [Android / RayNeo setup](docs/RAYNEO_SETUP.md): toolchain, sideloading, and optional Mercury viewer.
+- [Two-user demo](docs/DEMO.md): accounts, QR labels, and sharing checks.
+- [Testing](docs/TESTING.md): backend, Android, HTTP, and emulator checks.
+- [Architecture](docs/ARCHITECTURE.md): data flow, permissions, and deployment.
+- [Research references](docs/RESEARCH.md): earlier SDK investigation and spatial tracking options.
 
-## Run tests and demonstrate sharing
-
-```bash
-# From the project root, after installing requirements-dev.txt:
-cd backend
-../.venv/bin/python -m pytest -q
-cd ..
-.venv/bin/python scripts/e2e.py --url http://YOUR_SERVER_LAN_IP:8000
-.venv/bin/python scripts/generate_markers.py --count 2 --output markers
-```
-
-The HTTP E2E creates two accounts and two objects, checks permissions, and leaves data for a physical demonstration. It saves local credentials/IDs in ignored `demo-data.json`; those specific objects need matching markers (see [DEMO.md](docs/DEMO.md)). The separate marker utility creates fresh IDs and `markers/print.html`; it does not register them automatically.
-
-Verified results and honest runtime/hardware boundaries are in [TEST_RESULTS.md](docs/TEST_RESULTS.md). The core suite has **20 backend tests and 13 Android JVM tests**; Docker deployment, live HTTP sharing, persistence across container restart, the companion browser workflow, and a two-account Android emulator UI demonstration were also exercised. Emulator object lookup was explicitly simulated; Camera2 startup and QR pixel decoding were tested separately.
-
-## Project map
-
-- `backend/app/`: models, validation, authentication, REST API and same-origin companion.
-- `backend/tests/`: authorization, validation, persistence and integration coverage.
-- `android/app/`: Camera2/ZXing, HTTP/authentication, state controller, standard and optional RayNeo adapters.
-- `scripts/`: printable markers and live two-user E2E workflow.
-- [ARCHITECTURE.md](docs/ARCHITECTURE.md): data flow, API, permissions, coordinates and tradeoffs.
-- [FEASIBILITY.md](docs/FEASIBILITY.md): researched sources/licenses, feature status and exact blockers.
-- [DEMO.md](docs/DEMO.md): two users/two physical objects, expected results and failure cases.
-
-Next steps are physical X3 Pro validation, licensed Mercury build/optical and gesture testing, and deployment hardening/migrations. Calibrated world-space tracking, markerless instance recognition, automatic GPS/proximity filtering and shared persistent anchors remain separate extensions. No proprietary SDK binaries or third-party camera-upload services are included.
+`android/` contains the client, `backend/` the API and companion, `scripts/` the
+device/demo utilities, and `deploy/` the optional HTTPS configuration. Generated
+reports belong in ignored `artifacts/`; APKs, SDK binaries, credentials, and local
+databases stay out of Git. Dependency notices are in [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).

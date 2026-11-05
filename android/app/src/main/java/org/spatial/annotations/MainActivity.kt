@@ -88,7 +88,7 @@ class MainActivity : AppCompatActivity(), AnnotationRenderer {
     private fun settingsScreen() {
         stopCamera(); inScan = false; controller?.clear(); baseScreen()
         label("Spatial Notes", 30f)
-        label("${DeviceIntegration.description}\n${UnavailableSpatialTracker().status}", 16f)
+        label("${DeviceIntegration.description}\nScreen-space panel · spatial tracking unavailable", 16f)
         val server = field("Backend URL, e.g. https://notes.example.org", prefs.getString("server", "") ?: "")
         label("Debug HTTP supports a private LAN IPv4 address or 127.0.0.1 through USB setup. Credentials use that connection.", 14f)
         fun saveServer(): Boolean = try {
@@ -220,7 +220,7 @@ class MainActivity : AppCompatActivity(), AnnotationRenderer {
         val name = EditText(this).apply { hint = "Object name (public)"; box.addView(this) }
         val location = EditText(this).apply { hint = "Location label (optional, public)"; box.addView(this) }
         AlertDialog.Builder(this).setTitle("Register object").setView(box).setPositiveButton("Save") { _, _ ->
-            launchTask { api!!.createObject(state.markerId, name.text.toString(), ManualLocationProvider(LocationContext(location.text.toString(), null, null)).current()); controller?.lookup(state.markerId) }
+            launchTask { api!!.createObject(state.markerId, name.text.toString(), LocationContext(location.text.toString(), null, null)); controller?.lookup(state.markerId) }
         }.setNegativeButton("Cancel", null).show()
     }
     private fun createNote() {

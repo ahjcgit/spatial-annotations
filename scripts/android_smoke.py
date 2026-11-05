@@ -14,7 +14,7 @@ def main():
     p = argparse.ArgumentParser()
     p.add_argument('--serial', required=True)
     p.add_argument('--data', type=Path, default=Path('demo-data.json'))
-    p.add_argument('--screenshots', type=Path, default=Path('docs'))
+    p.add_argument('--screenshots', type=Path, default=Path('artifacts/android-smoke'))
     args = p.parse_args()
     data = json.loads(args.data.read_text())
     device = u2.connect(args.serial)

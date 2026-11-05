@@ -27,8 +27,6 @@ data class Annotation(
 )
 data class Group(val id: String, val name: String)
 data class LocationContext(val label: String?, val latitude: Double?, val longitude: Double?)
-interface LocationProvider { fun current(): LocationContext? }
-class ManualLocationProvider(private val location: LocationContext?) : LocationProvider { override fun current() = location }
 
 data class AnnotationState(
     val markerId: String? = null, val physicalObject: PhysicalObject? = null,

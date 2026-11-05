@@ -2,7 +2,7 @@
 
 ## Verified scope
 
-The default app does not require proprietary files. The optional Mercury adapter is source implemented using verified API symbols, but cannot be compiled or hardware-tested here without the licensed SDK. World-space AR is not implemented. All device assertions below distinguish documentation/source evidence from project test evidence; see [FEASIBILITY.md](FEASIBILITY.md).
+The default app does not require proprietary files. The optional Mercury adapter is source implemented using verified API symbols, but cannot be compiled or hardware-tested here without the licensed SDK. World-space AR is not implemented. Earlier SDK research is in [RESEARCH.md](RESEARCH.md).
 
 Target: RayNeo X3 Pro. Devices sold as “X3” must be checked by model, OS build, camera IDs and SDK version; the name alone does not establish compatibility. Record these when testing:
 
@@ -34,8 +34,6 @@ cd android
 
 Alternatively set `sdk.dir=/absolute/path/to/android-sdk` in untracked `android/local.properties`. Wrapper distribution checksum validation is enabled. The debug artifact path is exactly `android/app/build/outputs/apk/debug/app-debug.apk`; its application ID is `org.spatial.annotations` and launcher is `.MainActivity`.
 
-The build machine's local tools are outside the deliverable at `../.toolchain/android-sdk` and `../.toolchain/zulu17.70.113-ca-jdk17.0.21.0.3-linux_x64`. Other machines should use their own installation.
-
 ## Official SDK installation (optional adapter)
 
 The [official Android ARDK download page](https://rayneo.gitbook.io/rayneo-devdoc/x-xi-lie/android-kai-fa/ardk-xia-zai) lists v0.2.6 dated April 21, 2026 and states that the X-series uses this SDK line; its changelog identifies X3 Pro support beginning in v0.2.1. Confirm the firmware-compatible package with RayNeo. Do not download binaries from an unrelated application's repository merely because it contains an AAR.
@@ -51,7 +49,7 @@ The [official Android ARDK download page](https://rayneo.gitbook.io/rayneo-devdo
    ```
 
    The build fails clearly if zero/multiple AARs are supplied. It switches to `src/rayneo` sources/manifest and adds the local file dependency; it does not use an invented Maven coordinate. The default build uses `src/standard` instead.
-5. If the vendor release adds dependencies or changes symbols, compare its official sample and adjust the isolated adapter. Do not fix failures by fabricating stubs. This optional build has **not** been compiled here because the licensed AAR is absent.
+5. If the vendor release adds dependencies or changes symbols, compare its official sample and adjust the isolated adapter. This optional build has **not** been compiled here because the licensed AAR is absent.
 6. Install, configure the backend and account in the standard screen, then choose **RayNeo binocular viewer**. Confirm readable identical content in both eyes, comfortable fusion and gesture direction. The adapter is head-locked, not world-locked.
 
 The implemented API surface is `com.ffalcon.mercury.android.sdk.MercurySDK.init(Application)`, `ui.activity.BaseMirrorActivity<ViewBinding>`, `mBindingPair.updateView`, and `touch.TempleAction` from `templeActionViewModel.state`. These symbols and lifecycle collection were checked against [OpenClaw's actual activity](https://github.com/RayNeo-AI-2025/OpenClaw/blob/6802e8d8dfd63f087447f9ef7a7135ebe69e48c4/app/src/main/java/com/openclaw/app/AgentChatActivity.kt) and [application](https://github.com/RayNeo-AI-2025/OpenClaw/blob/6802e8d8dfd63f087447f9ef7a7135ebe69e48c4/app/src/main/java/com/openclaw/app/MyApplication.kt). UI-only work runs once per eye; network/state mutations run outside that callback. The optional manifest sets `com.rayneo.mercury.app=true`. Launcher classification may vary with firmware; direct `adb am start` is available.
@@ -72,7 +70,7 @@ adb -s YOUR_SERIAL logcat -s AndroidRuntime CameraManager CameraDevice
 
 Use the actual serial, especially if an emulator is running. If the device is missing, try a known data cable/port and the vendor's OS-specific USB driver/udev instructions. Do not globally loosen USB permissions. `scrcpy --serial YOUR_SERIAL` can help with configuration if supported; it does not prove binocular comfort.
 
-Set the app's backend field to the server's LAN address, e.g. `http://192.168.1.76:8000` on this machine, or your HTTPS hostname. Verify `http://SERVER_LAN_IP:8000/health` from a companion browser first. Guest Wi-Fi isolation, firewalls and VPN routing can prevent access. `127.0.0.1` on the glasses is the glasses itself unless an ADB reverse tunnel is configured. The debug app supports that USB workflow; see [Desktop control](DESKTOP_CONTROL.md#backend-on-this-computer-over-usb). Emulator alias `10.0.2.2` works for a backend on the emulator host; the LAN address is also supported.
+Set the app's backend field to the server's LAN address, `http://SERVER_LAN_IP:8000`, or your HTTPS hostname. Verify `http://SERVER_LAN_IP:8000/health` from a companion browser first. Guest Wi-Fi isolation, firewalls and VPN routing can prevent access. `127.0.0.1` on the glasses is the glasses itself unless an ADB reverse tunnel is configured. The debug app supports that USB workflow; see [Desktop control](DESKTOP_CONTROL.md#backend-on-this-computer-over-usb). Emulator alias `10.0.2.2` works for a backend on the emulator host; the LAN address is also supported.
 
 ## Camera and input
 
@@ -96,7 +94,7 @@ Long press is deliberately unmapped because the example reports a system-level s
 
 Android `SensorManager` can enumerate accelerometer, gyroscope and rotation-vector sensors; availability is device-dependent. IMU orientation is not positional 6DoF tracking and does not create a persistent world frame. This prototype does not register IMU listeners or synthesize head pose.
 
-Qualcomm documents the official OpenXR **Unity** path (recommended Unity 2022.3.36f1, ARDK 1.1.2). That does not establish a native Android world-anchor API. The native experimental repository has real Kotlin/C++ APIs, but requires separately licensed OpenXR AARs and device validation. Its integration path, limitations and tested upstream firmware are recorded in FEASIBILITY.md. No experimental native SDK code is linked into this APK.
+Qualcomm documents the official OpenXR **Unity** path (recommended Unity 2022.3.36f1, ARDK 1.1.2). That does not establish a native Android world-anchor API. The native experimental repository has real Kotlin/C++ APIs, but requires separately licensed OpenXR AARs and device validation. Its integration path, limitations and tested upstream firmware are recorded in RESEARCH.md. No experimental native SDK code is linked into this APK.
 
 ## Hardware acceptance checklist
 

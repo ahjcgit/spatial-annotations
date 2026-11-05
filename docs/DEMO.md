@@ -13,7 +13,7 @@ docker compose up -d --build
 docker compose ps
 ```
 
-Open `http://SERVER_LAN_IP:8000` from the companion. This implementation run uses **http://192.168.1.76:8000**. `/health` should return `{"status":"ok"}`. Use HTTPS for credentials outside a controlled LAN. The companion and glasses must point to the **same server**.
+Open `http://SERVER_LAN_IP:8000` from the companion. `/health` should return `{"status":"ok"}`. Use HTTPS for credentials outside a controlled LAN. The companion and glasses must point to the **same server**.
 
 ## Reproducible software demonstration
 
@@ -25,7 +25,7 @@ python3.11 -m venv .venv
 .venv/bin/python scripts/e2e.py --url http://SERVER_LAN_IP:8000
 ```
 
-The script creates two uniquely named accounts with random passwords, two objects, and a group. It asserts public sharing, private isolation, group access before/after membership, author-only edits/deletes, and object disambiguation. It then restores Bob's membership for the physical demo. It leaves data in the server and saves credentials/IDs in ignored `demo-data.json` (mode 0600), not in console output. Rerunning creates new data; it does not wipe prior users. On this machine that file already exists from the successful live run; it may include an additional note created by the Android smoke test. Rerun the E2E script for a fresh exact-count baseline. Keep credentials local.
+The script creates two uniquely named accounts with random passwords, two objects, and a group. It asserts public sharing, private isolation, group access before/after membership, author-only edits/deletes, and object disambiguation. It then restores Bob's membership for the physical demo. It leaves data in the server and saves credentials/IDs in ignored `demo-data.json` (mode 0600), not in console output. Rerunning creates new data; it does not wipe prior users. Use a fresh E2E dataset for each Android smoke test; that test adds a note and checks exact counts. Keep credentials local.
 
 Generate matching QR labels for the two marker IDs in that file:
 

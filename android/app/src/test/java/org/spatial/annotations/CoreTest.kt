@@ -49,13 +49,11 @@ class CoreTest {
         auth.save(LoginResponse("secret", "2999-01-01T00:00:00Z", User("u", "alice")))
         auth.clear(); assertNull(auth.session); assertNull(store.value)
     }
-    @Test fun permissionDecisionAndSdkFallback() {
+    @Test fun cameraPermissionDecision() {
         assertEquals(CameraPermissionPolicy.Action.START_CAMERA, CameraPermissionPolicy.action(true, true, false))
         assertEquals(CameraPermissionPolicy.Action.REQUEST_PERMISSION, CameraPermissionPolicy.action(false, false, false))
         assertEquals(CameraPermissionPolicy.Action.REQUEST_PERMISSION, CameraPermissionPolicy.action(false, true, true))
         assertEquals(CameraPermissionPolicy.Action.SHOW_SETTINGS, CameraPermissionPolicy.action(false, true, false))
-        assertNull(UnavailableSpatialTracker().headPose())
-        assertTrue(UnavailableSpatialTracker().status.contains("unavailable"))
     }
     @Test fun lookupGateThrottlesFrames() {
         val gate = LookupGate()
