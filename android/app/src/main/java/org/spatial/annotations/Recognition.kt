@@ -13,8 +13,8 @@ object MarkerId {
     fun payload(id: String): String = "spatial:v1:" + requireNotNull(parse(id))
 }
 
-// Packed luminance, not RGB; no camera images leave the device.
-data class CameraFrame(val luminance: ByteArray, val width: Int, val height: Int, val timestampNanos: Long, val sensorRotation: Int = 0)
+// QR uses luminance; presentation frames may retain chroma for the color feed.
+data class CameraFrame(val luminance: ByteArray, val width: Int, val height: Int, val timestampNanos: Long, val sensorRotation: Int = 0, val chromaU: ByteArray? = null, val chromaV: ByteArray? = null)
 data class ObjectIdentity(val markerId: String, val confidence: Float, val source: String, val points: List<ImagePoint> = emptyList())
 interface ObjectRecognizer { fun recognize(frame: CameraFrame): ObjectIdentity? }
 interface CameraCapture { fun start(onFrame: (CameraFrame) -> Unit, onStatus: (String) -> Unit); fun stop() }

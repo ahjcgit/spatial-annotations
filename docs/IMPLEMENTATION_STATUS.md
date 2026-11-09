@@ -1,5 +1,55 @@
 # Implementation status — November 9, 2026
 
+## Current: physical RayNeo live-color presentation
+
+This section supersedes earlier statements that physical hardware was unavailable.
+On November 9 the demo ran on a connected RayNeo X3 Pro (ARGF20), Android 12 / API 32,
+firmware SKQ1.250204.001, with USB ADB reverse to a localhost FastAPI/SQLite/model backend.
+The wearer confirmed seeing the live demonstration. That confirmation does not establish
+precise optical registration or world anchoring.
+
+Implemented and exercised:
+
+- Camera2 YUV color capture with bulk row copies, rotated 480×640 output, and repeated
+  NanoDet inference on the computer. This is live sensing, not an emulator or image replay.
+- A no-login presentation dashboard with labels drawn on the actual camera image.
+- Separate authenticated Alice/Bob sessions: Alice sees 3 permitted notes including private;
+  Bob sees 2 public/group notes and no Alice-private note. Switching clears old labels.
+- A minimal through-glasses text display and an experimental optical positioning mode with
+  translation, scale and per-eye offset controls. The minimal display is the fallback.
+- A separate debug package, preserving the original installed app and its data.
+
+Preliminary evidence from one indoor sanitizer-bottle scene and one scripted user-switch
+workflow (not an independent-trial accuracy study):
+
+| Observation | Measured result | What it establishes |
+|---|---|---|
+| Live state snapshots | n=2 saved snapshots: model inference 58.13 / 57.99 ms; application processing 209 / 178 ms | CPU inference and app processing can complete interactively in this setup |
+| Alice → Bob | 3 → 2 permitted notes; overlay changes from private reminder to group note | Demonstrated account-filtered retrieval and visible label change on the same selected target |
+| Color capture | Saved physical camera frame has nonzero RGB channel differences | Color channels are retained; grayscale was a software choice |
+| Earlier camera attempt | Only 2 of 4 warm-up frames arrived before the 15 s timeout | A documented bottleneck motivated bulk plane copies and the continuous color path |
+| Latest checks | 30 Android tests pass, 1 optional replay skipped; lint/build pass; 4 script tests pass | Software regression checks, not a physical success-rate estimate |
+
+`pipelineMs` starts after a frame is accepted for processing and ends after detection and
+note retrieval, before publishing the result. It includes conversion, HTTP/model work and
+note retrieval, but **not** sensor acquisition, skipped frames, dashboard polling, display
+refresh or human-perceived capture-to-label latency. Do not report it as end-to-end latency.
+The approximate 3–4 updates/s observed during the smoke run is not a controlled FPS benchmark.
+Detection confidence is not accuracy. Distractors also produced false category predictions.
+
+Local, untracked evidence: `hardware-runs/rayneo/live-validation.json`, `live-alice.png`,
+`live-bob.png`, `live-color.jpg`, and `live-overlay-build.log`. Credentials, databases and
+raw captured images are intentionally not published with source code. The README documents
+how to prepare and run the presentation on another checkout.
+
+Limits: one explicitly selected demo bottle; class detection does not establish unique
+physical identity. No physical QR trial, calibrated depth-aware overlay, 6DoF tracking,
+world-locked persistence, multi-device concurrency study, battery study or systematic
+light/distance/motion evaluation is established by this run. The reused model is OpenCV's
+NanoDet Plus 416; see MODEL_DETECTION.md and THIRD_PARTY_NOTICES.md for provenance.
+
+## Earlier software-only experiments
+
 The standard Kotlin Android client, FastAPI/SQLite backend and browser companion are
 implemented and software-tested without RayNeo glasses. The app now preserves the
 recognized frame and highlights QR feature centers beside readable object-specific

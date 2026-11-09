@@ -12,7 +12,10 @@ android {
     }
     buildFeatures { buildConfig = true; viewBinding = true }
     buildTypes {
-        debug { manifestPlaceholders["cleartext"] = "true" }
+        debug {
+            manifestPlaceholders["cleartext"] = "true"
+            if (providers.gradleProperty("presentationDemo").orNull == "true") applicationIdSuffix = ".branchdemo"
+        }
         release { manifestPlaceholders["cleartext"] = "false"; isMinifyEnabled = false }
     }
     sourceSets.getByName("main") {

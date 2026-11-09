@@ -18,6 +18,49 @@ Kotlin Android app, FastAPI/SQLite backend and browser companion need no proprie
 
 **Start with the browser test below. It needs neither glasses, an Android emulator nor a webcam.**
 
+## Live color presentation on the computer and glasses
+
+Open **http://127.0.0.1:8014** for the no-login presentation. **Start live** continuously
+captures color frames from the connected glasses, detects the selected sanitizer bottle,
+and draws the current user's permitted note directly on the camera image. Switch **Alice**
+and **Bob** to show different labels on the same bottle: Alice's private refill reminder
+versus Bob's group note. Notes come from separate authenticated backend sessions; switching
+users immediately clears the previous user's labels. Missing, ambiguous or stale detections
+clear the overlay. Camera images go only to the configured local model backend and dashboard.
+
+The glasses offer two modes, both controlled from the computer:
+
+- **Minimal label:** readable text only, without an Android settings panel or camera picture.
+  The computer keeps the live image-aligned overlay. This is the fallback.
+- **On-object overlay:** experimental transparent camera-guided positioning. Arrows, scale,
+  and eye-offset controls let the wearer align the label at the current viewing distance.
+  It is not calibrated depth-aware AR, 6DoF tracking, or a persistent world anchor. Camera-to-eye
+  parallax and movement can break alignment; use the minimal label mode when that happens.
+
+With the model-enabled backend running (setup below), build and start:
+
+```bash
+source scripts/dev_env.sh
+.venv/bin/python scripts/prepare_presentation.py --data artifacts/rayneo-demo/demo-data.json
+android/gradlew -p android -PpresentationDemo=true testDebugUnitTest lintDebug assembleDebug
+.venv/bin/python scripts/present_demo.py --serial YOUR_GLASSES_SERIAL \
+  --data hardware-runs/rayneo/presentation-data.json \
+  --install-apk android/app/build/outputs/apk/debug/app-debug.apk
+```
+
+Replace the source dataset path with the output from your backend setup. The preparation
+command adds two separate bottle records without changing the original mug records, and
+reuses its output on subsequent runs. The data file is local and untracked. It contains the prepared demo accounts, two registered
+objects and `"target": "bottle"`. `--adb /path/to/adb` supports a toolchain outside PATH.
+Setup installs `org.spatial.annotations.branchdemo` beside the original app, provisions
+accounts into app-private storage, and forwards the backend over USB. Keep both backend
+and dashboard running. **Pause camera** stops capture and clears labels. The presentation
+activity is debug-only; credentials are not embedded in the APK or served to the browser.
+
+This is a selected-object demo: show one sanitizer bottle at a time. The detector recognizes
+the category `bottle`, not a unique physical instance. It must not be used to claim automatic
+discrimination of identical bottles. The standard QR workflow below remains available.
+
 ## 1. Open the application repository
 
 On the prepared computer:

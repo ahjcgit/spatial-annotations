@@ -30,7 +30,12 @@ class AndroidUI:
         d(className='android.widget.EditText')[0].set_text(data['backend'])
         self.click('SAVE SERVER')
         d(text='Username').set_text(user['username'])
+        # The RayNeo's short display can hide the next field behind the IME.
+        if 'mInputShown=true' in d.shell('dumpsys input_method').output:
+            d.press('back')
         d(text='Password (at least 10 characters)').set_text(user['password'])
+        if 'mInputShown=true' in d.shell('dumpsys input_method').output:
+            d.press('back')
         self.click('SIGN IN');self.expect('Signed in: '+user['username'])
         self.click('SCAN / VIEW ANNOTATIONS')
     def manual(self,marker):

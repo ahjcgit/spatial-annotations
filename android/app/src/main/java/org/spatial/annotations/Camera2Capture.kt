@@ -12,7 +12,7 @@ import android.os.HandlerThread
 import androidx.core.content.ContextCompat
 
 /** Camera2 Y-plane capture, deliberately independent of a preview surface and Mercury SDK. */
-class Camera2Capture(private val context: Context, private val displayDegrees: () -> Int = { 0 }) : CameraCapture {
+class Camera2Capture(private val context: Context, private val color: Boolean = false, private val displayDegrees: () -> Int = { 0 }) : CameraCapture {
     private class CaptureRun(val worker: HandlerThread) {
         var device: CameraDevice? = null
         var session: CameraCaptureSession? = null
@@ -44,7 +44,8 @@ class Camera2Capture(private val context: Context, private val displayDegrees: (
                 val characteristics = manager.getCameraCharacteristics(id)
                 val rotation = FrameGeometry.bufferRotation(characteristics.get(CameraCharacteristics.SENSOR_ORIENTATION) ?: 0,
                     displayRotation, characteristics.get(CameraCharacteristics.LENS_FACING) == CameraCharacteristics.LENS_FACING_FRONT)
-                val size = (sizes.filter { it.width <= 1920 && it.height <= 1920 }.ifEmpty { sizes.toList() }).minByOrNull { kotlin.math.abs(it.width * it.height - 1280 * 960) }!!
+                val targetArea = if (color) 640 * 480 else 1280 * 960
+                val size = (sizes.filter { it.width <= 1920 && it.height <= 1920 }.ifEmpty { sizes.toList() }).minByOrNull { kotlin.math.abs(it.width * it.height - targetArea) }!!
                 val output = ImageReader.newInstance(size.width, size.height, ImageFormat.YUV_420_888, 2)
                 run.reader = output
                 var lastFrame = 0L
@@ -54,10 +55,12 @@ class Camera2Capture(private val context: Context, private val displayDegrees: (
                         val receivedAt = SystemClock.elapsedRealtimeNanos()
                         if (current != generation || receivedAt - lastFrame < 250_000_000) return@setOnImageAvailableListener
                         lastFrame = receivedAt
-                        val plane = image.planes[0]; val buffer = plane.buffer; val origin = buffer.position()
-                        val packed = ByteArray(image.width * image.height)
-                        for (y in 0 until image.height) for (x in 0 until image.width) packed[y * image.width + x] = buffer.get(origin + y * plane.rowStride + x * plane.pixelStride)
-                        onFrame(CameraFrame(packed, image.width, image.height, image.timestamp, rotation))
+                        val plane = image.planes[0]
+                        val packed = YPlanePacking.copy(plane.buffer, image.width, image.height, plane.rowStride, plane.pixelStride)
+                        fun chroma(index: Int): ByteArray? = if (!color) null else image.planes[index].let {
+                            YPlanePacking.copy(it.buffer, (image.width + 1) / 2, (image.height + 1) / 2, it.rowStride, it.pixelStride)
+                        }
+                        onFrame(CameraFrame(packed, image.width, image.height, image.timestamp, rotation, chroma(1), chroma(2)))
                     } catch (_: Exception) { onStatus("Camera frame unavailable") } finally { image.close() }
                 }, handler)
                 run.opening = true

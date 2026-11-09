@@ -56,6 +56,17 @@ class FramePreview(context: Context) : View(context) {
     companion object {
         /** Called on the camera worker, never the UI thread. */
         fun bitmap(frame: CameraFrame, frozen: Boolean): Bitmap {
+            if (frame.chromaU != null && frame.chromaV != null) {
+                val nv21 = Nv21Packing.pack(frame.luminance, frame.chromaU, frame.chromaV)
+                val encoded = java.io.ByteArrayOutputStream().use {
+                    YuvImage(nv21, ImageFormat.NV21, frame.width, frame.height, null)
+                        .compressToJpeg(Rect(0, 0, frame.width, frame.height), 85, it)
+                    it.toByteArray()
+                }
+                val raw = BitmapFactory.decodeByteArray(encoded, 0, encoded.size)
+                return if (FrameGeometry.rotation(frame.sensorRotation) == 0) raw else Bitmap.createBitmap(raw, 0, 0, raw.width, raw.height,
+                    Matrix().apply { postRotate(frame.sensorRotation.toFloat()) }, true).also { if (it !== raw) raw.recycle() }
+            }
             val step = maxOf(1, maxOf(frame.width, frame.height) / if (frozen) 960 else 480)
             val width = frame.width / step; val height = frame.height / step
             val pixels = IntArray(width * height) { i ->
