@@ -6,12 +6,13 @@ import android.content.pm.PackageManager
 import android.graphics.ImageFormat
 import android.hardware.camera2.*
 import android.media.ImageReader
+import android.os.SystemClock
 import android.os.Handler
 import android.os.HandlerThread
 import androidx.core.content.ContextCompat
 
 /** Camera2 Y-plane capture, deliberately independent of a preview surface and Mercury SDK. */
-class Camera2Capture(private val context: Context) : CameraCapture {
+class Camera2Capture(private val context: Context, private val displayDegrees: () -> Int = { 0 }) : CameraCapture {
     private class CaptureRun(val worker: HandlerThread) {
         var device: CameraDevice? = null
         var session: CameraCaptureSession? = null
@@ -26,6 +27,7 @@ class Camera2Capture(private val context: Context) : CameraCapture {
             onStatus("Camera permission required"); return
         }
         val current = ++generation
+        val displayRotation = displayDegrees()
         val worker = HandlerThread("qr-camera").apply { start() }
         val run = CaptureRun(worker); running = run
         val handler = Handler(worker.looper)
@@ -40,16 +42,18 @@ class Camera2Capture(private val context: Context) : CameraCapture {
                     ?: candidates.firstOrNull() ?: error("No YUV camera available; use explicit simulation mode")
                 val sizes = manager.getCameraCharacteristics(id).get(CameraCharacteristics.SCALER_STREAM_CONFIGURATION_MAP)!!.getOutputSizes(ImageFormat.YUV_420_888)
                 val characteristics = manager.getCameraCharacteristics(id)
-                val rotation = characteristics.get(CameraCharacteristics.SENSOR_ORIENTATION) ?: 0
-                val size = sizes.minByOrNull { kotlin.math.abs(it.width * it.height - 1280 * 960) }!!
+                val rotation = FrameGeometry.bufferRotation(characteristics.get(CameraCharacteristics.SENSOR_ORIENTATION) ?: 0,
+                    displayRotation, characteristics.get(CameraCharacteristics.LENS_FACING) == CameraCharacteristics.LENS_FACING_FRONT)
+                val size = (sizes.filter { it.width <= 1920 && it.height <= 1920 }.ifEmpty { sizes.toList() }).minByOrNull { kotlin.math.abs(it.width * it.height - 1280 * 960) }!!
                 val output = ImageReader.newInstance(size.width, size.height, ImageFormat.YUV_420_888, 2)
                 run.reader = output
                 var lastFrame = 0L
                 output.setOnImageAvailableListener({ source ->
                     val image = source.acquireLatestImage() ?: return@setOnImageAvailableListener
                     try {
-                        if (current != generation || image.timestamp - lastFrame < 250_000_000) return@setOnImageAvailableListener
-                        lastFrame = image.timestamp
+                        val receivedAt = SystemClock.elapsedRealtimeNanos()
+                        if (current != generation || receivedAt - lastFrame < 250_000_000) return@setOnImageAvailableListener
+                        lastFrame = receivedAt
                         val plane = image.planes[0]; val buffer = plane.buffer; val origin = buffer.position()
                         val packed = ByteArray(image.width * image.height)
                         for (y in 0 until image.height) for (x in 0 until image.width) packed[y * image.width + x] = buffer.get(origin + y * plane.rowStride + x * plane.pixelStride)

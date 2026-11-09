@@ -41,3 +41,16 @@ dependencies {
         implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     }
 }
+
+// Optional deterministic PNG replay uses the exact production ZXing recognizer.
+tasks.withType<Test>().configureEach {
+    providers.gradleProperty("replayDir").orNull?.let {
+        systemProperty("replayDir", file(it).absolutePath)
+        inputs.files(fileTree(it) { exclude("replay-results.jsonl") })
+        outputs.upToDateWhen { false }
+    }
+    providers.gradleProperty("demoData").orNull?.let {
+        systemProperty("demoData", file(it).absolutePath)
+        outputs.upToDateWhen { false }
+    }
+}

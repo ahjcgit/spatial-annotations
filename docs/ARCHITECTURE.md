@@ -19,7 +19,12 @@ objects; copying a label copies its identity.
 
 Camera2 supplies YUV frames to the local ZXing decoder. The app selects a supported
 size near 1280×960, analyzes about four frames per second, and stops on a valid
-marker. `ScanController` handles lookup, pagination, navigation, and cancellation
+marker while keeping the recognized frame visible. ZXing feature centers are rotated
+with the image and mapped with FIT_CENTER letterboxing; the highlights are not a
+bounding box or world anchor. Bitmap conversion and decoding run on the camera worker.
+A generation guard discards queued results after rescan/pause, and only one preview
+update can be pending. Displayed bitmaps are released to GC rather than recycled while
+Android RenderThread may still reference them. `ScanController` handles lookup, pagination, navigation, and cancellation
 of stale requests. An unknown marker can be registered. Manual marker entry is
 available for simulation and backend diagnostics.
 

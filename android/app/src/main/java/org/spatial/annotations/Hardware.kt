@@ -7,8 +7,8 @@ class StandardDeviceInput : DeviceInput {
     override fun actionForKey(keyCode: Int): DeviceAction? = when (keyCode) {
         23, 66 -> DeviceAction.SELECT // DPAD_CENTER, ENTER
         4 -> DeviceAction.BACK
-        22, 20 -> DeviceAction.NEXT
-        21, 19 -> DeviceAction.PREVIOUS
+        22 -> DeviceAction.NEXT
+        21 -> DeviceAction.PREVIOUS
         62 -> DeviceAction.DETAILS // SPACE
         else -> null
     }

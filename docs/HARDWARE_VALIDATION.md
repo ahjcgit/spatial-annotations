@@ -134,7 +134,7 @@ Print markers at about 65 mm wide with their white quiet zones intact. This is a
 **Question:** Can this app acquire usable frames and identify real objects through the glasses?
 
 1. Use the standard viewer to test CAMERA permission. On the first request, deny it and confirm the app reports denial without crashing. Then grant it via the app's request or Android application settings and retry. If permission was granted previously, test denial through settings only if you want to reset that test condition.
-2. Select **Start camera / scan next object**. Note the status `Scanning QR`, chosen camera ID and resolution. This app shows camera status, not a preview. Close other camera applications if acquisition fails.
+2. Select **Start camera / scan next object**. Note the status `Scanning QR`, chosen camera ID and resolution. The standard app shows a grayscale aiming preview and processed-frame count; after detection it keeps the frame and highlights detected QR feature centers. Close other camera applications if acquisition fails.
 3. Keep B's marker out of view. Present A's printed marker upright and approximately front-facing under ordinary indoor lighting. Record distance and lighting; move it gradually if the first position does not decode.
 4. Confirm the display changes to **Mug A** and its authorized notes. Confirm the selection came from the camera, not the SIMULATION action. Acquisition stops after detection by design.
 5. Select **Start camera / scan next object** again and present only B. Expect **Mug B** with no notes. Swap the mugs' positions and repeat: identity must follow the marker.

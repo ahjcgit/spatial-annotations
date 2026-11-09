@@ -4,13 +4,20 @@ A RayNeo glasses capability test for [SmartGlassProject](https://github.com/ahjc
 Scan QR labels on physical objects, then create and read private, group, or public notes.
 The experiment includes a Kotlin Android app, a FastAPI backend, and a browser companion.
 
-Notes are shown in a screen-space panel. World tracking, persistent AR anchors, and
+The standard Android app freezes the recognized camera frame, highlights detected QR
+feature centers, and shows authorized notes in an adjacent screen-space panel. World tracking, persistent AR anchors, and
 markerless recognition are not implemented. The optional Mercury viewer needs a
 separately licensed SDK and device validation.
 
 In SmartGlassProject, this repository lives in the single `spatial-annotations/`
 submodule directory. Run the commands below from that directory, or from a standalone
 clone of this repository.
+
+## Software-only demo and next hardware session
+
+Start with [DEMO_QUICKSTART.md](docs/DEMO_QUICKSTART.md) for the non-destructive, one-command demo.
+See [implementation and measured evidence](docs/IMPLEMENTATION_STATUS.md) and the
+[next-day RayNeo checklist](docs/RAYNEO_NEXT_DAY_CHECKLIST.md).
 
 ## Backend and companion
 
