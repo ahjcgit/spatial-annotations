@@ -8,6 +8,14 @@ import shutil
 ROOT=Path(__file__).resolve().parents[1]
 # Missing optional evidence is reported rather than fabricated.
 SOURCES={
+ 'browser-pagination-results.json':'artifacts/browser-pagination/results.json',
+ 'model-readiness-after-restart.json':'artifacts/readme-demo/vision-after-restart.json',
+ 'step-by-step-readme.md':'README.md',
+ 'browser-model-alice.png':'artifacts/readme-followup/browser-final/alice-model.png',
+ 'browser-model-bob.png':'artifacts/readme-followup/browser-final/bob-model.png',
+ 'browser-virtual-camera.png':'artifacts/readme-followup/browser-final/virtual-camera-model.png',
+ 'browser-model-test-results.json':'artifacts/readme-followup/browser-final/results.json',
+ 'integrated-model-demo.log':'artifacts/readme-followup/demo-reuse.log',
  'demo-with-bob-and-model.mp4':'artifacts/vision/demo-with-bob-and-model.mp4',
  'alice-bob-demo.mp4':'artifacts/sharing-video/alice-bob-demo.mp4',
  'bob-android.png':'artifacts/sharing-video/02-bob.png',

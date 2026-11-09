@@ -158,3 +158,41 @@ adb -s emulator-5554 install -r android/app/build/outputs/apk/debug/app-debug.ap
 On another computer, use an ordinary Android Studio AVD and its supported camera mode;
 the default demo remains independent of emulator availability. The OpenCV probe on this
 host failed because there are no video capture devices. It produced no webcam samples.
+
+
+## Browser photo/model, virtual camera and pagination regression
+
+With the model backend running and matching local demo credentials:
+
+```bash
+.venv/bin/python scripts/companion_vision_test.py --data artifacts/vision/demo-data.json
+.venv/bin/python scripts/companion_pagination_test.py
+```
+
+The first exercises actual photo inference, explicit object confirmation, Alice/Bob
+permissions, blank input, category switching, controlled server failure/recovery, stale
+inference after sign-out, and old-session 401 protection. The second creates its own
+short-lived backend bound to `0.0.0.0` on a free port, temporary database and 101-note
+fixture. It verifies that Load more revalidates previously displayed pages after group
+revocation, hides partial content on a page failure and recovers on refresh. It never
+writes to the prepared demo database.
+
+For browser camera plumbing without physical capture hardware (requires FFmpeg):
+
+```bash
+mkdir -p artifacts/browser-vision
+ffmpeg -y -loglevel error -loop 1 -i artifacts/vision/coffee.png -vf scale=600:400 -t 2 -r 10 -pix_fmt yuv420p artifacts/browser-vision/coffee.y4m
+.venv/bin/python scripts/companion_vision_test.py --data artifacts/vision/demo-data.json --fake-video artifacts/browser-vision/coffee.y4m
+```
+
+This is a **browser virtual camera** with a known photograph replayed through
+`getUserMedia`, followed by real CPU inference and HTTP. It is not an Android emulator,
+USB webcam or physical RayNeo test. The default photo tests use the dataset LAN URL;
+the optional virtual-camera test uses localhost on the same port to satisfy the secure
+context requirement. Actual webcam preview/upload needs a real camera and remains untested
+in the current host environment. Reports/screenshots go in the script's `--output` directory.
+
+The integrated model setup is `scripts/demo.py --vision`; it verifies model inference
+both before and after backend restart and preserves existing object metadata while
+associating the two demo mugs with `cup`. `--verify-and-exit` provides a finite run;
+`--skip-build` explicitly skips Android checks and requires an existing APK.

@@ -12,6 +12,42 @@ on port 8000 and Rakazo on 5173 were left intact. Run commands inside
 `/home/ahjc/projects/m202a/SmartGlassProject/spatial-annotations`, the actual submodule.
 The sibling standalone clone was not edited.
 
+## Follow-up: executable README and browser detection
+
+The root [README](../README.md) is now a numbered walkthrough for setup, local account
+lookup, Alice/Bob permissions, edits, revocation/restoration, browser photo/webcam testing,
+Android simulation/QR/model testing, evidence capture and troubleshooting.
+
+| Feature | Implemented | Tested | Test environment | Result | Hardware validation needed |
+|---|---|---|---|---|---|
+| Browser photo → box → confirmed object → notes | Yes | Yes | Chromium + actual NanoDet/HTTP, published CC0 photo | A=3, B=0, Bob A=2; direct private ID 404 | None for photo workflow |
+| Browser webcam preview/capture and track release | Yes | Virtual camera | Chromium fake-video file via localhost | Capture → actual inference → A=3; tracks released | Real USB camera remains untested |
+| LAN HTTP camera fallback | Yes | Yes | Browser on LAN HTTP | Explains secure-context requirement; photo upload works | Real camera over HTTPS/localhost |
+| Clear old notes on photo/category change | Yes | Yes | Browser UI | Blank and unmatched category clear previous content | None |
+| Stale inference, old-session 401, sign-out | Yes | Yes | Browser response interception around real inference/auth | Late results discarded; newer login retained | None |
+| Model failure recovery | Yes | Yes | Controlled HTTP 503 then actual successful inference | Visible failure then successful retry | None |
+| Browser pagination after revocation | Yes | Yes | Actual Chromium/HTTP, 101 notes, isolated SQLite backend | Load more revalidates old pages; revoked group note removed; page error clears partial content; refresh recovers | None |
+| Integrated `demo.py --vision` | Yes | Yes | Fresh and reused SQLite dataset on free port 8013 | Seed, category setup, real inference readiness, restart, tests/build pass | None |
+| Verified sample download | Yes | Yes, cached checksum path | Local setup script | Model/photo checksums match official artifacts | None |
+
+Executed: 25 backend tests (including actual model fixtures even when pytest runs from
+`backend/`), 28 JVM tests with zero skips, 2 telemetry script tests, lint/build, 40 actual
+HTTP lookups per setup run, the existing browser sharing workflow, and 9 new browser
+model/virtual-camera scenarios. Fresh and reused demo runs both passed; a subsequent targeted run also verified model
+inference after restart. The isolated 101-note pagination/revocation/recovery test passed
+without modifying the prepared dataset (`artifacts/browser-pagination/results.json`). Lint remains
+0 errors / 40 warnings; Android source/APK is unchanged in this follow-up.
+
+Evidence: `artifacts/readme-followup/browser-final/results.json`, Alice/Bob/virtual-camera
+screenshots in that directory, `demo-run.log`, `demo-reuse.log`, `sharing.log`, and full
+setup logs in `artifacts/readme-demo/`. The temporary 8013 verification service exits;
+the prepared interactive demo remains at **http://192.168.1.76:8012**.
+
+Presentation additions: show the browser detecting the coffee photograph and Bob's
+PUBLIC/GROUP notes without Android hardware. Label the webcam test **browser virtual
+camera**, not a USB webcam or RayNeo test. Identical-mug automatic identification and
+world anchoring remain unimplemented; the model flow still requires human confirmation.
+
 ## Follow-up: Bob footage and model detection
 
 This section supersedes the original checkpoint's build/count totals below. The original

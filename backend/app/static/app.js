@@ -1,25 +1,30 @@
 'use strict';
 const $ = id => document.getElementById(id);
-let token = '', me = null, currentObject = null, editId = null, annotations = [], generation = 0;
+let token = '', me = null, currentObject = null, editId = null, annotations = [], generation = 0, notesRevision = 0;
 function status(message, error = false) { $('status').textContent = message; $('status').classList.toggle('error', error); }
 async function api(path, method = 'GET', body) {
-  const response = await fetch(path, {method, headers: {'Content-Type': 'application/json', ...(token ? {Authorization: `Bearer ${token}`} : {})}, ...(body === undefined ? {} : {body: JSON.stringify(body)})});
-  if (response.status === 401 && token) { token = ''; me = null; generation++; clearNotes(); renderIdentity(); }
+  const requestToken = token, raw = body instanceof Blob;
+  const response = await fetch(path, {method, headers: {'Content-Type': raw ? body.type : 'application/json', ...(requestToken ? {Authorization: `Bearer ${requestToken}`} : {})}, ...(body === undefined ? {} : {body: raw ? body : JSON.stringify(body)})});
+  if (response.status === 401 && token && token === requestToken) { token = ''; me = null; generation++; clearNotes(); clearVision(); renderIdentity(); }
   if (!response.ok) { const error = await response.json().catch(() => ({})); throw new Error(typeof error.detail === 'string' ? error.detail : `Request failed (${response.status}). Check required fields and permissions.`); }
   return response.status === 204 ? null : response.json();
 }
 function action(id, fn, event = 'click') { $(id).addEventListener(event, async e => { e.preventDefault(); try { await fn(); } catch (error) { status(error.message, true); } }); }
 function markerId() { const raw = $('marker').value.trim().replace(/^spatial:v1:/, '').toLowerCase(); if (!/^[0-9a-f]{8}(-[0-9a-f]{4}){3}-[0-9a-f]{12}$/.test(raw)) throw new Error('Use a canonical UUID or spatial:v1:<UUID> marker.'); return raw; }
 function newUuid() { const bytes = crypto.getRandomValues(new Uint8Array(16)); bytes[6] = bytes[6] & 15 | 64; bytes[8] = bytes[8] & 63 | 128; const hex = Array.from(bytes, b => b.toString(16).padStart(2, '0')).join(''); return `${hex.slice(0,8)}-${hex.slice(8,12)}-${hex.slice(12,16)}-${hex.slice(16,20)}-${hex.slice(20)}`; }
-function clearNotes() { annotations = []; $('notes').replaceChildren(); $('note-count').textContent = 'Refresh to retrieve authorized annotations.'; $('more').hidden = true; cancelEdit(); }
+function clearNotes() { notesRevision++; annotations = []; $('notes').replaceChildren(); $('note-count').textContent = 'Refresh to retrieve authorized annotations.'; $('more').hidden = true; cancelEdit(); }
 function cancelEdit() { editId = null; $('content').value = ''; $('save-note').textContent = 'Create annotation'; $('cancel-edit').hidden = true; }
 function renderIdentity() { $('identity').textContent = me ? `Signed in as ${me.username}` : 'Browsing as guest'; $('groups').replaceChildren(); $('note-group').replaceChildren(new Option('Choose a group', '')); $('member-group').replaceChildren(); }
 async function signIn(register) {
   const credentials = {username: $('username').value, password: $('password').value};
-  token = ''; me = null; generation++; clearNotes(); renderIdentity();
+  token = ''; me = null; generation++; clearNotes(); clearVision(); renderIdentity();
+  const version = generation;
   if (register) await api('/auth/register', 'POST', credentials);
-  const result = await api('/auth/login', 'POST', credentials); token = result.access_token; me = result.user; $('password').value = ''; renderIdentity();
-  await loadGroups(); if (currentObject) await loadNotes(); status(`Signed in as ${me.username}.`);
+  if (version !== generation) return;
+  const result = await api('/auth/login', 'POST', credentials); if (version !== generation) return; token = result.access_token; me = result.user; $('password').value = ''; renderIdentity();
+  await loadGroups(); if (version !== generation) return;
+  if (currentObject) await loadNotes();
+  if (version === generation && me) status(`Signed in as ${me.username}.`);
 }
 async function loadGroups() {
   if (!me) return;
@@ -46,6 +51,7 @@ function renderObject(obj) {
   for (const [field,key] of [['object-name','name'],['description','description'],['location','location_label'],['latitude','latitude'],['longitude','longitude']]) $(field).value = obj[key] ?? '';
 }
 async function lookup() {
+  clearVision();
   const id = markerId(), version = ++generation; currentObject = null; clearNotes(); showMarker(id);
   $('object-status').textContent = 'Looking up object…';
   try { const obj = await api(`/objects/by-marker/${id}`); if (version !== generation) return; renderObject(obj); await loadNotes(); status('Object selected. Only annotations you can access are shown.'); }
@@ -53,11 +59,16 @@ async function lookup() {
 }
 async function loadNotes(append = false) {
   if (!currentObject) return;
-  const version = generation, id = currentObject.id, offset = append ? annotations.length : 0;
-  if (!append) clearNotes();
-  const list = await api(`/objects/${id}/annotations?limit=100&offset=${offset}`);
-  if (version !== generation || currentObject?.id !== id) return;
-  annotations = append ? annotations.concat(list) : list; renderNotes(); $('more').hidden = list.length < 100;
+  const version = generation, id = currentObject.id, target = append ? annotations.length + 100 : 100;
+  // Revalidate visible pages too: revocation may shift pagination and invalidate old notes.
+  clearNotes(); const revision = notesRevision, refreshed = []; let lastCount = 0;
+  for (let offset = 0; offset < target; offset += 100) {
+    const list = await api(`/objects/${id}/annotations?limit=100&offset=${offset}`);
+    if (version !== generation || revision !== notesRevision || currentObject?.id !== id) return;
+    refreshed.push(...list); lastCount = list.length;
+    if (lastCount < 100) break;
+  }
+  annotations = refreshed; renderNotes(); $('more').hidden = lastCount < 100;
 }
 function renderNotes() {
   $('notes').replaceChildren(); $('note-count').textContent = `${annotations.length} authorized annotation(s) loaded`;
@@ -77,8 +88,14 @@ function renderNotes() {
   }
 }
 action('auth', () => signIn(false), 'submit'); action('register', () => { if ($('auth').reportValidity()) return signIn(true); });
-action('logout', async () => { try { if (token) await api('/auth/logout', 'POST'); } finally { token = ''; me = null; generation++; clearNotes(); renderIdentity(); } if (currentObject) await loadNotes(); status('Signed out.'); });
-action('lookup', lookup, 'submit'); action('new-marker', () => { generation++; currentObject = null; clearNotes(); const id = newUuid(); $('marker').value = id; showMarker(id); $('object-status').textContent = `New marker · ${id}`; for (const field of ['object-name','description','location','latitude','longitude','detection-label']) $(field).value = ''; status('Fill in the registration form, then save the object.'); });
+action('logout', async () => {
+  const pending = token ? api('/auth/logout', 'POST') : Promise.resolve();
+  token = ''; me = null; const version = ++generation; clearNotes(); clearVision(); renderIdentity();
+  try { await pending; } finally {
+    if (version === generation) { if (currentObject) await loadNotes(); status('Signed out.'); }
+  }
+});
+action('lookup', lookup, 'submit'); action('new-marker', () => { clearVision(); generation++; currentObject = null; clearNotes(); const id = newUuid(); $('marker').value = id; showMarker(id); $('object-status').textContent = `New marker · ${id}`; for (const field of ['object-name','description','location','latitude','longitude','detection-label']) $(field).value = ''; status('Fill in the registration form, then save the object.'); });
 action('print', () => window.print());
 action('object-form', async () => {
   const data = {name: $('object-name').value, description: $('description').value, location_label: $('location').value, latitude: $('latitude').value === '' ? null : Number($('latitude').value), longitude: $('longitude').value === '' ? null : Number($('longitude').value)};

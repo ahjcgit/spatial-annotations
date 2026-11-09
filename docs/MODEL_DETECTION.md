@@ -14,6 +14,27 @@ notes. QR remains the reliable automatic instance-identification option.
 This is image-space detection, not SLAM, tracking, pose estimation or world anchoring.
 No training, cloud inference, paid API or proprietary SDK is required.
 
+## Browser testing and integrated setup
+
+The companion now supports **photo upload → model boxes → category selection → explicit
+object confirmation → authorized notes**. Use the numbered [README test guide](../README.md).
+The browser also provides an optional webcam preview and single-frame capture. It requires
+HTTPS or localhost; photo upload works over ordinary LAN HTTP. Opening a preview uploads
+nothing, and capture/stop/sign-out releases camera tracks. New input or category selection
+clears previous notes; late responses cannot restore a signed-out selection.
+
+For a fresh reproducible model demo, install the optional dependencies and run:
+
+```bash
+.venv/bin/python scripts/setup_vision.py --sample
+source scripts/dev_env.sh
+.venv/bin/python scripts/demo.py --vision --port 8013 --output artifacts/local-demo
+```
+
+Check that the port is free first. This creates/reuses its own dataset, sets cup categories
+without overwriting other metadata, runs actual blank-frame inference, and verifies
+persistence/build/tests. The manual server procedure below remains useful for an existing DB.
+
 ## Start on this computer
 
 The prepared model backend is **http://192.168.1.76:8012**, sharing the existing demo

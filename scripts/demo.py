@@ -18,6 +18,7 @@ def main():
     p=argparse.ArgumentParser(description=__doc__)
     p.add_argument('--port',type=int,default=8011)
     p.add_argument('--output',type=Path,default=ROOT/'artifacts/demo')
+    p.add_argument('--vision',action='store_true',help='Enable installed NanoDet model, verify readiness and prepare cup categories')
     p.add_argument('--skip-build',action='store_true',help='Use an already built APK; still run backend and HTTP checks')
     p.add_argument('--verify-and-exit',action='store_true')
     args=p.parse_args()
@@ -34,6 +35,10 @@ def main():
         print(f'PASS: {name}',flush=True)
     url=f'http://127.0.0.1:{args.port}'
     env={**os.environ,'DATABASE_URL':'sqlite:///'+str(output/'demo.db')}
+    if args.vision:
+        model=ROOT/'artifacts/models/nanodet.onnx'
+        if not model.is_file(): p.error('Model missing. Install requirements-vision.txt and run scripts/setup_vision.py first.')
+        env['VISION_MODEL_PATH']=str(model)
     server=None; log=(output/'backend.log').open('a')
     def start():
         process=subprocess.Popen([sys.executable,'-m','uvicorn','app.main:app','--app-dir',str(ROOT/'backend'),
@@ -63,6 +68,8 @@ def main():
             except OSError: lan='127.0.0.1'
         dataset=json.loads(data.read_text());dataset['backend']=f'http://{lan}:{args.port}'
         data.write_text(json.dumps(dataset,indent=2)+'\n');data.chmod(0o600)
+        if args.vision:
+            run([sys.executable,'scripts/configure_vision_demo.py','--data',str(data),'--report',str(output/'vision-ready.json')],'vision-setup')
         for obj in dataset['objects']:
             run([sys.executable,'scripts/generate_markers.py','--count','1','--marker-id',obj['marker_id'],'--output',str(output/'markers')],'marker-'+obj['name'].replace(' ','-'))
         run([sys.executable,'scripts/qr_frames.py','synthetic','--data',str(data),'--output',str(output/'qr-frames')],'qr-fixtures')
@@ -70,6 +77,8 @@ def main():
         verify=[sys.executable,'scripts/e2e.py','--url',url,'--output',str(data),'--verify']
         run(verify+['--evidence',str(output/'http-before-restart.jsonl')],'http-before-restart')
         stop(server);server=start()
+        if args.vision:
+            run([sys.executable,'scripts/configure_vision_demo.py','--data',str(data),'--report',str(output/'vision-after-restart.json')],'vision-after-restart')
         run(verify+['--evidence',str(output/'http-after-restart.jsonl')],'http-after-restart')
         apk=ROOT/'android/app/build/outputs/apk/debug/app-debug.apk'
         if not args.skip_build:

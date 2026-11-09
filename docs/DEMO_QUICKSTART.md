@@ -5,6 +5,12 @@ The standard APK needs no Mercury SDK. This demo uses QR identity and image-spac
 visualization. Optional [model detection](MODEL_DETECTION.md) needs no printed QR but
 requires explicit object confirmation; neither mode implements spatial anchors.
 
+For a complete numbered test procedure, including the new **browser photo upload / webcam**
+flow, start with the [README](../README.md). To prepare model detection automatically,
+install `backend/requirements-vision.txt`, run `scripts/setup_vision.py --sample`, then add
+`--vision` to the demo command below. It verifies real model readiness and associates
+both demo mugs with `cup` without hand-editing credentials or metadata.
+
 ## First-time environment setup
 
 Use Python 3.11+, JDK 17, Android SDK 35 and build-tools 34.0.0.

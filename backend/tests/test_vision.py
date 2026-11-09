@@ -39,8 +39,9 @@ def test_candidates_require_confirmation_and_preserve_permissions(client,users):
 
 
 def test_real_model_photo_blank_exif_and_validation():
-    model=Path(os.getenv('VISION_TEST_MODEL','artifacts/models/nanodet.onnx'))
-    photo=Path('artifacts/vision/coffee.png')
+    root=Path(__file__).resolve().parents[2]
+    model=Path(os.getenv('VISION_TEST_MODEL',str(root/'artifacts/models/nanodet.onnx')))
+    photo=root/'artifacts/vision/coffee.png'
     if not model.exists() or not photo.exists():
         pytest.skip('Optional downloaded model/photo absent; run setup_vision.py and documented fixture download')
     pytest.importorskip('cv2')
