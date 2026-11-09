@@ -3,13 +3,79 @@
 The standard Kotlin Android client, FastAPI/SQLite backend and browser companion are
 implemented and software-tested without RayNeo glasses. The app now preserves the
 recognized frame and highlights QR feature centers beside readable object-specific
-annotations. This is **image-space annotation visualization**, not SLAM, markerless
-recognition, a pose estimate, or persistent world anchoring.
+annotations. This is **image-space annotation visualization**, not SLAM, automatic
+markerless instance recognition, a pose estimate, or persistent world anchoring.
+An optional category-detection mode was added afterward, as documented below.
 
 The prepared companion is running at **http://192.168.1.76:8011**. The original service
 on port 8000 and Rakazo on 5173 were left intact. Run commands inside
 `/home/ahjc/projects/m202a/SmartGlassProject/spatial-annotations`, the actual submodule.
 The sibling standalone clone was not edited.
+
+## Follow-up: Bob footage and model detection
+
+This section supersedes the original checkpoint's build/count totals below. The original
+video showed Alice's camera trials only. A corrected recording now shows **Alice 3 notes,
+Bob 2, Bob after group removal 1, and Bob selecting Mug B 0**, with a persistent account
+label. Direct private-note access returned 404. Membership was restored afterward.
+
+Optional **NanoDet Plus 416** detection is implemented in the actual Android client and
+local FastAPI backend. A camera image yields categories and boxes; the user must select
+the category **and explicitly confirm the registered physical instance**. A detected cup
+alone cannot distinguish identical mugs. No printed QR is required in this mode; normal
+permission-filtered retrieval still uses internal object/marker UUIDs.
+
+| Feature | Implemented | Tested | Test environment | Result | Hardware validation needed |
+|---|---|---|---|---|---|
+| Bob footage and visible account label | Yes | Yes | Installed Android emulator + actual HTTP | 4 recorded chapters passed; revocation and private-ID rejection checked | No, for recording |
+| Optional model inference | Yes | Yes | CPU OpenCV / actual ONNX weights / real published photo | Color, grayscale, EXIF correction and blank cases passed | Actual mugs, distance/light robustness |
+| Camera → model → confirmation → notes | Yes | Yes | Android Camera2 with photograph image-file input | A=3, B=0, blank rejected; real model inference | RayNeo camera/network/display |
+| Model box display | Yes | Yes | Emulator screenshot + JVM box validation | Visible cup box; invalid boxes rejected | Wearable orientation/readability |
+| Model endpoint protection | Yes | Yes | Backend tests | Auth, byte/pixel/type limits, missing model, busy state, candidate ownership and privacy passed | None |
+| Companion visual category editing | Yes | Yes | Actual Chromium browser and API | Load/save normalized `cup`; both registered candidates returned | None |
+| QR regression | Yes | Yes | Final build JVM replay and emulator Camera2 | A/B correct; generated replay passes | Physical optical tests |
+| Real webcam / physical RayNeo model tests | Utility ready | No | No webcam/device exposed | Not tested | Required |
+| Automatic identical-instance visual identification | No | No | Not claimed | Human confirmation required | Would require additional design/data |
+
+Final software verification: **25 backend tests passed; 28 Android JVM tests passed
+with zero skips**, including actual backend HTTP and production QR replay; lint **0 errors,
+40 warnings** (mostly existing localization/style warnings plus new UI text); debug build
+succeeded. **20 repeated HTTP lookups passed**. Browser sharing and category-edit checks
+passed. Logs are in `artifacts/vision/`; no credentials or image contents enter telemetry.
+
+APK: `android/app/build/outputs/apk/debug/app-debug.apk`
+
+SHA256: `e3eaf0bb8714f7fdaefdf8a74d1f797b640b23cb7dcb1e0032427747f55feec6`.
+The model-enabled LAN backend is `http://192.168.1.76:8012`; standard QR service remains
+on 8011. See [model quickstart](MODEL_DETECTION.md) for commands and provenance.
+
+Evidence available for the November 12 presentation:
+
+- `artifacts/vision/demo-with-bob-and-model.mp4`: combined sharing and model recording.
+- `artifacts/sharing-video/alice-bob-demo.mp4`: actual Alice/Bob UI, manual identity
+  simulation, real HTTP permissions; credential entry excluded.
+- `artifacts/vision/emulator-final/model-demo.mp4`: real Camera2 and NanoDet using a
+  published CC0 coffee photograph, explicit instance confirmation, plus blank rejection.
+- `artifacts/vision/emulator-final/model-log.txt`: three measured model calls, with
+  inference and Android HTTP durations. These are a smoke sample, not an accuracy benchmark.
+- `artifacts/vision/emulator-final/Mug-A.png`, `Mug-B.png`; `artifacts/sharing-video/02-bob.png`
+  and `03-bob-revoked.png`: visible model box, account and permission states.
+
+| Presentation claim | Evidence | Limit |
+|---|---|---|
+| Shared object notes respect identity and access | Alice 3 / Bob 2 / revoked Bob 1 / B 0 | Identity supplied manually in sharing footage |
+| No printed QR needed for model-assisted flow | Camera2 photo → cup box → explicit A/B confirmation → notes | Category detection, not automatic instance recognition |
+| Software pipeline is tested | 25 backend + 28 JVM; actual HTTP/browser/emulator checks | Does not establish physical-glasses compatibility |
+
+Exploratory failures encountered: the first model UI test scrolled outside
+and dismissed the confirmation dialog; the harness now waits without scrolling. One Gradle
+invocation used the wrong fixture-directory name and was rerun successfully with `qr-frames`.
+OpenCV 5.0's graph output layout is incompatible with the upstream NanoDet wrapper;
+**both model and webcam requirements pin GUI-capable OpenCV 4.13.0.92**. This avoids
+installing conflicting GUI/headless `cv2` packages and keeps webcam preview support.
+This extension is on local branch `demo/model-detection`. No remote push was performed.
+The parent repository still needs its submodule pointer updated to this branch commit.
+The earlier baseline/checkpoint evidence below remains historical and uses its earlier APK.
 
 ## Baseline and environment
 
@@ -57,7 +123,7 @@ wrong relative Python path; the corrected command passed before implementation.
 | Offline real-webcam replay | Yes | No real frames | No captures available | Not tested on real-camera images | Host webcam access |
 | Mercury binocular adapter | Existing optional source | No | Licensed AAR absent | Isolated; unbuilt/untested | Licensed SDK, firmware and device |
 | Physical camera, display, gestures, binocular alignment | Prepared checklist | No | Physical RayNeo absent | Not tested | Required |
-| SLAM/6DoF/world anchors/markerless recognition | No | No | Out of checkpoint scope | Not implemented | Additional future implementation |
+| SLAM/6DoF/world anchors/automatic markerless instance recognition | No | No | Out of checkpoint scope | Not implemented | Additional future implementation |
 
 ## Changes and safeguards
 

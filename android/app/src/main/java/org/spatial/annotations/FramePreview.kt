@@ -10,17 +10,25 @@ class FramePreview(context: Context) : View(context) {
     private var bitmap: Bitmap? = null
     private var imageSize = ImageSize(1, 1)
     private var points = emptyList<ImagePoint>()
+    private var boxes = emptyList<Detection>()
     private val destination = RectF()
     private val paint = Paint(Paint.ANTI_ALIAS_FLAG).apply { isFilterBitmap = true }
     fun show(bitmap: Bitmap, frame: CameraFrame, identity: ObjectIdentity?) {
         this.bitmap = bitmap
+        boxes = emptyList()
         imageSize = FrameGeometry.size(frame.width, frame.height, frame.sensorRotation)
         points = identity?.points.orEmpty().map { FrameGeometry.rotate(it, frame.width, frame.height, frame.sensorRotation) }
         contentDescription = if (identity == null) "Live grayscale camera preview" else
             "Frozen recognized frame. ${points.size} QR feature centers highlighted; not a bounding box."
         visibility = VISIBLE; invalidate()
     }
-    fun clear() { bitmap = null; points = emptyList(); visibility = GONE; invalidate() }
+    fun showDetections(bitmap: Bitmap, detections: List<Detection>) {
+        this.bitmap = bitmap; imageSize = ImageSize(bitmap.width, bitmap.height)
+        points = emptyList(); boxes = detections.filter { it.valid() }
+        contentDescription = "Frozen model frame. ${boxes.size} detected object boxes. Identity requires confirmation."
+        visibility = VISIBLE; invalidate()
+    }
+    fun clear() { boxes = emptyList(); bitmap = null; points = emptyList(); visibility = GONE; invalidate() }
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
         val image = bitmap ?: return
@@ -30,6 +38,12 @@ class FramePreview(context: Context) : View(context) {
         paint.style = Paint.Style.FILL; paint.color = Color.WHITE
         destination.set(left, top, width - left, height - top)
         canvas.drawBitmap(image, null, destination, paint)
+        boxes.forEach { detection ->
+            val b = detection.box
+            paint.style = Paint.Style.STROKE; paint.strokeWidth = 4f; paint.color = Color.YELLOW
+            canvas.drawRect(left + b[0] * destination.width(), top + b[1] * destination.height(),
+                left + b[2] * destination.width(), top + b[3] * destination.height(), paint)
+        }
         val radius = 7f * resources.displayMetrics.density
         points.forEach {
             val p = FrameGeometry.fit(it, imageSize, width, height)

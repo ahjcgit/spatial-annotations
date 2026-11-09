@@ -41,6 +41,7 @@ async function loadGroups() {
 }
 function showMarker(id) { $('qr').src = `/markers/${id}.png`; $('qr').hidden = false; $('print').hidden = false; }
 function renderObject(obj) {
+  $('detection-label').value = obj.spatial_metadata?.detection_label || '';
   currentObject = obj; $('object-status').textContent = `${obj.name || 'Unnamed object'} · ${obj.marker_id}`;
   for (const [field,key] of [['object-name','name'],['description','description'],['location','location_label'],['latitude','latitude'],['longitude','longitude']]) $(field).value = obj[key] ?? '';
 }
@@ -48,7 +49,7 @@ async function lookup() {
   const id = markerId(), version = ++generation; currentObject = null; clearNotes(); showMarker(id);
   $('object-status').textContent = 'Looking up object…';
   try { const obj = await api(`/objects/by-marker/${id}`); if (version !== generation) return; renderObject(obj); await loadNotes(); status('Object selected. Only annotations you can access are shown.'); }
-  catch (e) { if (version === generation) { $('object-status').textContent = `Unregistered or unavailable · ${id}`; for (const field of ['object-name','description','location','latitude','longitude']) $(field).value = ''; } throw e; }
+  catch (e) { if (version === generation) { $('object-status').textContent = `Unregistered or unavailable · ${id}`; for (const field of ['object-name','description','location','latitude','longitude','detection-label']) $(field).value = ''; } throw e; }
 }
 async function loadNotes(append = false) {
   if (!currentObject) return;
@@ -77,11 +78,12 @@ function renderNotes() {
 }
 action('auth', () => signIn(false), 'submit'); action('register', () => { if ($('auth').reportValidity()) return signIn(true); });
 action('logout', async () => { try { if (token) await api('/auth/logout', 'POST'); } finally { token = ''; me = null; generation++; clearNotes(); renderIdentity(); } if (currentObject) await loadNotes(); status('Signed out.'); });
-action('lookup', lookup, 'submit'); action('new-marker', () => { generation++; currentObject = null; clearNotes(); const id = newUuid(); $('marker').value = id; showMarker(id); $('object-status').textContent = `New marker · ${id}`; for (const field of ['object-name','description','location','latitude','longitude']) $(field).value = ''; status('Fill in the registration form, then save the object.'); });
+action('lookup', lookup, 'submit'); action('new-marker', () => { generation++; currentObject = null; clearNotes(); const id = newUuid(); $('marker').value = id; showMarker(id); $('object-status').textContent = `New marker · ${id}`; for (const field of ['object-name','description','location','latitude','longitude','detection-label']) $(field).value = ''; status('Fill in the registration form, then save the object.'); });
 action('print', () => window.print());
 action('object-form', async () => {
   const data = {name: $('object-name').value, description: $('description').value, location_label: $('location').value, latitude: $('latitude').value === '' ? null : Number($('latitude').value), longitude: $('longitude').value === '' ? null : Number($('longitude').value)};
   const id = markerId(); const isUpdate = currentObject?.marker_id === id;
+  data.spatial_metadata = {...(isUpdate ? currentObject.spatial_metadata : {}), detection_label: $('detection-label').value.trim().toLowerCase()};
   const obj = await api(isUpdate ? `/objects/${currentObject.id}` : '/objects', isUpdate ? 'PATCH' : 'POST', isUpdate ? data : {...data, marker_id: id});
   generation++; clearNotes(); renderObject(obj); showMarker(id); await loadNotes(); status('Object saved. Print and attach its marker.');
 }, 'submit');

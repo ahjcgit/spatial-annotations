@@ -2,7 +2,8 @@
 
 Run from the **application submodule** (`SmartGlassProject/spatial-annotations`).
 The standard APK needs no Mercury SDK. This demo uses QR identity and image-space
-visualization; it does not implement markerless recognition or spatial anchors.
+visualization. Optional [model detection](MODEL_DETECTION.md) needs no printed QR but
+requires explicit object confirmation; neither mode implements spatial anchors.
 
 ## First-time environment setup
 
@@ -125,3 +126,7 @@ exposes no webcam, so real-webcam results are **not yet available**.
 
 Timing definitions and evidence interpretation: [TESTING.md](TESTING.md).
 Next physical session: [RAYNEO_NEXT_DAY_CHECKLIST.md](RAYNEO_NEXT_DAY_CHECKLIST.md).
+
+The corrected two-user recording is `artifacts/sharing-video/alice-bob-demo.mp4`.
+Recreate it with `scripts/record_sharing_demo.py`; it shows Bob explicitly and labels
+manual identification as simulation.

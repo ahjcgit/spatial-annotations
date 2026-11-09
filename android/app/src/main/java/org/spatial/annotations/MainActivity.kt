@@ -56,6 +56,9 @@ class MainActivity : AppCompatActivity(), AnnotationRenderer {
     private var inScan = false
     @Volatile private var scanning = false
     private var simulated = false
+    private var modelMode = false
+    private var modelJob: Job? = null
+    private var modelDialog: AlertDialog? = null
     private var savedMarker: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -139,6 +142,7 @@ class MainActivity : AppCompatActivity(), AnnotationRenderer {
     }
     private fun scanScreen() {
         inScan = true; baseScreen()
+        label(auth.session?.takeIf { auth.token() != null }?.let { "Signed in: ${it.user.username}" } ?: "Guest · public notes only", 18f)
         scanStatus = label("Camera stopped", 16f)
         preview = FramePreview(this).apply {
             visibility = View.GONE
@@ -147,7 +151,8 @@ class MainActivity : AppCompatActivity(), AnnotationRenderer {
         progress = ProgressBar(this).apply { visibility = View.GONE; root.addView(this, LinearLayout.LayoutParams(-1, 32)) }
         title = label("Select a physical object", 26f)
         card = label("Scan its QR marker to retrieve authorized annotations.", 24f)
-        button("Start camera / scan next object") { startCamera() }
+        button("Start camera / scan next object") { startCamera(false) }
+        button("Detect objects · model") { startCamera(true) }
         button("Stop camera") { stopCamera(); scanStatus?.text = "Camera stopped" }
         button("Previous annotation") { controller?.move(-1) }
         button("Next annotation") { controller?.move(1) }
@@ -169,8 +174,8 @@ class MainActivity : AppCompatActivity(), AnnotationRenderer {
         button("Settings / account") { settingsScreen() }
         controller?.state?.value?.let { render(it) }
     }
-    private fun startCamera() {
-        stopCamera(); controller?.clear(); simulated = false
+    private fun startCamera(useModel: Boolean = false) {
+        stopCamera(); controller?.clear(); simulated = false; modelMode = useModel
         when (CameraPermissionPolicy.action(ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED,
             prefs.getBoolean("cameraAsked", false), shouldShowRequestPermissionRationale(Manifest.permission.CAMERA))) {
             CameraPermissionPolicy.Action.REQUEST_PERMISSION -> { prefs.edit().putBoolean("cameraAsked", true).apply(); requestPermissions(arrayOf(Manifest.permission.CAMERA), 10) }
@@ -180,30 +185,35 @@ class MainActivity : AppCompatActivity(), AnnotationRenderer {
             }
             CameraPermissionPolicy.Action.START_CAMERA -> {
                 val scan = ++scanGeneration
-                beginTrace("camera_qr")
+                beginTrace(if (useModel) "model_detection" else "camera_qr")
                 var frames = 0
                 val pending = AtomicBoolean(false)
-                scanning = true; message.text = "Aim at one experiment QR label; keep its white border visible."
+                scanning = true; message.text = if (useModel) "One grayscale camera frame is sent to your configured backend for detection. Confirm the object afterward." else "Aim at one experiment QR label; keep its white border visible."
                 scanStatus?.text = "Starting camera…"
                 scanTimeout = lifecycleScope.launch {
                     delay(15_000)
                     if (scan == scanGeneration && scanning) {
                         endTrace("recognition_timeout"); stopCamera()
-                        scanStatus?.text = "No marker detected in 15 seconds. Adjust distance/light and scan again."
+                        scanStatus?.text = if (useModel) "No camera frame available. Stop and retry." else "No marker detected in 15 seconds. Adjust distance/light and scan again."
                     }
                 }
                 camera.start({ frame ->
                     if (scan == scanGeneration && scanning && pending.compareAndSet(false, true)) {
-                        val identity = recognizer.recognize(frame)
+                        val identity = if (useModel) null else recognizer.recognize(frame)
                         val detectedAt = now()
                         val count = ++frames
-                        val bitmap = FramePreview.bitmap(frame, identity != null)
+                        val bitmap = FramePreview.bitmap(frame, useModel || identity != null)
                         runOnUiThread {
                             pending.set(false)
                             if (scan != scanGeneration || !scanning || !inScan) { bitmap.recycle(); return@runOnUiThread }
                             trace?.frames = count
+                            if (useModel && count >= 4) {
+                                stopCamera(keepFrame = true, finishTrace = false)
+                                detectFrame(bitmap)
+                                return@runOnUiThread
+                            }
                             preview?.show(bitmap, frame, identity)
-                            scanStatus?.text = "Scanning QR · $count frames · ${frame.width}×${frame.height}"
+                            scanStatus?.text = if (useModel) "Preparing model frame · $count/4 · camera exposure settling" else "Scanning QR · $count frames · ${frame.width}×${frame.height}"
                             if (identity != null) {
                                 trace?.apply { marker = identity.markerId; detected = detectedAt }
                                 stopCamera(keepFrame = true, finishTrace = false)
@@ -221,7 +231,74 @@ class MainActivity : AppCompatActivity(), AnnotationRenderer {
             }
         }
     }
+    private fun detectFrame(bitmap: android.graphics.Bitmap) {
+        val generation = scanGeneration
+        preview?.showDetections(bitmap, emptyList())
+        progress?.visibility = View.VISIBLE
+        scanStatus?.text = "Model detecting… · uploaded camera frame"
+        modelJob = lifecycleScope.launch {
+            try {
+                val bytes = withContext(Dispatchers.Default) {
+                    java.io.ByteArrayOutputStream().use { stream ->
+                        bitmap.compress(android.graphics.Bitmap.CompressFormat.JPEG, 90, stream); stream.toByteArray()
+                    }
+                }
+                val requestStarted = now()
+                val result = api!!.detect(bytes)
+                if (generation != scanGeneration || !inScan) return@launch
+                val detections = result.detections.filter { it.valid() }
+                preview?.showDetections(bitmap, detections)
+                progress?.visibility = View.GONE
+                scanStatus?.text = "Model: ${detections.size} detections · ${result.inferenceMs.toInt()} ms inference\nCategory only · confirm physical identity"
+                Log.i("SpatialVision", com.google.gson.Gson().toJson(mapOf("test_id" to java.util.UUID.randomUUID().toString(), "timestamp" to java.time.Instant.now().toString(), "environment" to trace?.environment, "method" to "model_camera", "http_ms" to now() - requestStarted, "inference_ms" to result.inferenceMs, "detections" to detections.size, "category_detected" to detections.isNotEmpty(), "identity_confirmed" to false)))
+                if (detections.isEmpty()) { endTrace("no_model_detection"); message.text = "No confident object found. Adjust framing and try again."; return@launch }
+                endTrace()
+                modelDialog = AlertDialog.Builder(this@MainActivity).setTitle("Select detected category")
+                    .setItems(detections.map { "${it.label} · ${(it.confidence * 100).toInt()}%" }.toTypedArray()) { _, index ->
+                        if (generation == scanGeneration && inScan) {
+                            preview?.showDetections(bitmap, listOf(detections[index]))
+                            chooseModelObject(detections[index].label, generation)
+                        }
+                    }.setNegativeButton("Cancel") { _, _ -> endTrace("cancelled") }.show()
+            } catch (e: CancellationException) { throw e }
+            catch (e: Exception) {
+                if (generation == scanGeneration) {
+                    endTrace("model_lookup_error"); progress?.visibility = View.GONE
+                    scanStatus?.text = "Model detection failed · retry or use QR"
+                    message.text = e.message ?: "Detection failed"
+                    if (e is ApiException && e.code == 401) controller?.clear("Session expired. Sign in again.")
+                }
+            }
+        }
+    }
+    private fun chooseModelObject(label: String, generation: Int) {
+        modelJob = lifecycleScope.launch {
+            try {
+                val objects = api!!.candidates(label)
+                if (generation != scanGeneration || !inScan) return@launch
+                if (objects.isEmpty()) {
+                    endTrace("no_registered_candidates")
+                    message.text = "No registered $label objects. Set the object's Visual category in the companion."
+                    return@launch
+                }
+                modelDialog = AlertDialog.Builder(this@MainActivity).setTitle("Confirm which $label")
+                    .setItems(objects.map { "${it.name ?: it.markerId} · ${it.markerId.take(8)}" }.toTypedArray()) { _, index ->
+                        if (generation == scanGeneration && inScan) {
+                            val obj = objects[index]
+                            // Confirmation is a human decision, not automatic instance recognition.
+                            beginTrace("model_confirmed_lookup", obj.markerId)
+                            scanStatus?.text = "MODEL + YOUR CONFIRMATION · ${obj.name}\nImage-space box · no automatic instance identity"
+                            controller?.lookup(obj.markerId)
+                        }
+                    }.setNegativeButton("Cancel") { _, _ -> endTrace("cancelled") }.show()
+            } catch (e: CancellationException) { throw e }
+            catch (e: Exception) { if (generation == scanGeneration) { endTrace("candidate_lookup_error"); message.text = e.message } }
+        }
+    }
     private fun stopCamera(keepFrame: Boolean = false, finishTrace: Boolean = true) {
+        modelJob?.cancel(); modelJob = null
+        progress?.visibility = View.GONE
+        modelDialog?.dismiss(); modelDialog = null
         if (finishTrace) endTrace("cancelled")
         scanTimeout?.cancel(); scanTimeout = null
         ++scanGeneration; scanning = false; camera.stop()
@@ -231,7 +308,7 @@ class MainActivity : AppCompatActivity(), AnnotationRenderer {
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         if (requestCode == 10 && inScan) {
-            if (grantResults.firstOrNull() == PackageManager.PERMISSION_GRANTED) startCamera()
+            if (grantResults.firstOrNull() == PackageManager.PERMISSION_GRANTED) startCamera(modelMode)
             else message.text = "Camera permission denied. You can use SIMULATION or grant permission in Settings."
         }
     }

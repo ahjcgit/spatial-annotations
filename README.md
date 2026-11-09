@@ -77,3 +77,7 @@ installed; see [desktop control](docs/DESKTOP_CONTROL.md).
 device/demo utilities, and `deploy/` the optional HTTPS configuration. Generated
 reports belong in ignored `artifacts/`; APKs, SDK binaries, credentials, and local
 databases stay out of Git. Dependency notices are in [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
+
+Optional [model-assisted object detection](docs/MODEL_DETECTION.md) now supports
+camera frames without printed QR codes, with explicit physical-object confirmation.
+The model identifies categories; it cannot automatically distinguish identical mugs.

@@ -38,11 +38,11 @@ class ApiClient(val baseUrl: String, private val auth: AuthState,
                     .readTimeout(15, TimeUnit.SECONDS).callTimeout(20, TimeUnit.SECONDS)
                     .followRedirects(false).followSslRedirects(false).build()) {
     private val gson = Gson()
-    private suspend fun <T> request(path: String, type: Type, method: String = "GET", body: Any? = null): T = withContext(Dispatchers.IO) {
+    private suspend fun <T> request(path: String, type: Type, method: String = "GET", body: Any? = null, image: ByteArray? = null): T = withContext(Dispatchers.IO) {
         val builder = Request.Builder().url(baseUrl + path).header("Accept", "application/json")
         val requestToken = auth.token()
         requestToken?.let { builder.header("Authorization", "Bearer $it") }
-        if (method != "GET") builder.method(method, gson.toJson(body ?: emptyMap<String, String>()).toRequestBody("application/json".toMediaType()))
+        if (method != "GET") builder.method(method, image?.toRequestBody("image/jpeg".toMediaType()) ?: gson.toJson(body ?: emptyMap<String, String>()).toRequestBody("application/json".toMediaType()))
         val call = client.newCall(builder.build())
         suspendCancellableCoroutine<T> { continuation ->
             // Keep cancellation attached through body reading/parsing, not just until headers arrive.
@@ -78,6 +78,8 @@ class ApiClient(val baseUrl: String, private val auth: AuthState,
         }
     }
 
+    suspend fun detect(image: ByteArray): VisionResult = request("/vision/detect", VisionResult::class.java, "POST", image = image)
+    suspend fun candidates(label: String): List<PhysicalObject> = request("/vision/candidates?label=" + java.net.URLEncoder.encode(label, "UTF-8"), object : TypeToken<List<PhysicalObject>>() {}.type)
     suspend fun login(username: String, password: String): LoginResponse = request("/auth/login", LoginResponse::class.java, "POST", mapOf("username" to username, "password" to password))
     suspend fun register(username: String, password: String): User = request("/auth/register", User::class.java, "POST", mapOf("username" to username, "password" to password))
     suspend fun logout(): Unit = request("/auth/logout", Unit::class.java, "POST")

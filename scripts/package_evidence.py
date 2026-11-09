@@ -8,6 +8,18 @@ import shutil
 ROOT=Path(__file__).resolve().parents[1]
 # Missing optional evidence is reported rather than fabricated.
 SOURCES={
+ 'demo-with-bob-and-model.mp4':'artifacts/vision/demo-with-bob-and-model.mp4',
+ 'alice-bob-demo.mp4':'artifacts/sharing-video/alice-bob-demo.mp4',
+ 'bob-android.png':'artifacts/sharing-video/02-bob.png',
+ 'bob-revoked-android.png':'artifacts/sharing-video/03-bob-revoked.png',
+ 'model-demo.mp4':'artifacts/vision/emulator-final/model-demo.mp4',
+ 'model-mug-a.png':'artifacts/vision/emulator-final/Mug-A.png',
+ 'model-camera-results.json':'artifacts/vision/emulator-final/results.json',
+ 'model-camera-logs.jsonl':'artifacts/vision/emulator-final/model-log.txt',
+ 'model-backend-tests.txt':'artifacts/vision/backend-tests.txt',
+ 'model-android-tests.log':'artifacts/vision/final-android.log',
+ 'model-apk-sha256.txt':'artifacts/vision/apk.sha256',
+ 'model-setup.md':'docs/MODEL_DETECTION.md',
  'environment.json':'artifacts/environment.json',
  'implementation-status.md':'docs/IMPLEMENTATION_STATUS.md',
  'backend-tests.log':'artifacts/backend-final.log',

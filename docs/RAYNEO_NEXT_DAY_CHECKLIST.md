@@ -97,3 +97,14 @@ Mercury is optional and isolated. No licensed AAR was found in the project envir
 its adapter remains unbuilt. Do not introduce it until the standard client is validated.
 Binocular fusion, vendor gestures, physical camera/display behavior and firmware-specific
 routing require the device. World tracking and persistent AR anchors are not implemented.
+
+## Optional model mode, after the QR baseline
+
+Use the model-enabled backend URL (prepared host: `http://192.168.1.76:8012`). Confirm
+`curl -fsS http://192.168.1.76:8012/vision/status` reports `configured: true`. Sign in,
+choose **Detect objects · model**, aim at a cup, select its detection and explicitly
+confirm Mug A/B. Check the frozen box aligns with the cup and normal permissions apply.
+The model infers on the computer, so the glasses need network connectivity. Collect
+`adb -s "$SERIAL" logcat -v time SpatialVision:I SpatialTelemetry:I '*:S'`.
+Category detection on the glasses' grayscale camera, lighting robustness and frame
+orientation are still untested physically. Model failure does not prevent the QR baseline.
