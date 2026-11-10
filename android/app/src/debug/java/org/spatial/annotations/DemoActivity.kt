@@ -182,6 +182,10 @@ class DemoActivity : AppCompatActivity() {
                             state["detections"] = detections
                             state["image"] = "data:image/jpeg;base64," + Base64.encodeToString(bytes, Base64.NO_WRAP)
                             state["imageWidth"] = bitmap.width; state["imageHeight"] = bitmap.height
+                            state["sourceFrameTimestampNs"] = image.timestampNanos
+                            state["acceptedAtElapsedMs"] = started
+                            state["resultAtElapsedMs"] = SystemClock.elapsedRealtime()
+                            state["model"] = result.model
                             state["inferenceMs"] = result.inferenceMs
                             state["pipelineMs"] = SystemClock.elapsedRealtime() - started
                             state["frameId"] = ++frameNumber

@@ -319,3 +319,13 @@ Architecture/deployment: [ARCHITECTURE.md](docs/ARCHITECTURE.md).
 Model provenance and timing definitions: [MODEL_DETECTION.md](docs/MODEL_DETECTION.md).
 Dependency licenses: [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
 Generated credentials, databases, images, reports and APKs stay out of Git.
+
+### Presentation measurements
+
+The [RayNeo evaluation workflow](docs/EVALUATION_WORKFLOW.md) provides an 11-trial
+pilot and a 51-trial repeated protocol for approximate distance/viewpoint,
+head motion, sanitizer versus toy motorcycle, and paired NanoDet/YOLOX-S replay.
+Run `.venv/bin/python scripts/evaluate_demo.py serve` and open
+<http://127.0.0.1:8017> for local capture, manual object boxes, CSVs and figures.
+Install the optional requirements and weights as described in the workflow.
+Camera-image placement metrics do not establish optical/world alignment.

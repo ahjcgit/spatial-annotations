@@ -20,9 +20,11 @@ def fetch_verified(url,path,checksum,limit):
 
 
 def main():
-    p=argparse.ArgumentParser(description=__doc__);p.add_argument('--sample',action='store_true',help='Also fetch Rachel Michetti’s CC0 coffee photo from scikit-image');a=p.parse_args()
+    p=argparse.ArgumentParser(description=__doc__);p.add_argument('--sample',action='store_true',help='Also fetch Rachel Michetti’s CC0 coffee photo from scikit-image');p.add_argument('--yolox',action='store_true',help='Also fetch pinned OpenCV Zoo YOLOX-S for offline evaluation');a=p.parse_args()
     fetch_verified('https://huggingface.co/opencv/object_detection_nanodet/resolve/main/object_detection_nanodet_2022nov.onnx',ROOT/'artifacts/models/nanodet.onnx',SHA256,4_000_000)
     if a.sample:
         fetch_verified('https://raw.githubusercontent.com/scikit-image/scikit-image/v0.19.3/skimage/data/coffee.png',ROOT/'artifacts/vision/coffee.png','cc02f8ca188b167c775a7101b5d767d1e71792cf762c33d6fa15a4599b5a8de7',1_000_000)
+    if a.yolox:
+        fetch_verified('https://media.githubusercontent.com/media/opencv/opencv_zoo/'+REVISION+'/models/object_detection_yolox/object_detection_yolox_2022nov.onnx',ROOT/'artifacts/models/yolox_s.onnx','c5c2d13e59ae883e6af3b45daea64af4833a4951c92d116ec270d9ddbe998063',40_000_000)
 
 if __name__=='__main__': main()

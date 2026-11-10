@@ -31,3 +31,9 @@ its LICENSE under `backend/app/vendor/nanodet/`; weights are checksum-verified,
 downloaded separately and ignored by Git. See [model provenance](docs/MODEL_DETECTION.md).
 The downloaded coffee photo used in local evidence is CC0 by Rachel Michetti,
 courtesy of Pikolo Espresso Bar, via scikit-image v0.19.3. It is not bundled in source.
+
+Optional evaluation also uses the Apache-2.0 YOLOX-S adapter/weights from the same
+OpenCV Zoo revision `48b10fa505aeb51fbd127fc60a5c660040e823b7`. Its unmodified
+adapter, LICENSE and provenance are in `backend/app/vendor/yolox/`. Weights are
+separately downloaded, SHA256-verified and ignored by Git. Matplotlib (PSF-based
+license) exports local evaluation figures. See [evaluation workflow](docs/EVALUATION_WORKFLOW.md).

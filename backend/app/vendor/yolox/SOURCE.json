@@ -1,0 +1,7 @@
+{
+  "repository": "https://github.com/opencv/opencv_zoo",
+  "revision": "48b10fa505aeb51fbd127fc60a5c660040e823b7",
+  "path": "models/object_detection_yolox",
+  "license": "Apache-2.0",
+  "weights_pointer": "version https://git-lfs.github.com/spec/v1\noid sha256:c5c2d13e59ae883e6af3b45daea64af4833a4951c92d116ec270d9ddbe998063\nsize 35858002\n"
+}
