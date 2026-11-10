@@ -2,6 +2,12 @@ package org.spatial.annotations
 
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import kotlinx.coroutines.suspendCancellableCoroutine
+import okhttp3.Call
+import okhttp3.Callback
+import okhttp3.Response
+import kotlin.coroutines.resumeWithException
+import kotlin.coroutines.resume
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import okhttp3.HttpUrl.Companion.toHttpUrl
@@ -32,27 +38,48 @@ class ApiClient(val baseUrl: String, private val auth: AuthState,
                     .readTimeout(15, TimeUnit.SECONDS).callTimeout(20, TimeUnit.SECONDS)
                     .followRedirects(false).followSslRedirects(false).build()) {
     private val gson = Gson()
-    private suspend fun <T> request(path: String, type: Type, method: String = "GET", body: Any? = null): T = withContext(Dispatchers.IO) {
+    private suspend fun <T> request(path: String, type: Type, method: String = "GET", body: Any? = null, image: ByteArray? = null): T = withContext(Dispatchers.IO) {
         val builder = Request.Builder().url(baseUrl + path).header("Accept", "application/json")
-        auth.token()?.let { builder.header("Authorization", "Bearer $it") }
-        if (method != "GET") builder.method(method, gson.toJson(body ?: emptyMap<String, String>()).toRequestBody("application/json".toMediaType()))
-        client.newCall(builder.build()).execute().use { response ->
-            if (response.code == 401) auth.clear()
-            if (!response.isSuccessful) {
-                val message = when (response.code) {
-                    401 -> "Session expired or invalid credentials. Sign in again."
-                    403 -> "You do not have permission for this action."
-                    404 -> "Not found or not visible to this user."
-                    409 -> "Already registered. Look up the marker or use another username."
-                    422 -> "Invalid input. Check text, marker ID and group selection."
-                    else -> "Server request failed (${response.code})."
+        val requestToken = auth.token()
+        requestToken?.let { builder.header("Authorization", "Bearer $it") }
+        if (method != "GET") builder.method(method, image?.toRequestBody("image/jpeg".toMediaType()) ?: gson.toJson(body ?: emptyMap<String, String>()).toRequestBody("application/json".toMediaType()))
+        val call = client.newCall(builder.build())
+        suspendCancellableCoroutine<T> { continuation ->
+            // Keep cancellation attached through body reading/parsing, not just until headers arrive.
+            continuation.invokeOnCancellation { call.cancel() }
+            call.enqueue(object : Callback {
+                override fun onFailure(call: Call, e: IOException) {
+                    if (!continuation.isCancelled) continuation.resumeWithException(e)
                 }
-                throw ApiException(response.code, message)
-            }
-            if (type == Unit::class.java) @Suppress("UNCHECKED_CAST") (Unit as T)
-            else gson.fromJson<T>(response.body?.string() ?: throw IOException("Empty server response"), type)
+                override fun onResponse(call: Call, response: Response) {
+                    try {
+                        val result: T = response.use {
+                            if (response.code == 401) auth.clearIfToken(requestToken)
+                            if (!response.isSuccessful) {
+                                val message = when (response.code) {
+                                    401 -> "Session expired or invalid credentials. Sign in again."
+                                    403 -> "You do not have permission for this action."
+                                    404 -> "Not found or not visible to this user."
+                                    409 -> "Already registered. Look up the marker or use another username."
+                                    422 -> "Invalid input. Check text, marker ID and group selection."
+                                    else -> "Server request failed (${response.code})."
+                                }
+                                throw ApiException(response.code, message)
+                            }
+                            if (type == Unit::class.java) @Suppress("UNCHECKED_CAST") (Unit as T)
+                            else gson.fromJson<T>(response.body?.string() ?: throw IOException("Empty server response"), type)
+                        }
+                        continuation.resume(result)
+                    } catch (e: Exception) {
+                        if (!continuation.isCancelled) continuation.resumeWithException(e)
+                    }
+                }
+            })
         }
     }
+
+    suspend fun detect(image: ByteArray): VisionResult = request("/vision/detect", VisionResult::class.java, "POST", image = image)
+    suspend fun candidates(label: String): List<PhysicalObject> = request("/vision/candidates?label=" + java.net.URLEncoder.encode(label, "UTF-8"), object : TypeToken<List<PhysicalObject>>() {}.type)
     suspend fun login(username: String, password: String): LoginResponse = request("/auth/login", LoginResponse::class.java, "POST", mapOf("username" to username, "password" to password))
     suspend fun register(username: String, password: String): User = request("/auth/register", User::class.java, "POST", mapOf("username" to username, "password" to password))
     suspend fun logout(): Unit = request("/auth/logout", Unit::class.java, "POST")

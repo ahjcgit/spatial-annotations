@@ -4,6 +4,8 @@ This exercises explicit manual simulation, NOT physical QR scanning or RayNeo op
 Run only on a disposable emulator; it signs in/out and creates one public annotation.
 """
 import argparse
+import atexit
+import httpx
 import json
 import time
 from pathlib import Path
@@ -19,6 +21,7 @@ def main():
     data = json.loads(args.data.read_text())
     device = u2.connect(args.serial)
     device.settings['wait_timeout'] = 8
+    device.jsonrpc.setConfigurator({'waitForIdleTimeout':100,'waitForSelectorTimeout':1000})
     package = 'org.spatial.annotations'
     device.shell('cmd statusbar collapse')
     device.app_start(package, activity='.MainActivity', stop=True)
@@ -31,7 +34,7 @@ def main():
             device.swipe(0.5, 0.35, 0.5, 0.85, 0.15)
 
     def click(text):
-        if not device(text=text).exists:
+        if not device(text=text).wait(timeout=2):
             top()
             for _ in range(8):
                 if device(text=text).exists: break
@@ -57,11 +60,24 @@ def main():
         click('SCAN / VIEW ANNOTATIONS')
         click('Manual marker · SIMULATION'.upper())
         device(className='android.widget.EditText').set_text(data['objects'][0]['marker_id'])
-        click('LOOK UP')
+        time.sleep(1)
+        device.xpath('//*[@resource-id="android:id/button1"]').click(timeout=15)
         check('SIMULATION')
-        check('Identical mug A')
+        check(data['objects'][0]['name'])
 
     alice, bob = data['users']
+    # Only remove the exact disposable note this test owns, including on assertion failure.
+    def cleanup():
+        with httpx.Client(base_url=data['backend'],timeout=10) as client:
+            response=client.post('/auth/login',json={k:alice[k] for k in ('username','password')})
+            response.raise_for_status()
+            headers={'Authorization':'Bearer '+response.json()['access_token']}
+            for note in client.get('/objects/'+data['objects'][0]['id']+'/annotations',headers=headers).json():
+                if note['author_id']==alice['id'] and note['content']=='Created through Android UI':
+                    client.delete('/annotations/'+note['id'],headers=headers).raise_for_status()
+            client.post('/auth/logout',headers=headers)
+    cleanup()
+    atexit.register(cleanup)
     login(alice)
     print('PASS: Android login over LAN', flush=True)
     select_object()
@@ -102,7 +118,8 @@ def main():
     click('SCAN / VIEW ANNOTATIONS')
     click('START CAMERA / SCAN NEXT OBJECT')
     if device(text='While using the app').wait(timeout=5): device(text='While using the app').click()
-    check('Scanning QR')
+    top()
+    assert device(textContains='Scanning QR').wait(timeout=5) or device(textContains='Camera QR detected').exists, 'No Camera2 stream/detection status'
     print('PASS: Runtime camera permission and Camera2 stream started in emulator (virtual scene, not physical marker)', flush=True)
     click('STOP CAMERA')
     print('PASS: Camera stopped cleanly', flush=True)

@@ -31,7 +31,8 @@ data class LocationContext(val label: String?, val latitude: Double?, val longit
 data class AnnotationState(
     val markerId: String? = null, val physicalObject: PhysicalObject? = null,
     val annotations: List<Annotation> = emptyList(), val index: Int = 0,
-    val loading: Boolean = false, val message: String = "Ready to scan", val unknown: Boolean = false
+    val loading: Boolean = false, val message: String = "Ready to scan", val unknown: Boolean = false,
+    val lookupTiming: LookupTiming? = null
 ) {
     val selected: Annotation? get() = annotations.getOrNull(index)
     fun move(delta: Int) = copy(index = if (annotations.isEmpty()) 0 else Math.floorMod(index + delta, annotations.size))

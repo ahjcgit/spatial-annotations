@@ -1,0 +1,81 @@
+package org.spatial.annotations
+
+import android.content.Context
+import android.graphics.*
+import android.view.View
+import kotlin.math.min
+
+/** Owns only the current bitmap. Replaced rendered bitmaps are left to Android/GC, never recycled while RenderThread may use them. */
+class FramePreview(context: Context) : View(context) {
+    private var bitmap: Bitmap? = null
+    private var imageSize = ImageSize(1, 1)
+    private var points = emptyList<ImagePoint>()
+    private var boxes = emptyList<Detection>()
+    private val destination = RectF()
+    private val paint = Paint(Paint.ANTI_ALIAS_FLAG).apply { isFilterBitmap = true }
+    fun show(bitmap: Bitmap, frame: CameraFrame, identity: ObjectIdentity?) {
+        this.bitmap = bitmap
+        boxes = emptyList()
+        imageSize = FrameGeometry.size(frame.width, frame.height, frame.sensorRotation)
+        points = identity?.points.orEmpty().map { FrameGeometry.rotate(it, frame.width, frame.height, frame.sensorRotation) }
+        contentDescription = if (identity == null) "Live grayscale camera preview" else
+            "Frozen recognized frame. ${points.size} QR feature centers highlighted; not a bounding box."
+        visibility = VISIBLE; invalidate()
+    }
+    fun showDetections(bitmap: Bitmap, detections: List<Detection>) {
+        this.bitmap = bitmap; imageSize = ImageSize(bitmap.width, bitmap.height)
+        points = emptyList(); boxes = detections.filter { it.valid() }
+        contentDescription = "Frozen model frame. ${boxes.size} detected object boxes. Identity requires confirmation."
+        visibility = VISIBLE; invalidate()
+    }
+    fun clear() { boxes = emptyList(); bitmap = null; points = emptyList(); visibility = GONE; invalidate() }
+    override fun onDraw(canvas: Canvas) {
+        super.onDraw(canvas)
+        val image = bitmap ?: return
+        val scale = min(width.toFloat() / imageSize.width, height.toFloat() / imageSize.height)
+        val left = (width - imageSize.width * scale) / 2
+        val top = (height - imageSize.height * scale) / 2
+        paint.style = Paint.Style.FILL; paint.color = Color.WHITE
+        destination.set(left, top, width - left, height - top)
+        canvas.drawBitmap(image, null, destination, paint)
+        boxes.forEach { detection ->
+            val b = detection.box
+            paint.style = Paint.Style.STROKE; paint.strokeWidth = 4f; paint.color = Color.YELLOW
+            canvas.drawRect(left + b[0] * destination.width(), top + b[1] * destination.height(),
+                left + b[2] * destination.width(), top + b[3] * destination.height(), paint)
+        }
+        val radius = 7f * resources.displayMetrics.density
+        points.forEach {
+            val p = FrameGeometry.fit(it, imageSize, width, height)
+            paint.style = Paint.Style.STROKE; paint.strokeWidth = 5f; paint.color = Color.BLACK
+            canvas.drawCircle(p.x, p.y, radius, paint)
+            paint.strokeWidth = 3f; paint.color = Color.YELLOW
+            canvas.drawCircle(p.x, p.y, radius, paint)
+        }
+    }
+    companion object {
+        /** Called on the camera worker, never the UI thread. */
+        fun bitmap(frame: CameraFrame, frozen: Boolean): Bitmap {
+            if (frame.chromaU != null && frame.chromaV != null) {
+                val nv21 = Nv21Packing.pack(frame.luminance, frame.chromaU, frame.chromaV)
+                val encoded = java.io.ByteArrayOutputStream().use {
+                    YuvImage(nv21, ImageFormat.NV21, frame.width, frame.height, null)
+                        .compressToJpeg(Rect(0, 0, frame.width, frame.height), 85, it)
+                    it.toByteArray()
+                }
+                val raw = BitmapFactory.decodeByteArray(encoded, 0, encoded.size)
+                return if (FrameGeometry.rotation(frame.sensorRotation) == 0) raw else Bitmap.createBitmap(raw, 0, 0, raw.width, raw.height,
+                    Matrix().apply { postRotate(frame.sensorRotation.toFloat()) }, true).also { if (it !== raw) raw.recycle() }
+            }
+            val step = maxOf(1, maxOf(frame.width, frame.height) / if (frozen) 960 else 480)
+            val width = frame.width / step; val height = frame.height / step
+            val pixels = IntArray(width * height) { i ->
+                val gray = frame.luminance[(i / width * step) * frame.width + (i % width * step)].toInt() and 255
+                Color.rgb(gray, gray, gray)
+            }
+            val raw = Bitmap.createBitmap(pixels, width, height, Bitmap.Config.ARGB_8888)
+            return if (FrameGeometry.rotation(frame.sensorRotation) == 0) raw else Bitmap.createBitmap(raw, 0, 0, width, height,
+                Matrix().apply { postRotate(frame.sensorRotation.toFloat()) }, true).also { if (it !== raw) raw.recycle() }
+        }
+    }
+}

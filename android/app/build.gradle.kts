@@ -12,7 +12,10 @@ android {
     }
     buildFeatures { buildConfig = true; viewBinding = true }
     buildTypes {
-        debug { manifestPlaceholders["cleartext"] = "true" }
+        debug {
+            manifestPlaceholders["cleartext"] = "true"
+            if (providers.gradleProperty("presentationDemo").orNull == "true") applicationIdSuffix = ".branchdemo"
+        }
         release { manifestPlaceholders["cleartext"] = "false"; isMinifyEnabled = false }
     }
     sourceSets.getByName("main") {
@@ -39,5 +42,18 @@ dependencies {
         require(aars.files.size == 1) { "Install exactly one licensed MercuryAndroidSDK*.aar in app/libs; see docs/RAYNEO_SETUP.md" }
         implementation(aars)
         implementation("androidx.constraintlayout:constraintlayout:2.1.4")
+    }
+}
+
+// Optional deterministic PNG replay uses the exact production ZXing recognizer.
+tasks.withType<Test>().configureEach {
+    providers.gradleProperty("replayDir").orNull?.let {
+        systemProperty("replayDir", file(it).absolutePath)
+        inputs.files(fileTree(it) { exclude("replay-results.jsonl") })
+        outputs.upToDateWhen { false }
+    }
+    providers.gradleProperty("demoData").orNull?.let {
+        systemProperty("demoData", file(it).absolutePath)
+        outputs.upToDateWhen { false }
     }
 }

@@ -86,6 +86,7 @@ def test_end_to_end_sharing_and_revocation(client, users):
     assert client.get("/annotations/" + shared["id"], headers=bob).status_code == 200
     assert client.delete(f'/groups/{group["id"]}/members/{users["bob"]["id"]}', headers=alice).status_code == 204
     assert client.get("/annotations/" + shared["id"], headers=bob).status_code == 404
+    assert [a["id"] for a in client.get(path, headers=bob).json()] == [public["id"]]
     # Public object metadata includes neither annotations nor a hidden-content count.
     assert "SECRET" not in client.get("/objects/" + obj["id"]).text
     assert "annotations" not in client.get("/objects/" + obj["id"]).json()
@@ -172,3 +173,39 @@ def test_companion_and_marker(client):
     assert marker.status_code == 200
     assert marker.content.startswith(b"\x89PNG")
     assert client.get("/openapi.json").status_code == 200
+
+
+def test_identical_names_different_markers_never_share_notes(client, users):
+    a = make_object(client, users, name="Identical mug")
+    b = make_object(client, users, name="Identical mug")
+    note_a = make_annotation(client, users, a, content="Only A")
+    note_b = make_annotation(client, users, b, content="Only B")
+    for obj, expected in ((a, note_a), (b, note_b), (a, note_a)):
+        resolved = client.get('/objects/by-marker/' + obj['marker_id']).json()
+        assert resolved['id'] == obj['id']
+        assert [n['id'] for n in client.get('/objects/' + resolved['id'] + '/annotations').json()] == [expected['id']]
+    assert client.get('/objects/by-marker/not-a-uuid').status_code == 422
+    assert client.get('/objects/' + str(uuid4()) + '/annotations').status_code == 404
+
+
+def test_group_revocation_and_private_data_persist_across_restart(tmp_path):
+    url = f"sqlite:///{tmp_path}/sharing.db"
+    with TestClient(create_app(url)) as client:
+        auth = {}
+        for name in ('alice', 'bob'):
+            credentials = dict(username=name, password='persistent secure password')
+            client.post('/auth/register', json=credentials).raise_for_status()
+            auth[name] = {'Authorization': 'Bearer ' + client.post('/auth/login', json=credentials).json()['access_token']}
+        obj = client.post('/objects', headers=auth['alice'], json={'marker_id': str(uuid4())}).json()
+        group = client.post('/groups', headers=auth['alice'], json={'name': 'team'}).json()
+        bob = client.get('/users/me', headers=auth['bob']).json()
+        client.post('/groups/' + group['id'] + '/members', headers=auth['alice'], json={'username': 'bob'}).raise_for_status()
+        for visibility in ('public','private','group'):
+            client.post('/annotations', headers=auth['alice'], json=dict(object_id=obj['id'], content=visibility,
+                visibility=visibility, group_id=group['id'] if visibility=='group' else None)).raise_for_status()
+        client.delete('/groups/' + group['id'] + '/members/' + bob['id'], headers=auth['alice']).raise_for_status()
+    with TestClient(create_app(url)) as client:
+        assert client.get('/objects/by-marker/' + obj['marker_id']).json()['id'] == obj['id']
+        path = '/objects/' + obj['id'] + '/annotations'
+        assert {n['visibility'] for n in client.get(path, headers=auth['alice']).json()} == {'public','private','group'}
+        assert [n['visibility'] for n in client.get(path, headers=auth['bob']).json()] == ['public']

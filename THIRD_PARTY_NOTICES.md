@@ -23,3 +23,17 @@ Pinned direct runtime/test versions live in Gradle and backend requirements file
 No code/assets from TapInsight (GPL-3.0), xg-glass-sdk (Apache-2.0), or the experimental native spatial SDK (Apache-2.0) are bundled. They were inspected as research references. RayNeo OpenClaw is MIT except the separately licensed Mercury binaries; it was used to verify API usage. The small optional adapter here is independently written against those APIs. See [SDK research](docs/RESEARCH.md) for pinned source commits.
 
 **No Mercury, RayNeo IPC or RayNeo OpenXR proprietary AARs are distributed.** Users must acquire a valid license and follow RayNeo's terms before building/redistributing any APK containing them. The default APK contains no RayNeo proprietary SDK.
+
+Optional model detection uses OpenCV (Apache-2.0), NumPy (BSD-3-Clause), and the
+Apache-2.0 NanoDet Plus adapter/weights from OpenCV Zoo revision
+`48b10fa505aeb51fbd127fc60a5c660040e823b7`. The adapter is vendored unmodified with
+its LICENSE under `backend/app/vendor/nanodet/`; weights are checksum-verified,
+downloaded separately and ignored by Git. See [model provenance](docs/MODEL_DETECTION.md).
+The downloaded coffee photo used in local evidence is CC0 by Rachel Michetti,
+courtesy of Pikolo Espresso Bar, via scikit-image v0.19.3. It is not bundled in source.
+
+Optional evaluation also uses the Apache-2.0 YOLOX-S adapter/weights from the same
+OpenCV Zoo revision `48b10fa505aeb51fbd127fc60a5c660040e823b7`. Its unmodified
+adapter, LICENSE and provenance are in `backend/app/vendor/yolox/`. Weights are
+separately downloaded, SHA256-verified and ignored by Git. Matplotlib (PSF-based
+license) exports local evaluation figures. See [evaluation workflow](docs/EVALUATION_WORKFLOW.md).

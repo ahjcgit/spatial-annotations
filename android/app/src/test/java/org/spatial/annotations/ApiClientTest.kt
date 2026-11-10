@@ -1,6 +1,9 @@
 package org.spatial.annotations
 
-import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.*
+import java.util.concurrent.TimeUnit
+import okhttp3.OkHttpClient
+import okhttp3.mockwebserver.SocketPolicy
 import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.MockWebServer
 import org.junit.Assert.*
@@ -39,4 +42,25 @@ class ApiClientTest {
             try { api.lookup("m"); fail("Expected redirect refusal") } catch (e: ApiException) { assertEquals(302, e.code) }
         }
     }
+    @Test fun cancellationStopsPendingHttpAndOldUnauthorizedCannotClearNewSession() = runBlocking {
+        MockWebServer().use { server ->
+            server.start()
+            val auth = AuthState(MemoryTokens())
+            auth.save(LoginResponse("old", "2999-01-01T00:00:00Z", User("u", "alice")))
+            val transport = OkHttpClient.Builder().callTimeout(3, TimeUnit.SECONDS).build()
+            val api = ApiClient(server.url("/").toString().trimEnd('/'),auth,transport)
+            server.enqueue(MockResponse().setSocketPolicy(SocketPolicy.NO_RESPONSE))
+            val waiting = launch { api.lookup("marker") }
+            withContext(Dispatchers.IO) { assertNotNull(server.takeRequest(2,TimeUnit.SECONDS)) }
+            withTimeout(1000) { waiting.cancelAndJoin() }
+            assertTrue(waiting.isCancelled)
+            server.enqueue(MockResponse().setResponseCode(401).setHeadersDelay(200,TimeUnit.MILLISECONDS))
+            val oldRequest = async { runCatching { api.lookup("marker") } }
+            withContext(Dispatchers.IO) { assertNotNull(server.takeRequest(2,TimeUnit.SECONDS)) }
+            auth.save(LoginResponse("new", "2999-01-01T00:00:00Z", User("b", "bob")))
+            assertTrue(oldRequest.await().exceptionOrNull() is ApiException)
+            assertEquals("new",auth.token())
+        }
+    }
+
 }

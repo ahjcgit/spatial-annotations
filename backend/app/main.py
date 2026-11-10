@@ -29,6 +29,9 @@ def create_app(database_url=None):
     app = FastAPI(title="Shared Spatial Annotations", version="0.1.0", lifespan=lifespan)
     app.state.engine = engine
     app.state.session_factory = factory
+    from .vision import Detector, router
+    app.state.detector = Detector(os.getenv("VISION_MODEL_PATH", ""))
+    app.include_router(router(app.state.detector))
     ttl = int(os.getenv("TOKEN_TTL_HOURS", "24"))
     if not 1 <= ttl <= 720:
         raise ValueError("TOKEN_TTL_HOURS must be 1..720")

@@ -1,0 +1,4 @@
+# Use the same GUI-capable OpenCV package as the existing webcam capture utility.
+# Do not install opencv-python-headless alongside opencv-python (they share cv2).
+opencv-python==4.13.0.92
+numpy==2.2.6

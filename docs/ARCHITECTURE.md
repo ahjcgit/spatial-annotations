@@ -19,7 +19,12 @@ objects; copying a label copies its identity.
 
 Camera2 supplies YUV frames to the local ZXing decoder. The app selects a supported
 size near 1280×960, analyzes about four frames per second, and stops on a valid
-marker. `ScanController` handles lookup, pagination, navigation, and cancellation
+marker while keeping the recognized frame visible. ZXing feature centers are rotated
+with the image and mapped with FIT_CENTER letterboxing; the highlights are not a
+bounding box or world anchor. Bitmap conversion and decoding run on the camera worker.
+A generation guard discards queued results after rescan/pause, and only one preview
+update can be pending. Displayed bitmaps are released to GC rather than recycled while
+Android RenderThread may still reference them. `ScanController` handles lookup, pagination, navigation, and cancellation
 of stale requests. An unknown marker can be registered. Manual marker entry is
 available for simulation and backend diagnostics.
 
@@ -89,3 +94,16 @@ Keep `.env`, credentials, and SDK binaries local. Back up SQLite through its bac
 API or stop the service before copying the database and WAL files. `docker compose
 down -v` deletes the data volume. The prototype has no password recovery, login rate
 limiter, or schema migrations; account for those before a public deployment.
+
+## Optional model-assisted identification (November 9 extension)
+
+`Camera2 → rotated grayscale JPEG → authenticated POST /vision/detect → local NanoDet
+category/box → user selects detection → GET /vision/candidates?label=cup → user confirms
+registered instance → existing marker/object lookup → existing annotation permissions`.
+
+`backend/app/vision.py` isolates optional inference dependencies and serializes CPU model
+access. No image is stored. Owner-editable `spatial_metadata.detection_label` associates
+public object records with categories; it is not an authorization grant. Native
+`FramePreview` draws normalized model boxes with the same FIT_CENTER layout. The model
+cannot infer unique identities for identical mugs. QR remains available. See
+[setup, evidence and limits](MODEL_DETECTION.md).

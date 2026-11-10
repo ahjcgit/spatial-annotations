@@ -26,6 +26,7 @@ def main():
     manifest = args.output / "markers.json"
     if manifest.exists():
         records = json.loads(manifest.read_text()) + records
+    records = list({r["marker_id"]: r for r in records}.values())
     manifest.write_text(json.dumps(records, indent=2) + "\n")
     cards = "".join(f'<article><img src="{r["file"]}" alt="Object marker"><h2>Object {i+1}</h2><p>{r["marker_id"]}</p></article>' for i, r in enumerate(records))
     (args.output / "print.html").write_text('<!doctype html><html lang="en"><meta charset="utf-8"><title>Object markers</title><style>article{break-inside:avoid;display:inline-block;margin:12mm;text-align:center;font:12px monospace}img{width:65mm;height:65mm}p{max-width:75mm;overflow-wrap:anywhere}</style>' + cards + '</html>')
