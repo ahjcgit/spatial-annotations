@@ -329,3 +329,12 @@ Run `.venv/bin/python scripts/evaluate_demo.py serve` and open
 <http://127.0.0.1:8017> for local capture, manual object boxes, CSVs and figures.
 Install the optional requirements and weights as described in the workflow.
 Camera-image placement metrics do not establish optical/world alignment.
+
+### Experimental two-object identity recovery
+
+An opt-in recorded-frame pipeline now separates temporary tracks from persistent object
+UUIDs and can request asynchronous VLM assistance when appearance matching is uncertain.
+The live single-bottle demo is unchanged. Start with the executable synthetic software
+checks in [IDENTITY_RECOVERY.md](docs/IDENTITY_RECOVERY.md), then register real reference
+images and collect held-out laptop sequences. [Validation results](docs/IDENTITY_RECOVERY_RESULTS.md)
+separate mock/software tests from unperformed real-laptop and real-VLM benchmarks.

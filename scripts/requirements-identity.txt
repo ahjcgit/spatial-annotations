@@ -1,0 +1,4 @@
+# Optional offline experiment; the live demo does not import these modules.
+-r ../backend/requirements-dev.txt
+-r requirements-evaluation.txt
+# DINOv2 is opt-in, installed separately with a local checkout/checkpoint.

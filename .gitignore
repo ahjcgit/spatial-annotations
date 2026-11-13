@@ -27,3 +27,6 @@ htmlcov/
 .idea/
 .vscode/
 .DS_Store
+
+# Local identity references, recordings, credentials, and experiment outputs
+identity-data/

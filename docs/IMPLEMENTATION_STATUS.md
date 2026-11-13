@@ -1,6 +1,24 @@
 # Implementation status — November 9, 2026
 
-## Current: physical RayNeo live-color presentation
+## November 13: offline identity-recovery experiment
+
+An opt-in Python experiment now registers multiple reference images against existing
+physical-object UUIDs, associates recorded detections with temporary tracks, and schedules
+VLM recovery only for unresolved identity events. Proposals remain separate from accepted
+identities; session-aware retrieval uses the unchanged annotation permissions.
+
+Validation: **67 Python tests passed** (26 new), standard and presentation Android
+unit tests/lint/build passed (29 tests passed, 2 optional external-fixture tests skipped;
+0 lint errors, 40 existing warnings). Real HTTP registration/retrieval and backend restart
+checks passed using synthetic reference crops. All six offline scenarios ran in A/B/C
+configurations with a deterministic mock, producing 93 labeled observations per mode.
+No real laptop/VLM accuracy result is established. The single-bottle demo is unchanged;
+new live RayNeo identity integration is not implemented yet.
+
+See [execution guide](IDENTITY_RECOVERY.md) and [results/feature matrix](IDENTITY_RECOVERY_RESULTS.md)
+for commands, actual counts, limitations, and the next hardware-integration steps.
+
+## Earlier: physical RayNeo live-color presentation
 
 This section supersedes earlier statements that physical hardware was unavailable.
 On November 9 the demo ran on a connected RayNeo X3 Pro (ARGF20), Android 12 / API 32,
