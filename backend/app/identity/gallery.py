@@ -57,6 +57,28 @@ class Gallery:
                 self.images[oid].append(im)
                 self.features[oid].append(encoder.encode(im))
 
+    def cache_embeddings(self):
+        """Portable local descriptor export, bound to model and reference checksums."""
+        path = (
+            self.path.parent
+            / "embeddings"
+            / (hashlib.sha256(self.encoder.name.encode()).hexdigest() + ".json")
+        )
+        save_json(
+            path,
+            {
+                "model": self.encoder.metadata(),
+                "objects": {
+                    oid: [
+                        {"reference_sha256": ref["sha256"], "vector": vector.tolist()}
+                        for ref, vector in zip(obj["references"], self.features[oid])
+                    ]
+                    for oid, obj in self.objects.items()
+                },
+            },
+        )
+        return path
+
     def scores(self, feature):
         return {
             oid: max(similarity(feature, r) for r in refs)
@@ -65,6 +87,7 @@ class Gallery:
 
     def verified(self, oid, bbox):
         obj = self.objects[oid]
+        obj["verification_status"] = "operator_verified"
         obj["last_verified_identity_at"] = datetime.now(timezone.utc).isoformat()
         obj["last_known_position"] = {
             "bbox": list(bbox),
@@ -86,6 +109,8 @@ def register(path, object_record, images):
             "object_id": oid,
             "name": object_record.get("name") or oid,
             "references": [],
+            "verification_status": "reference_registered",
+            "last_known_room_position": None,
             "last_known_position": None,
             "last_verified_identity_at": None,
         }

@@ -1,5 +1,22 @@
 # Implementation status — November 9, 2026
 
+## November 17: H0–H4 comparison and experiment viewer
+
+Implemented the five-method offline comparison, shared detection caches, geometry-only
+baseline, reference embedding export, configurable local/frontier providers, bounded
+asynchronous escalation, fixed-probe protocol, recovery metrics and browser viewer with
+authenticated note retrieval. The new [guide](IDENTITY_H0_H4.md) documents installation,
+registration, 35 planned recordings, calibration, execution and live-integration steps.
+
+Validation: **82 Python tests passed**; standard Android unit tests/lint/build passed
+(29 passed, 2 existing optional skips; 0 lint errors, 40 existing warnings); five browser
+checks passed. All H0–H4 methods executed on seven synthetic conditions and both manual-box
+and NanoDet passes. H1 accepted 81/101 correct observations; H2–H4 accepted 80/101 with mocks,
+all with zero incorrect labels. NanoDet did not identify laptops in colored rectangles.
+These are software checks, not evidence of real VLM benefit. Genuine laptop data, actual
+local/frontier inference and new live RayNeo integration remain unverified/unimplemented
+as detailed in the [results and feature matrix](IDENTITY_H0_H4_RESULTS.md).
+
 ## November 13: offline identity-recovery experiment
 
 An opt-in Python experiment now registers multiple reference images against existing

@@ -332,6 +332,14 @@ Camera-image placement metrics do not establish optical/world alignment.
 
 ### Experimental two-object identity recovery
 
+The current experiment compares **H0 geometry, H1 appearance, H2 local VLM, H3 frontier
+VLM, and H4 adaptive escalation** on shared recorded inputs. Follow the
+[step-by-step H0–H4 guide](docs/IDENTITY_H0_H4.md) to generate fixtures, register laptops,
+collect/label footage, configure optional providers, run both evaluation passes, and open
+the browser comparison viewer. [Executed results](docs/IDENTITY_H0_H4_RESULTS.md) distinguish
+82 passing Python tests and mock software checks from the still-unmeasured real-laptop/VLM
+comparison. No paid inference is enabled implicitly; the live bottle demo is preserved.
+
 An opt-in recorded-frame pipeline now separates temporary tracks from persistent object
 UUIDs and can request asynchronous VLM assistance when appearance matching is uncertain.
 The live single-bottle demo is unchanged. Start with the executable synthetic software

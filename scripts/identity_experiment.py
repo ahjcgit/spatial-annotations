@@ -282,6 +282,13 @@ def calibrate(args):
         "embedding_model": enc.name,
         "development_set": str(Path(args.dataset).resolve()),
         "development_sha256": data.fingerprint(),
+        "development_image_sha256": sorted(
+            {
+                hashlib.sha256((data.root / f["image"]).read_bytes()).hexdigest()
+                for seq in data.data["sequences"]
+                for f in seq["frames"]
+            }
+        ),
         "synthetic_only": data.data["evidence_kind"] == "deterministic_fixture",
         "observations": observations,
         "appearance_min": (min(positives) + max(negatives)) / 2,

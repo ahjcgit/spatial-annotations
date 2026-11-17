@@ -84,8 +84,9 @@ class Track:
 
 
 class Tracker:
-    def __init__(self, config):
+    def __init__(self, config, geometry_only=False):
         self.config = config
+        self.geometry_only = geometry_only
         self.tracks = {}
         self.next_id = 1
         self.last_timestamp = None
@@ -114,6 +115,12 @@ class Tracker:
                 near = np.linalg.norm(center(pred) - center(o["bbox"])) < 2 * max(
                     t.bbox[2] - t.bbox[0], t.bbox[3] - t.bbox[1]
                 )
+                if self.geometry_only:
+                    area = lambda b: (b[2] - b[0]) * (b[3] - b[1])
+                    ratio = area(o["bbox"]) / area(t.bbox)
+                    if overlap > 0.05 and 0.5 <= ratio <= 2:
+                        edges.append((overlap, tid, j))
+                    continue
                 if overlap > 0.05 or (near and appearance > 0.9):
                     edges.append((0.6 * overlap + 0.4 * appearance, tid, j))
         used_t = set()

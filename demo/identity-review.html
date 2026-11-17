@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Identity experiment review</title><link rel="stylesheet" href="/identity-review.css"></head>
+<body>
+<header><h1>Identity experiment review</h1><p id="evidence">Loading study…</p></header>
+<p id="error" role="alert" hidden></p>
+<div class="controls">
+<label>Recording<select id="sequence" disabled></select></label>
+<label>Comparison run<select id="run" disabled></select></label>
+<label class="check"><input type="checkbox" id="evaluation"> Show evaluation ground truth</label>
+</div>
+<main>
+<div class="frame-panel">
+<canvas id="frame" width="640" height="400" aria-label="Recorded frame with predicted object boxes"></canvas>
+<div class="playback"><button id="previous" disabled>Previous</button><button id="play" disabled>Play</button><button id="next" disabled>Next</button><output id="position" aria-live="polite">No frame loaded</output></div>
+<label class="scrubber">Frame<input id="scrubber" type="range" min="0" max="0" value="0" disabled></label>
+<p id="frame-status" role="status"></p>
+<p class="legend">Solid boxes: predictions. Dashed boxes: evaluation truth. Correct, incorrect and unknown states are also written in the table.</p>
+</div>
+<aside>
+<h2>Object associations</h2><p id="empty" hidden>No detections in this frame.</p>
+<div class="table-scroll"><table><thead><tr><th scope="col">Track</th><th scope="col">Physical identity / annotation label</th><th scope="col">State and method</th></tr></thead><tbody id="tracks"></tbody></table></div>
+<section id="annotation-panel" hidden>
+<h2>Authorized annotations</h2>
+<form id="login"><label>Username<input id="username" autocomplete="username" required></label><label>Password<input id="password" type="password" autocomplete="current-password" required></label><button type="submit">Sign in / switch user</button></form>
+<div class="playback"><button id="signout" type="button" disabled>Sign out</button><button id="refresh-notes" type="button" disabled>Refresh notes</button></div>
+<p id="session" role="status">Sign in to retrieve notes for accepted tracks.</p><div id="notes" aria-live="polite"></div>
+</section>
+<h2>Reasoning events</h2><p id="events-empty">No completed reasoning calls by this frame.</p><ol id="events"></ol>
+<p class="note">A proposal does not accept an identity. Saved results contain no private note contents. Optional signed-in notes stay in browser memory. Timings describe recorded-frame processing, not the glasses display.</p>
+</aside>
+</main>
+<script src="/identity-review.js"></script>
+</body></html>

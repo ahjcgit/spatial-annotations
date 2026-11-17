@@ -1,9 +1,12 @@
 """Event-triggered asynchronous recovery. Only this policy can accept VLM proposals."""
 
 import asyncio
+import math
 import time
 from collections import Counter, deque
 from datetime import datetime, timezone
+
+import numpy as np
 
 from .appearance import similarity
 from .tracker import Tracker, iou, valid_box
@@ -22,7 +25,7 @@ class IdentityPipeline:
     ):
         if not config.enabled:
             raise ValueError("Set IDENTITY_EXPERIMENT_ENABLED=true")
-        if mode not in ("baseline", "hybrid", "vlm"):
+        if mode not in ("baseline", "hybrid", "vlm", "heuristic"):
             raise ValueError("Unsupported mode")
         if config.acceptance == "corroborated" and (
             calibration is None or calibration.data.get("vlm_min") is None
@@ -36,7 +39,7 @@ class IdentityPipeline:
         self.adapter = adapter
         self.mode = mode
         self.clock = clock
-        self.tracker = Tracker(config)
+        self.tracker = Tracker(config, geometry_only=mode == "heuristic")
         self.epoch = 0
         self.tasks = set()
         self.rate = deque()
@@ -89,7 +92,7 @@ class IdentityPipeline:
         t.accepted_feature = t.feature.copy()
         return True
 
-    def confirm(self, track_id, generation, object_id):
+    def confirm(self, track_id, generation, object_id, persist=True):
         """Explicit operator confirmation, never invoked by the VLM itself."""
         t = self.tracker.tracks.get(track_id)
         if (
@@ -101,7 +104,8 @@ class IdentityPipeline:
             return False
         if not self._accept(t, object_id, "human_confirmation"):
             return False
-        self.gallery.verified(object_id, t.bbox)
+        if persist:
+            self.gallery.verified(object_id, t.bbox)
         return True
 
     async def step(self, image, bboxes, timestamp):
@@ -109,12 +113,21 @@ class IdentityPipeline:
         obs = []
         for bbox in bboxes:
             box = valid_box(bbox, image.size)
-            crop = image.crop(box)
+            crop = image.crop(
+                (
+                    math.floor(box[0]),
+                    math.floor(box[1]),
+                    math.ceil(box[2]),
+                    math.ceil(box[3]),
+                )
+            )
             obs.append(
                 {
                     "bbox": box,
                     "crop": crop,
-                    "feature": self.gallery.encoder.encode(crop),
+                    "feature": np.ones(1, dtype=np.float32)
+                    if self.mode == "heuristic"
+                    else self.gallery.encoder.encode(crop),
                 }
             )
         tracks = self.tracker.update(obs, timestamp)
@@ -125,6 +138,21 @@ class IdentityPipeline:
             if u.track_id != t.track_id
             and iou(t.bbox, u.bbox) >= self.config.overlap_iou
         }
+        if self.mode == "heuristic":
+            for t in tracks:
+                if t.track_id in overlaps or t.needs_gap_check:
+                    t.invalidate(
+                        "geometric_ambiguity"
+                        if t.track_id in overlaps
+                        else "observation_gap"
+                    )
+                elif t.object_id:
+                    t.match_source = "motion"
+                    t.match_score = None
+                else:
+                    t.identity_state = "unknown"
+            self.last_local_ms = (time.perf_counter() - started) * 1000
+            return self.snapshot()
         choices = {}
         for t in tracks:
             t.scores = self.gallery.scores(t.feature)
@@ -213,7 +241,11 @@ class IdentityPipeline:
         return self.snapshot()
 
     def _schedule(self, tracks):
-        if self.mode == "baseline" or not self.config.vlm_enabled or not self.adapter:
+        if (
+            self.mode in ("baseline", "heuristic")
+            or not self.config.vlm_enabled
+            or not self.adapter
+        ):
             return
         now = self.clock()
         while self.rate and now - self.rate[0] >= 60:

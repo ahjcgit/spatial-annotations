@@ -123,3 +123,15 @@ class Calibration:
             return False
         other = max([v for k, v in scores.items() if k != object_id], default=0.0)
         return scores[object_id] >= floor and scores[object_id] - other >= margin
+
+
+class GeometryDescriptor:
+    """H0 placeholder: no visual features or model loading, including reference setup."""
+
+    name = "none-geometry"
+
+    def encode(self, image):
+        return np.ones(1, dtype=np.float32)
+
+    def metadata(self):
+        return {"name": self.name, "learned": False, "dimensions": 0}
