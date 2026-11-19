@@ -1,0 +1,14 @@
+{
+  "runId": "80eb3daa-2efa-4fb7-8af9-7163229888fb",
+  "frameId": 783,
+  "sourceFrameTimestampNs": 4059052883937,
+  "imageWidth": 480,
+  "imageHeight": 640,
+  "captured_at": "2026-11-19T22:36:35.258644+00:00",
+  "trial": "trial-02",
+  "protocol": "Requested position-swap check; actual arrangement must be observed in the image.",
+  "reference_trial": "trial-01",
+  "source_sha256": "03a22d1f8df9f7e228902fab9890ca6d9b127444b8a99d7461dbaded33a9e78f",
+  "status": "captured_awaiting_codex_review",
+  "ground_truth_verified": false
+}

@@ -1,0 +1,109 @@
+{
+  "android_test_suites": [
+    {
+      "name": "org.spatial.annotations.VisionTest",
+      "tests": "3",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "name": "org.spatial.annotations.Nv21PackingTest",
+      "tests": "1",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "name": "org.spatial.annotations.YPlanePackingTest",
+      "tests": "2",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "name": "org.spatial.annotations.LiveBackendTest",
+      "tests": "1",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "1"
+    },
+    {
+      "name": "org.spatial.annotations.CoreTest",
+      "tests": "11",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "name": "org.spatial.annotations.VisualizationTest",
+      "tests": "9",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "name": "org.spatial.annotations.ApiClientTest",
+      "tests": "3",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "name": "org.spatial.annotations.ReplayTest",
+      "tests": "1",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "1"
+    },
+    {
+      "name": "org.spatial.annotations.CodexProbeProtocolTest",
+      "tests": "7",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    }
+  ],
+  "android_test_count": 38,
+  "android_build_lint_result": "BUILD SUCCESSFUL in large-text-build.log",
+  "current_apk_sha256": "066efb9d79267935d55ef0efada5e42a3d44622fb5901e5757eb0716bff0554e",
+  "build_command": "android/gradlew -p android -PpresentationDemo=true testDebugUnitTest lintDebug assembleDebug --console=plain",
+  "python_test_command": "PYTHONPATH=backend .venv/bin/python -m pytest backend/tests scripts/tests -q",
+  "python_tests_passed": 98,
+  "python_test_duration_s": 15.22,
+  "python_test_warnings": [
+    "Starlette/AnyIO BlockingPortal deprecation warning"
+  ],
+  "browser_checks": {
+    "desktop_viewport": [
+      1440,
+      1000
+    ],
+    "mobile_viewport": [
+      390,
+      844
+    ],
+    "cards": 9,
+    "failure_filter": 3,
+    "bottle_filter": 4,
+    "empty_filter": 2,
+    "links_and_images_http_200": 54,
+    "javascript_errors": 0,
+    "mobile_horizontal_overflow": false
+  },
+  "analysis_checks": [
+    "All completed trial source JPEG hashes match proposals and device acknowledgements",
+    "Request IDs agree",
+    "Host timing stages sum to end-to-end durations",
+    "Isolated inference and optical latency remain null"
+  ],
+  "post_collection_host_changes": [
+    "Refuse existing run output directories to protect evidence",
+    "Save final display-hold status even without an expiry acknowledgement"
+  ],
+  "android_source_changed_after_final_build": false,
+  "android_lint": {
+    "errors": 0,
+    "warnings": 40
+  }
+}

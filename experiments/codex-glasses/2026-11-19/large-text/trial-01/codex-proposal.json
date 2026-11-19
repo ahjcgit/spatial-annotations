@@ -1,0 +1,31 @@
+{
+  "requestId": "trial-01-180800cde09f",
+  "sourceSha256": "e631e51d3d985f7508bf1580109a33856733a8e017b6c061e431b687fcfb35ba",
+  "labels": [
+    {
+      "identity": "A",
+      "label": "Silver bottle",
+      "uncertain": false,
+      "box": [
+        622,
+        148,
+        743,
+        459
+      ],
+      "evidence": "The right bottle has a silver reflective body, screw cap and vertical smartwater branding."
+    },
+    {
+      "identity": "B",
+      "label": "Orange bottle",
+      "uncertain": false,
+      "box": [
+        370,
+        98,
+        521,
+        456
+      ],
+      "evidence": "The left bottle has an orange body, metallic collar and wide hinged gray cap."
+    }
+  ],
+  "reasoning_summary": "Both confirmed bottles are visible from a shifted camera viewpoint. Appearance still distinguishes silver A on the right from orange B on the left."
+}

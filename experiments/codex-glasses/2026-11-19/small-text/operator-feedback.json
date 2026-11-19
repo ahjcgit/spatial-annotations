@@ -1,0 +1,9 @@
+{
+  "source": "wearer response in this conversation",
+  "scope": "initial small-text viewer, after the first two measured trials",
+  "reported": "It says expired right now, I have seen labels change but it is not really readable and does not match to each bottle when both are in view.",
+  "readability": "failed_or_difficult",
+  "object_alignment": "not_present",
+  "optical_latency_measured": false,
+  "interpretation": "Screenshot and frame commit prove software rendering, not readable optical presentation. The fixed-list viewer was not designed for physical object alignment."
+}

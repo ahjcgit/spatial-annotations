@@ -1,0 +1,991 @@
+{
+  "completed_trials": 6,
+  "failed_trials": 3,
+  "variants": {
+    "large_text_with_snapshot_side": {
+      "completed_trials": 4,
+      "two_label_trials": 3,
+      "no_label_trials": 1,
+      "metrics": {
+        "labels": {
+          "n": 4,
+          "median": 2.0,
+          "min": 0,
+          "max": 2,
+          "p95": null
+        },
+        "uncertain_labels": {
+          "n": 4,
+          "median": 0.0,
+          "min": 0,
+          "max": 0,
+          "p95": null
+        },
+        "device_capture_command_to_frame_callback_ms": {
+          "n": 4,
+          "median": 887.3041145,
+          "min": 737.436354,
+          "max": 1438.310833,
+          "p95": null
+        },
+        "device_frame_to_jpeg_ms": {
+          "n": 4,
+          "median": 52.306822499999996,
+          "min": 45.964427,
+          "max": 61.269375,
+          "p95": null
+        },
+        "host_capture_to_image_ready_ms": {
+          "n": 4,
+          "median": 2030.873177,
+          "min": 1549.933542,
+          "max": 2749.582018,
+          "p95": null
+        },
+        "host_jpeg_transfer_ms": {
+          "n": 4,
+          "median": 52.7717215,
+          "min": 51.798929,
+          "max": 61.96213,
+          "p95": null
+        },
+        "codex_assisted_review_turnaround_ms": {
+          "n": 4,
+          "median": 9756.105567499999,
+          "min": 8245.208318,
+          "max": 11585.626453,
+          "p95": null
+        },
+        "host_submit_to_commit_observed_ms": {
+          "n": 4,
+          "median": 184.3694015,
+          "min": 173.956084,
+          "max": 229.166627,
+          "p95": null
+        },
+        "host_response_file_transfer_ms": {
+          "n": 4,
+          "median": 71.84478999999999,
+          "min": 69.943896,
+          "max": 75.895264,
+          "p95": null
+        },
+        "device_apply_to_draw_start_ms": {
+          "n": 4,
+          "median": 11.106693,
+          "min": 8.230365,
+          "max": 48.816198,
+          "p95": null
+        },
+        "device_draw_recording_ms": {
+          "n": 4,
+          "median": 2.7879945,
+          "min": 1.800104,
+          "max": 4.880417,
+          "p95": null
+        },
+        "device_apply_to_frame_commit_ms": {
+          "n": 4,
+          "median": 26.4314065,
+          "min": 22.176719,
+          "max": 71.196198,
+          "p95": null
+        },
+        "device_frame_to_frame_commit_ms": {
+          "n": 4,
+          "median": 10138.997131,
+          "min": 8658.442966,
+          "max": 11983.676662,
+          "p95": null
+        },
+        "host_capture_to_commit_observed_ms": {
+          "n": 4,
+          "median": 12112.547062,
+          "min": 10145.916439,
+          "max": 14105.158771,
+          "p95": null
+        },
+        "camera_jpeg": {
+          "n": 4,
+          "median": 61683.5,
+          "min": 61112,
+          "max": 72992,
+          "p95": null
+        },
+        "device_label_json": {
+          "n": 4,
+          "median": 297.0,
+          "min": 136,
+          "max": 297,
+          "p95": null
+        },
+        "device_peak_rss_mib": {
+          "n": 4,
+          "median": 154.1796875,
+          "min": 152.765625,
+          "max": 155.6015625,
+          "p95": null
+        },
+        "host_peak_rss_mib": {
+          "n": 4,
+          "median": 51.71484375,
+          "min": 51.58984375,
+          "max": 51.96484375,
+          "p95": null
+        },
+        "device_cpu_seconds": {
+          "n": 4,
+          "median": 0.19500000000000017,
+          "min": 0.10999999999999988,
+          "max": 0.29000000000000004,
+          "p95": null
+        },
+        "device_mean_cpu_percent_one_core": {
+          "n": 4,
+          "median": 0.48705316331500637,
+          "min": 0.27137699346397526,
+          "max": 0.6204311357430643,
+          "p95": null
+        },
+        "host_cpu_seconds": {
+          "n": 4,
+          "median": 0.19499999999999995,
+          "min": 0.18999999999999995,
+          "max": 0.21999999999999997,
+          "p95": null
+        },
+        "host_child_cpu_seconds": {
+          "n": 4,
+          "median": 0.49175199999999997,
+          "min": 0.48104900000000006,
+          "max": 0.5321400000000001,
+          "p95": null
+        }
+      }
+    },
+    "small_text_10s": {
+      "completed_trials": 2,
+      "two_label_trials": 1,
+      "no_label_trials": 1,
+      "metrics": {
+        "labels": {
+          "n": 2,
+          "median": 1.0,
+          "min": 0,
+          "max": 2,
+          "p95": null
+        },
+        "uncertain_labels": {
+          "n": 2,
+          "median": 0.0,
+          "min": 0,
+          "max": 0,
+          "p95": null
+        },
+        "device_capture_command_to_frame_callback_ms": {
+          "n": 2,
+          "median": 888.2054685,
+          "min": 669.520468,
+          "max": 1106.890469,
+          "p95": null
+        },
+        "device_frame_to_jpeg_ms": {
+          "n": 2,
+          "median": 54.8515365,
+          "min": 53.78125,
+          "max": 55.921823,
+          "p95": null
+        },
+        "host_capture_to_image_ready_ms": {
+          "n": 2,
+          "median": 2189.2269965,
+          "min": 1543.339622,
+          "max": 2835.114371,
+          "p95": null
+        },
+        "host_jpeg_transfer_ms": {
+          "n": 2,
+          "median": 51.008484499999994,
+          "min": 50.105695,
+          "max": 51.911274,
+          "p95": null
+        },
+        "codex_assisted_review_turnaround_ms": {
+          "n": 2,
+          "median": 11940.58952,
+          "min": 9779.170213,
+          "max": 14102.008827,
+          "p95": null
+        },
+        "host_submit_to_commit_observed_ms": {
+          "n": 2,
+          "median": 197.652839,
+          "min": 182.651448,
+          "max": 212.65423,
+          "p95": null
+        },
+        "host_response_file_transfer_ms": {
+          "n": 2,
+          "median": 63.802032999999994,
+          "min": 56.751803,
+          "max": 70.852263,
+          "p95": null
+        },
+        "device_apply_to_draw_start_ms": {
+          "n": 2,
+          "median": 37.8876825,
+          "min": 24.249479,
+          "max": 51.525886,
+          "p95": null
+        },
+        "device_draw_recording_ms": {
+          "n": 2,
+          "median": 3.6015625,
+          "min": 3.508594,
+          "max": 3.694531,
+          "p95": null
+        },
+        "device_apply_to_frame_commit_ms": {
+          "n": 2,
+          "median": 55.753073,
+          "min": 41.965104,
+          "max": 69.541042,
+          "p95": null
+        },
+        "device_frame_to_frame_commit_ms": {
+          "n": 2,
+          "median": 12386.0414795,
+          "min": 10258.820204,
+          "max": 14513.262755,
+          "p95": null
+        },
+        "host_capture_to_commit_observed_ms": {
+          "n": 2,
+          "median": 14327.4693555,
+          "min": 12826.938814,
+          "max": 15827.999897,
+          "p95": null
+        },
+        "camera_jpeg": {
+          "n": 2,
+          "median": 72996.5,
+          "min": 62044,
+          "max": 83949,
+          "p95": null
+        },
+        "device_label_json": {
+          "n": 2,
+          "median": 200.0,
+          "min": 136,
+          "max": 264,
+          "p95": null
+        },
+        "device_peak_rss_mib": {
+          "n": 2,
+          "median": 155.001953125,
+          "min": 153.19921875,
+          "max": 156.8046875,
+          "p95": null
+        },
+        "host_peak_rss_mib": {
+          "n": 2,
+          "median": 51.46484375,
+          "min": 51.40234375,
+          "max": 51.52734375,
+          "p95": null
+        },
+        "device_cpu_seconds": {
+          "n": 2,
+          "median": 0.20499999999999985,
+          "min": 0.11999999999999988,
+          "max": 0.2899999999999998,
+          "p95": null
+        },
+        "device_mean_cpu_percent_one_core": {
+          "n": 2,
+          "median": 0.8661178408471,
+          "min": 0.6091056638611674,
+          "max": 1.1231300178330326,
+          "p95": null
+        },
+        "host_cpu_seconds": {
+          "n": 2,
+          "median": 0.09999999999999998,
+          "min": 0.09999999999999998,
+          "max": 0.09999999999999998,
+          "p95": null
+        },
+        "host_child_cpu_seconds": {
+          "n": 2,
+          "median": 0.24174,
+          "min": 0.241653,
+          "max": 0.24182700000000001,
+          "p95": null
+        }
+      }
+    }
+  },
+  "failures": [
+    {
+      "run": "setup-diagnostics",
+      "trial": "trial-01",
+      "stage": "capture",
+      "error": "ADB operation failed: ",
+      "host": {
+        "captureStartNs": 15353910738849,
+        "captureCommandReturnedNs": 15354616618829
+      }
+    },
+    {
+      "run": "setup-diagnostics",
+      "trial": "trial-02",
+      "stage": "delivery",
+      "error": "Device rejected: not_awaiting_response",
+      "host": {
+        "captureStartNs": 15439235811194,
+        "captureCommandReturnedNs": 15439872075745,
+        "frameReadyObservedNs": 15441835209679,
+        "imagePullStartNs": 15441835211158,
+        "imageReceivedNs": 15441888176276,
+        "handoffReadyNs": 15441888580282,
+        "submitReceivedNs": 15455896412269,
+        "responseFileWriteStartNs": 15455896629916,
+        "responseFileWrittenNs": 15455952912580,
+        "applyCommandReturnedNs": 15456010047345
+      },
+      "device": {
+        "captureCommandReceivedNs": 6141009871978,
+        "clock": "android_elapsed_realtime_ns",
+        "displayKind": "head_locked_snapshot_labels",
+        "requestId": "trial-02-53bfa79fe101",
+        "phase": "rejected",
+        "cameraWarmupMs": 600,
+        "cameraStatus": "Scanning QR \u00b7 camera 0 \u00b7 640\u00d7480",
+        "frameCallbackReceivedNs": 6142776865883,
+        "sourceSensorTimestampNs": 6142694408729,
+        "frameSavedNs": 6142826759060,
+        "sourceSha256": "b544f8fe32c31943cd42026870d760747a98702af23fd067a86f52f326895f4a",
+        "imageWidth": 480,
+        "imageHeight": 640,
+        "jpegBytes": 61722,
+        "pausedNs": 6157144070617,
+        "rejectedNs": 6157147720774,
+        "error": "not_awaiting_response"
+      }
+    },
+    {
+      "run": "large-text",
+      "trial": "trial-03",
+      "stage": "delivery",
+      "error": "Device rejected: source_expired",
+      "host": {
+        "captureStartNs": 15906987584488,
+        "captureCommandReturnedNs": 15907661502123,
+        "frameReadyObservedNs": 15909151509234,
+        "imagePullStartNs": 15909151510529,
+        "imageReceivedNs": 15909207968989,
+        "handoffReadyNs": 15909208259717,
+        "submitReceivedNs": 16046917059771,
+        "responseFileWriteStartNs": 16046917262811,
+        "responseFileWrittenNs": 16046988954460,
+        "applyCommandReturnedNs": 16047062875900
+      },
+      "device": {
+        "captureCommandReceivedNs": 6608808486955,
+        "clock": "android_elapsed_realtime_ns",
+        "displayKind": "head_locked_snapshot_labels",
+        "requestId": "trial-03-0ba595ad4cba",
+        "phase": "rejected",
+        "cameraWarmupMs": 600,
+        "cameraStatus": "Scanning QR \u00b7 camera 0 \u00b7 640\u00d7480",
+        "frameCallbackReceivedNs": 6610053353205,
+        "sourceSensorTimestampNs": 6609975576912,
+        "frameSavedNs": 6610107750288,
+        "sourceSha256": "2f8ae06f973bab0164a85f4bedd6ee4bb1ba9fcb0ad602b223ffeef36b04bf86",
+        "imageWidth": 480,
+        "imageHeight": 640,
+        "jpegBytes": 60821,
+        "rejectedNs": 6748191678413,
+        "error": "source_expired"
+      }
+    }
+  ],
+  "operator_feedback": [
+    {
+      "run": "small-text",
+      "source": "wearer response in this conversation",
+      "scope": "initial small-text viewer, after the first two measured trials",
+      "reported": "It says expired right now, I have seen labels change but it is not really readable and does not match to each bottle when both are in view.",
+      "readability": "failed_or_difficult",
+      "object_alignment": "not_present",
+      "optical_latency_measured": false,
+      "interpretation": "Screenshot and frame commit prove software rendering, not readable optical presentation. The fixed-list viewer was not designed for physical object alignment."
+    },
+    {
+      "run": "large-text",
+      "source": "wearer response in this conversation",
+      "scope": "large-text viewer after trial-01; not a separate per-trial rating",
+      "reported": "Readable, but the labels are not really lined up with the display as much as I would hope, it would be nice if it was similar how to the bounding box of the capture image worked.",
+      "readability": "readable_per_wearer",
+      "object_alignment": "unsatisfactory; fixed list is not object-aligned",
+      "optical_latency_measured": false,
+      "interpretation": "Larger text was reported readable. Simultaneous font, duration and side-cue changes are not a controlled comparison. No calibrated physical alignment was implemented."
+    }
+  ],
+  "conditions": {
+    "large_text_with_snapshot_side/no_label_proposal": {
+      "completed_trials": 1,
+      "metrics": {
+        "labels": {
+          "n": 1,
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "uncertain_labels": {
+          "n": 1,
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "device_capture_command_to_frame_callback_ms": {
+          "n": 1,
+          "median": 1438.310833,
+          "min": 1438.310833,
+          "max": 1438.310833
+        },
+        "device_frame_to_jpeg_ms": {
+          "n": 1,
+          "median": 55.743489,
+          "min": 55.743489,
+          "max": 55.743489
+        },
+        "host_capture_to_image_ready_ms": {
+          "n": 1,
+          "median": 2345.576234,
+          "min": 2345.576234,
+          "max": 2345.576234
+        },
+        "host_jpeg_transfer_ms": {
+          "n": 1,
+          "median": 61.96213,
+          "min": 61.96213,
+          "max": 61.96213
+        },
+        "codex_assisted_review_turnaround_ms": {
+          "n": 1,
+          "median": 11585.626453,
+          "min": 11585.626453,
+          "max": 11585.626453
+        },
+        "host_submit_to_commit_observed_ms": {
+          "n": 1,
+          "median": 173.956084,
+          "min": 173.956084,
+          "max": 173.956084
+        },
+        "host_response_file_transfer_ms": {
+          "n": 1,
+          "median": 75.895264,
+          "min": 75.895264,
+          "max": 75.895264
+        },
+        "device_apply_to_draw_start_ms": {
+          "n": 1,
+          "median": 8.230365,
+          "min": 8.230365,
+          "max": 8.230365
+        },
+        "device_draw_recording_ms": {
+          "n": 1,
+          "median": 1.800104,
+          "min": 1.800104,
+          "max": 1.800104
+        },
+        "device_apply_to_frame_commit_ms": {
+          "n": 1,
+          "median": 22.176719,
+          "min": 22.176719,
+          "max": 22.176719
+        },
+        "device_frame_to_frame_commit_ms": {
+          "n": 1,
+          "median": 11983.676662,
+          "min": 11983.676662,
+          "max": 11983.676662
+        },
+        "host_capture_to_commit_observed_ms": {
+          "n": 1,
+          "median": 14105.158771,
+          "min": 14105.158771,
+          "max": 14105.158771
+        },
+        "camera_jpeg": {
+          "n": 1,
+          "median": 72992,
+          "min": 72992,
+          "max": 72992
+        },
+        "device_label_json": {
+          "n": 1,
+          "median": 136,
+          "min": 136,
+          "max": 136
+        },
+        "device_peak_rss_mib": {
+          "n": 1,
+          "median": 155.6015625,
+          "min": 155.6015625,
+          "max": 155.6015625
+        },
+        "host_peak_rss_mib": {
+          "n": 1,
+          "median": 51.58984375,
+          "min": 51.58984375,
+          "max": 51.58984375
+        },
+        "device_cpu_seconds": {
+          "n": 1,
+          "median": 0.29000000000000004,
+          "min": 0.29000000000000004,
+          "max": 0.29000000000000004
+        },
+        "device_mean_cpu_percent_one_core": {
+          "n": 1,
+          "median": 0.6204311357430643,
+          "min": 0.6204311357430643,
+          "max": 0.6204311357430643
+        },
+        "host_cpu_seconds": {
+          "n": 1,
+          "median": 0.19999999999999996,
+          "min": 0.19999999999999996,
+          "max": 0.19999999999999996
+        },
+        "host_child_cpu_seconds": {
+          "n": 1,
+          "median": 0.5321400000000001,
+          "min": 0.5321400000000001,
+          "max": 0.5321400000000001
+        }
+      }
+    },
+    "large_text_with_snapshot_side/two_bottle_proposals": {
+      "completed_trials": 3,
+      "metrics": {
+        "labels": {
+          "n": 3,
+          "median": 2,
+          "min": 2,
+          "max": 2
+        },
+        "uncertain_labels": {
+          "n": 3,
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "device_capture_command_to_frame_callback_ms": {
+          "n": 3,
+          "median": 801.132812,
+          "min": 737.436354,
+          "max": 973.475417
+        },
+        "device_frame_to_jpeg_ms": {
+          "n": 3,
+          "median": 48.870156,
+          "min": 45.964427,
+          "max": 61.269375
+        },
+        "host_capture_to_image_ready_ms": {
+          "n": 3,
+          "median": 1716.17012,
+          "min": 1549.933542,
+          "max": 2749.582018
+        },
+        "host_jpeg_transfer_ms": {
+          "n": 3,
+          "median": 52.451329,
+          "min": 51.798929,
+          "max": 53.092114
+        },
+        "codex_assisted_review_turnaround_ms": {
+          "n": 3,
+          "median": 8453.078941,
+          "min": 8245.208318,
+          "max": 11059.132194
+        },
+        "host_submit_to_commit_observed_ms": {
+          "n": 3,
+          "median": 184.538001,
+          "min": 184.200802,
+          "max": 229.166627
+        },
+        "host_response_file_transfer_ms": {
+          "n": 3,
+          "median": 71.827726,
+          "min": 69.943896,
+          "max": 71.861854
+        },
+        "device_apply_to_draw_start_ms": {
+          "n": 3,
+          "median": 13.296459,
+          "min": 8.916927,
+          "max": 48.816198
+        },
+        "device_draw_recording_ms": {
+          "n": 3,
+          "median": 3.125937,
+          "min": 2.450052,
+          "max": 4.880417
+        },
+        "device_apply_to_frame_commit_ms": {
+          "n": 3,
+          "median": 29.382813,
+          "min": 23.48,
+          "max": 71.196198
+        },
+        "device_frame_to_frame_commit_ms": {
+          "n": 3,
+          "median": 8777.347965,
+          "min": 8658.442966,
+          "max": 11500.646297
+        },
+        "host_capture_to_commit_observed_ms": {
+          "n": 3,
+          "median": 10187.213285,
+          "min": 10145.916439,
+          "max": 14037.880839
+        },
+        "camera_jpeg": {
+          "n": 3,
+          "median": 61607,
+          "min": 61112,
+          "max": 61760
+        },
+        "device_label_json": {
+          "n": 3,
+          "median": 297,
+          "min": 297,
+          "max": 297
+        },
+        "device_peak_rss_mib": {
+          "n": 3,
+          "median": 153.43359375,
+          "min": 152.765625,
+          "max": 154.92578125
+        },
+        "host_peak_rss_mib": {
+          "n": 3,
+          "median": 51.83984375,
+          "min": 51.58984375,
+          "max": 51.96484375
+        },
+        "device_cpu_seconds": {
+          "n": 3,
+          "median": 0.18000000000000016,
+          "min": 0.10999999999999988,
+          "max": 0.2100000000000002
+        },
+        "device_mean_cpu_percent_one_core": {
+          "n": 3,
+          "median": 0.4493667243154406,
+          "min": 0.27137699346397526,
+          "max": 0.5247396023145721
+        },
+        "host_cpu_seconds": {
+          "n": 3,
+          "median": 0.18999999999999995,
+          "min": 0.18999999999999995,
+          "max": 0.21999999999999997
+        },
+        "host_child_cpu_seconds": {
+          "n": 3,
+          "median": 0.4832319999999999,
+          "min": 0.48104900000000006,
+          "max": 0.500272
+        }
+      }
+    },
+    "small_text_10s/no_label_proposal": {
+      "completed_trials": 1,
+      "metrics": {
+        "labels": {
+          "n": 1,
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "uncertain_labels": {
+          "n": 1,
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "device_capture_command_to_frame_callback_ms": {
+          "n": 1,
+          "median": 669.520468,
+          "min": 669.520468,
+          "max": 669.520468
+        },
+        "device_frame_to_jpeg_ms": {
+          "n": 1,
+          "median": 53.78125,
+          "min": 53.78125,
+          "max": 53.78125
+        },
+        "host_capture_to_image_ready_ms": {
+          "n": 1,
+          "median": 1543.339622,
+          "min": 1543.339622,
+          "max": 1543.339622
+        },
+        "host_jpeg_transfer_ms": {
+          "n": 1,
+          "median": 51.911274,
+          "min": 51.911274,
+          "max": 51.911274
+        },
+        "codex_assisted_review_turnaround_ms": {
+          "n": 1,
+          "median": 14102.008827,
+          "min": 14102.008827,
+          "max": 14102.008827
+        },
+        "host_submit_to_commit_observed_ms": {
+          "n": 1,
+          "median": 182.651448,
+          "min": 182.651448,
+          "max": 182.651448
+        },
+        "host_response_file_transfer_ms": {
+          "n": 1,
+          "median": 70.852263,
+          "min": 70.852263,
+          "max": 70.852263
+        },
+        "device_apply_to_draw_start_ms": {
+          "n": 1,
+          "median": 24.249479,
+          "min": 24.249479,
+          "max": 24.249479
+        },
+        "device_draw_recording_ms": {
+          "n": 1,
+          "median": 3.508594,
+          "min": 3.508594,
+          "max": 3.508594
+        },
+        "device_apply_to_frame_commit_ms": {
+          "n": 1,
+          "median": 41.965104,
+          "min": 41.965104,
+          "max": 41.965104
+        },
+        "device_frame_to_frame_commit_ms": {
+          "n": 1,
+          "median": 14513.262755,
+          "min": 14513.262755,
+          "max": 14513.262755
+        },
+        "host_capture_to_commit_observed_ms": {
+          "n": 1,
+          "median": 15827.999897,
+          "min": 15827.999897,
+          "max": 15827.999897
+        },
+        "camera_jpeg": {
+          "n": 1,
+          "median": 83949,
+          "min": 83949,
+          "max": 83949
+        },
+        "device_label_json": {
+          "n": 1,
+          "median": 136,
+          "min": 136,
+          "max": 136
+        },
+        "device_peak_rss_mib": {
+          "n": 1,
+          "median": 156.8046875,
+          "min": 156.8046875,
+          "max": 156.8046875
+        },
+        "host_peak_rss_mib": {
+          "n": 1,
+          "median": 51.52734375,
+          "min": 51.52734375,
+          "max": 51.52734375
+        },
+        "device_cpu_seconds": {
+          "n": 1,
+          "median": 0.2899999999999998,
+          "min": 0.2899999999999998,
+          "max": 0.2899999999999998
+        },
+        "device_mean_cpu_percent_one_core": {
+          "n": 1,
+          "median": 1.1231300178330326,
+          "min": 1.1231300178330326,
+          "max": 1.1231300178330326
+        },
+        "host_cpu_seconds": {
+          "n": 1,
+          "median": 0.09999999999999998,
+          "min": 0.09999999999999998,
+          "max": 0.09999999999999998
+        },
+        "host_child_cpu_seconds": {
+          "n": 1,
+          "median": 0.24182700000000001,
+          "min": 0.24182700000000001,
+          "max": 0.24182700000000001
+        }
+      }
+    },
+    "small_text_10s/two_bottle_proposals": {
+      "completed_trials": 1,
+      "metrics": {
+        "labels": {
+          "n": 1,
+          "median": 2,
+          "min": 2,
+          "max": 2
+        },
+        "uncertain_labels": {
+          "n": 1,
+          "median": 0,
+          "min": 0,
+          "max": 0
+        },
+        "device_capture_command_to_frame_callback_ms": {
+          "n": 1,
+          "median": 1106.890469,
+          "min": 1106.890469,
+          "max": 1106.890469
+        },
+        "device_frame_to_jpeg_ms": {
+          "n": 1,
+          "median": 55.921823,
+          "min": 55.921823,
+          "max": 55.921823
+        },
+        "host_capture_to_image_ready_ms": {
+          "n": 1,
+          "median": 2835.114371,
+          "min": 2835.114371,
+          "max": 2835.114371
+        },
+        "host_jpeg_transfer_ms": {
+          "n": 1,
+          "median": 50.105695,
+          "min": 50.105695,
+          "max": 50.105695
+        },
+        "codex_assisted_review_turnaround_ms": {
+          "n": 1,
+          "median": 9779.170213,
+          "min": 9779.170213,
+          "max": 9779.170213
+        },
+        "host_submit_to_commit_observed_ms": {
+          "n": 1,
+          "median": 212.65423,
+          "min": 212.65423,
+          "max": 212.65423
+        },
+        "host_response_file_transfer_ms": {
+          "n": 1,
+          "median": 56.751803,
+          "min": 56.751803,
+          "max": 56.751803
+        },
+        "device_apply_to_draw_start_ms": {
+          "n": 1,
+          "median": 51.525886,
+          "min": 51.525886,
+          "max": 51.525886
+        },
+        "device_draw_recording_ms": {
+          "n": 1,
+          "median": 3.694531,
+          "min": 3.694531,
+          "max": 3.694531
+        },
+        "device_apply_to_frame_commit_ms": {
+          "n": 1,
+          "median": 69.541042,
+          "min": 69.541042,
+          "max": 69.541042
+        },
+        "device_frame_to_frame_commit_ms": {
+          "n": 1,
+          "median": 10258.820204,
+          "min": 10258.820204,
+          "max": 10258.820204
+        },
+        "host_capture_to_commit_observed_ms": {
+          "n": 1,
+          "median": 12826.938814,
+          "min": 12826.938814,
+          "max": 12826.938814
+        },
+        "camera_jpeg": {
+          "n": 1,
+          "median": 62044,
+          "min": 62044,
+          "max": 62044
+        },
+        "device_label_json": {
+          "n": 1,
+          "median": 264,
+          "min": 264,
+          "max": 264
+        },
+        "device_peak_rss_mib": {
+          "n": 1,
+          "median": 153.19921875,
+          "min": 153.19921875,
+          "max": 153.19921875
+        },
+        "host_peak_rss_mib": {
+          "n": 1,
+          "median": 51.40234375,
+          "min": 51.40234375,
+          "max": 51.40234375
+        },
+        "device_cpu_seconds": {
+          "n": 1,
+          "median": 0.11999999999999988,
+          "min": 0.11999999999999988,
+          "max": 0.11999999999999988
+        },
+        "device_mean_cpu_percent_one_core": {
+          "n": 1,
+          "median": 0.6091056638611674,
+          "min": 0.6091056638611674,
+          "max": 0.6091056638611674
+        },
+        "host_cpu_seconds": {
+          "n": 1,
+          "median": 0.09999999999999998,
+          "min": 0.09999999999999998,
+          "max": 0.09999999999999998
+        },
+        "host_child_cpu_seconds": {
+          "n": 1,
+          "median": 0.241653,
+          "min": 0.241653,
+          "max": 0.241653
+        }
+      }
+    }
+  },
+  "isolated_model_inference_ms": null,
+  "remote_model_compute": null,
+  "optical_display_latency_ms": null,
+  "interpretation": "Descriptive technical pilot. Codex-assisted turnaround includes image tools and orchestration. Device commit is not optical visibility. Variants and no-label cases are not independent randomized comparisons. No inference speed, general recognition accuracy or spatial alignment claim.",
+  "p95_policy": "Withheld for fewer than 20 observations per variant; min/median/max are descriptive only.",
+  "resource_scope": "Sampled app/Python process CPU and RSS, not whole-machine load, remote model memory, GPU energy or battery power. Display-hold intervals lower whole-trial average CPU. Initial capture may precede the first app sample."
+}

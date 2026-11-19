@@ -1,0 +1,5 @@
+{
+  "status": "failed",
+  "error": "Camera reported stalled during startup; no image accepted.",
+  "recovery": "Camera resumed delivering frames without a device restart; retry uses an advancing frame ID."
+}

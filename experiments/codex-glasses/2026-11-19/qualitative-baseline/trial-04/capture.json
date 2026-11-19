@@ -1,0 +1,28 @@
+{
+  "runId": "f592290c-11e4-40e8-a09c-9c2a70e8a8b5",
+  "frameId": 976,
+  "sourceFrameTimestampNs": 4332099888614,
+  "imageWidth": 480,
+  "imageHeight": 640,
+  "captured_at": "2026-11-19T22:41:08.372633+00:00",
+  "trial": "trial-04",
+  "protocol": "Requested reappearance after partial occlusion; actual visibility must be inspected.",
+  "reference_trials": [
+    "trial-01",
+    "trial-02",
+    "trial-03"
+  ],
+  "source_sha256": "a9ea538e5b4606826f2bbf3c8ff01a5309bf36140c6182e8660f1c4283a68305",
+  "status": "captured_awaiting_codex_review",
+  "ground_truth_verified": false,
+  "startup_observations": [
+    {
+      "phase": "connecting",
+      "frameId": 0
+    },
+    {
+      "phase": "capturing",
+      "frameId": 0
+    }
+  ]
+}

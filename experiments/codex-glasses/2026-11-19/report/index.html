@@ -1,0 +1,666 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Codex → glasses · measured pilot</title>
+<style>
+:root{font:16px/1.55 system-ui,sans-serif;color:#e5eef5;background:#101923;color-scheme:dark}body{max-width:1200px;margin:auto;padding:28px}a{color:#73dfef}h1{font-size:clamp(2rem,5vw,3.5rem);line-height:1.1}h2{margin-top:2.5rem}p{max-width:90ch}.muted,figcaption{color:#afc0cf}article{background:#192735;border:1px solid #365066;padding:22px;margin:22px 0;border-radius:12px}h3{margin-top:0}h3 span{font-size:.9rem;font-weight:normal;color:#a5e1da;margin-left:12px}.visuals{display:grid;grid-template-columns:minmax(200px,360px) 1fr;gap:24px;align-items:center}figure{margin:0}img{display:block;width:100%;height:auto;border-radius:6px}.frame{position:relative}.frame svg{position:absolute;inset:0;width:100%;height:100%}figcaption{font-size:.9rem;margin-top:8px}pre{overflow:auto;max-height:420px;font-size:.875rem;background:#101923;padding:16px}summary{cursor:pointer;padding:10px 0}.table-wrap{overflow:auto}table{border-collapse:collapse;width:100%}th,td{text-align:left;border-bottom:1px solid #365066;padding:10px}th{font-size:.9rem}select{font:inherit;padding:8px;margin-left:10px}.downloads{overflow-wrap:anywhere;font-size:.9rem}[hidden]{display:none!important}@media(max-width:700px){body{padding:16px}.visuals{grid-template-columns:1fr}article{padding:15px}}
+</style><main><p class="muted">RAYNEO X3 PRO · 19 NOVEMBER 2026 · REPRODUCIBLE PILOT</p><h1>Codex review to glasses</h1><p><b>6 completed timing trials · 3 retained failed attempts.</b> A = silver bottle; B = orange bottle, confirmed by the wearer. This is a small technical pilot, not an accuracy benchmark.</p><p>Direct camera snapshot → SHA-256 bound Codex conversational review → structured labels via USB ADB → Android frame-commit acknowledgement. Host and device clocks are analyzed separately. The labels are a fixed list with snapshot side cues, not physically aligned boxes.</p><p><b>Isolated model inference, optical latency and remote compute were not measured.</b> Review time includes image tools and orchestration. No-bottle scenes are separate negative cases. Completed means a matching software commit, not confirmed readability or automatic expiry.</p><p><a href="trials.csv">Trial CSV</a> · <a href="phase-resources.csv">Resources by phase</a> · <a href="summary.json">Summary JSON</a> · <a href="../README.md">Methodology and limitations</a> · <a href="../manifest.json">Evidence hashes</a></p><h2>Observed timing</h2><img src="timing.svg" alt="Stacked capture, Codex review, delivery timings and device apply-to-commit per trial"><div class="table-wrap"><table><thead><tr><th>Run / trial</th><th>Labels</th><th>End-to-end s</th><th>Review + tools s</th><th>Delivery ms</th><th>Device commit ms</th></tr></thead><tbody><tr><td>small-text / trial-01</td><td>2</td><td>12.83</td><td>9.78</td><td>212.7</td><td>69.5</td></tr><tr><td>small-text / trial-02</td><td>0</td><td>15.83</td><td>14.10</td><td>182.7</td><td>42.0</td></tr><tr><td>large-text / trial-01</td><td>2</td><td>14.04</td><td>11.06</td><td>229.2</td><td>71.2</td></tr><tr><td>large-text / trial-02</td><td>0</td><td>14.11</td><td>11.59</td><td>174.0</td><td>22.2</td></tr><tr><td>large-text / trial-04</td><td>2</td><td>10.19</td><td>8.45</td><td>184.2</td><td>23.5</td></tr><tr><td>large-text / trial-05</td><td>2</td><td>10.15</td><td>8.25</td><td>184.5</td><td>29.4</td></tr></tbody></table></div><h2>Wearer feedback</h2><ul><li><b>small-text</b>: It says expired right now, I have seen labels change but it is not really readable and does not match to each bottle when both are in view.</li><li><b>large-text</b>: Readable, but the labels are not really lined up with the display as much as I would hope, it would be nice if it was similar how to the bounding box of the capture image worked.</li></ul><h2>Frames and traces</h2><label>Show <select id="filter"><option value="all">All attempts</option><option value="bottles">Bottle labels</option><option value="empty">No-label cases</option><option value="failed">Failures</option></select></label><article data-kind="failed"><h3>setup-diagnostics / trial-01 <span>failed</span></h3><div class="visuals"></div><p>No visual review completed.</p><ul></ul><p class="downloads"><a href="../setup-diagnostics/trial-01/failure.json">failure.json</a> · <a href="../setup-diagnostics/trial-01/resources.jsonl">resources.jsonl</a></p><details><summary>Raw clocks, resource summary and outcome</summary><pre>{
+  &quot;stage&quot;: &quot;capture&quot;,
+  &quot;error&quot;: &quot;ADB operation failed: &quot;,
+  &quot;host&quot;: {
+    &quot;captureStartNs&quot;: 15353910738849,
+    &quot;captureCommandReturnedNs&quot;: 15354616618829
+  }
+}</pre></details></article><article data-kind="failed"><h3>setup-diagnostics / trial-02 <span>failed</span></h3><div class="visuals"><figure><div class="frame"><img src="../setup-diagnostics/trial-02/source.jpg" alt="Camera snapshot for setup-diagnostics/trial-02" loading="lazy"><svg viewBox="0 0 480 640" aria-label="Approximate Codex image-space proposals"><rect x="237.6" y="74.24" width="53.28" height="218.24" fill="none" stroke="#40e0ed" stroke-width="3"/><text x="240.6" y="68.24" fill="#40e0ed" stroke="#102030" paint-order="stroke" stroke-width="3" font-size="20">A</text><rect x="86.88" y="16.64" width="88.32" height="275.84000000000003" fill="none" stroke="#ffb866" stroke-width="3"/><text x="89.88" y="20" fill="#ffb866" stroke="#102030" paint-order="stroke" stroke-width="3" font-size="20">B</text></svg></div><figcaption>Captured image; boxes are proposals, not verified ground truth.</figcaption></figure></div><p>Both bottles are visible. Color, cap structure and branding support A on the right and B on the left, consistent with the operator-confirmed identities.</p><ul><li><b>A · Silver bottle</b>: Reflective silver body, narrow screw cap, and vertical smartwater branding on the right.</li><li><b>B · Orange bottle</b>: Orange body with metallic collar and broad gray hinged cap on the left.</li></ul><p class="downloads"><a href="../setup-diagnostics/trial-02/source.jpg">source.jpg</a> · <a href="../setup-diagnostics/trial-02/capture.json">capture.json</a> · <a href="../setup-diagnostics/trial-02/codex-proposal.json">codex-proposal.json</a> · <a href="../setup-diagnostics/trial-02/failure.json">failure.json</a> · <a href="../setup-diagnostics/trial-02/resources.jsonl">resources.jsonl</a></p><details><summary>Raw clocks, resource summary and outcome</summary><pre>{
+  &quot;stage&quot;: &quot;delivery&quot;,
+  &quot;error&quot;: &quot;Device rejected: not_awaiting_response&quot;,
+  &quot;host&quot;: {
+    &quot;captureStartNs&quot;: 15439235811194,
+    &quot;captureCommandReturnedNs&quot;: 15439872075745,
+    &quot;frameReadyObservedNs&quot;: 15441835209679,
+    &quot;imagePullStartNs&quot;: 15441835211158,
+    &quot;imageReceivedNs&quot;: 15441888176276,
+    &quot;handoffReadyNs&quot;: 15441888580282,
+    &quot;submitReceivedNs&quot;: 15455896412269,
+    &quot;responseFileWriteStartNs&quot;: 15455896629916,
+    &quot;responseFileWrittenNs&quot;: 15455952912580,
+    &quot;applyCommandReturnedNs&quot;: 15456010047345
+  },
+  &quot;device&quot;: {
+    &quot;captureCommandReceivedNs&quot;: 6141009871978,
+    &quot;clock&quot;: &quot;android_elapsed_realtime_ns&quot;,
+    &quot;displayKind&quot;: &quot;head_locked_snapshot_labels&quot;,
+    &quot;requestId&quot;: &quot;trial-02-53bfa79fe101&quot;,
+    &quot;phase&quot;: &quot;rejected&quot;,
+    &quot;cameraWarmupMs&quot;: 600,
+    &quot;cameraStatus&quot;: &quot;Scanning QR \u00b7 camera 0 \u00b7 640\u00d7480&quot;,
+    &quot;frameCallbackReceivedNs&quot;: 6142776865883,
+    &quot;sourceSensorTimestampNs&quot;: 6142694408729,
+    &quot;frameSavedNs&quot;: 6142826759060,
+    &quot;sourceSha256&quot;: &quot;b544f8fe32c31943cd42026870d760747a98702af23fd067a86f52f326895f4a&quot;,
+    &quot;imageWidth&quot;: 480,
+    &quot;imageHeight&quot;: 640,
+    &quot;jpegBytes&quot;: 61722,
+    &quot;pausedNs&quot;: 6157144070617,
+    &quot;rejectedNs&quot;: 6157147720774,
+    &quot;error&quot;: &quot;not_awaiting_response&quot;
+  }
+}</pre></details></article><article data-kind="bottles"><h3>small-text / trial-01 <span>bottles</span></h3><p>Review + orchestration <b>9.78 s</b> · response to commit observed <b>212.7 ms</b> · device apply to commit <b>69.5 ms</b>.</p><p>Automatic expiry recorded: <b>yes</b>.</p><div class="visuals"><figure><div class="frame"><img src="../small-text/trial-01/source.jpg" alt="Camera snapshot for small-text/trial-01" loading="lazy"><svg viewBox="0 0 480 640" aria-label="Approximate Codex image-space proposals"><rect x="237.6" y="74.24" width="53.28" height="218.24" fill="none" stroke="#40e0ed" stroke-width="3"/><text x="240.6" y="68.24" fill="#40e0ed" stroke="#102030" paint-order="stroke" stroke-width="3" font-size="20">A</text><rect x="86.88" y="16.64" width="88.32" height="275.84000000000003" fill="none" stroke="#ffb866" stroke-width="3"/><text x="89.88" y="20" fill="#ffb866" stroke="#102030" paint-order="stroke" stroke-width="3" font-size="20">B</text></svg></div><figcaption>Captured image; boxes are proposals, not verified ground truth.</figcaption></figure><figure><img src="../small-text/trial-01/display.png" alt="Android surface screenshot, both eye halves" loading="lazy"><figcaption>Android surface; does not measure optical visibility.</figcaption></figure></div><p>Both bottles are unobscured. Body color and cap shape support the operator-confirmed A silver and B orange identities.</p><ul><li><b>A · Silver bottle</b>: Silver body, tapered shoulder, narrow screw cap and vertical branding on the right.</li><li><b>B · Orange bottle</b>: Orange body with metallic collar and broad gray hinged cap on the left.</li></ul><p class="downloads"><a href="../small-text/trial-01/source.jpg">source.jpg</a> · <a href="../small-text/trial-01/capture.json">capture.json</a> · <a href="../small-text/trial-01/codex-proposal.json">codex-proposal.json</a> · <a href="../small-text/trial-01/display.png">display.png</a> · <a href="../small-text/trial-01/result.json">result.json</a> · <a href="../small-text/trial-01/resources.jsonl">resources.jsonl</a></p><details><summary>Raw clocks, resource summary and outcome</summary><pre>{
+  &quot;trial&quot;: &quot;trial-01&quot;,
+  &quot;status&quot;: &quot;completed&quot;,
+  &quot;requestId&quot;: &quot;trial-01-c5e9e40ecc3d&quot;,
+  &quot;host&quot;: {
+    &quot;captureStartNs&quot;: 15520085414631,
+    &quot;captureCommandReturnedNs&quot;: 15520737890630,
+    &quot;frameReadyObservedNs&quot;: 15522870047962,
+    &quot;imagePullStartNs&quot;: 15522870049302,
+    &quot;imageReceivedNs&quot;: 15522920154997,
+    &quot;handoffReadyNs&quot;: 15522920529002,
+    &quot;submitReceivedNs&quot;: 15532699699215,
+    &quot;responseFileWriteStartNs&quot;: 15532699962846,
+    &quot;responseFileWrittenNs&quot;: 15532756714649,
+    &quot;applyCommandReturnedNs&quot;: 15532856047563,
+    &quot;commitObservedNs&quot;: 15532912353445,
+    &quot;screenshotReceivedNs&quot;: 15533328230404,
+    &quot;expiryObservedNs&quot;: 15543098053042
+  },
+  &quot;device&quot;: {
+    &quot;captureCommandReceivedNs&quot;: 6222653963717,
+    &quot;clock&quot;: &quot;android_elapsed_realtime_ns&quot;,
+    &quot;displayKind&quot;: &quot;head_locked_snapshot_labels&quot;,
+    &quot;requestId&quot;: &quot;trial-01-c5e9e40ecc3d&quot;,
+    &quot;phase&quot;: &quot;expired&quot;,
+    &quot;cameraWarmupMs&quot;: 600,
+    &quot;cameraStatus&quot;: &quot;Scanning QR \u00b7 camera 0 \u00b7 640\u00d7480&quot;,
+    &quot;frameCallbackReceivedNs&quot;: 6223760854186,
+    &quot;sourceSensorTimestampNs&quot;: 6223683178897,
+    &quot;frameSavedNs&quot;: 6223816776009,
+    &quot;sourceSha256&quot;: &quot;0a1e2316a5c1d70a896a273ec42e968e927b5c48047486b1b4c7b160d4245980&quot;,
+    &quot;imageWidth&quot;: 480,
+    &quot;imageHeight&quot;: 640,
+    &quot;jpegBytes&quot;: 62044,
+    &quot;applyReceivedNs&quot;: 6233950133348,
+    &quot;labels&quot;: [
+      {
+        &quot;identity&quot;: &quot;A&quot;,
+        &quot;label&quot;: &quot;Silver bottle&quot;,
+        &quot;uncertain&quot;: false
+      },
+      {
+        &quot;identity&quot;: &quot;B&quot;,
+        &quot;label&quot;: &quot;Orange bottle&quot;,
+        &quot;uncertain&quot;: false
+      }
+    ],
+    &quot;sourceAgeAtApplyMs&quot;: 10189.279162,
+    &quot;frameCommitCallbackSupported&quot;: true,
+    &quot;applyValidatedNs&quot;: 6233985415171,
+    &quot;firstDrawStartNs&quot;: 6234001659234,
+    &quot;firstDrawEndNs&quot;: 6234005353765,
+    &quot;hardwareAccelerated&quot;: true,
+    &quot;frameCommittedNs&quot;: 6234019674390,
+    &quot;commitMeaning&quot;: &quot;Android frame commit callback; not photon/optical visibility&quot;,
+    &quot;labelsClearedNs&quot;: 6243998286834
+  },
+  &quot;metrics&quot;: {
+    &quot;device_capture_command_to_frame_callback_ms&quot;: 1106.890469,
+    &quot;device_frame_to_jpeg_ms&quot;: 55.921823,
+    &quot;host_capture_to_image_ready_ms&quot;: 2835.114371,
+    &quot;host_jpeg_transfer_ms&quot;: 50.105695,
+    &quot;codex_assisted_review_turnaround_ms&quot;: 9779.170213,
+    &quot;host_submit_to_commit_observed_ms&quot;: 212.65423,
+    &quot;host_response_file_transfer_ms&quot;: 56.751803,
+    &quot;device_apply_to_draw_start_ms&quot;: 51.525886,
+    &quot;device_draw_recording_ms&quot;: 3.694531,
+    &quot;device_apply_to_frame_commit_ms&quot;: 69.541042,
+    &quot;device_frame_to_frame_commit_ms&quot;: 10258.820204,
+    &quot;host_capture_to_commit_observed_ms&quot;: 12826.938814,
+    &quot;isolated_model_inference_ms&quot;: null,
+    &quot;optical_display_latency_ms&quot;: null
+  },
+  &quot;transfer_bytes&quot;: {
+    &quot;camera_jpeg&quot;: 62044,
+    &quot;device_label_json&quot;: 264
+  },
+  &quot;provider_kind&quot;: &quot;codex_conversation_vision&quot;,
+  &quot;isolated_inference_measured&quot;: false,
+  &quot;optical_visibility_verified&quot;: false,
+  &quot;resource_summary&quot;: {
+    &quot;device&quot;: {
+      &quot;sample_count&quot;: 36,
+      &quot;span_s&quot;: 19.701015295,
+      &quot;cpu_seconds_delta&quot;: 0.11999999999999988,
+      &quot;mean_cpu_percent_one_core&quot;: 0.6091056638611674,
+      &quot;peak_rss_mib&quot;: 153.19921875
+    },
+    &quot;host&quot;: {
+      &quot;sample_count&quot;: 42,
+      &quot;span_s&quot;: 22.703321272,
+      &quot;cpu_seconds_delta&quot;: 0.09999999999999998,
+      &quot;mean_cpu_percent_one_core&quot;: 0.4404641893665574,
+      &quot;peak_rss_mib&quot;: 51.40234375,
+      &quot;child_cpu_seconds_delta&quot;: 0.241653
+    }
+  },
+  &quot;operator_confirmed_identities&quot;: {
+    &quot;A&quot;: &quot;silver bottle&quot;,
+    &quot;B&quot;: &quot;orange bottle&quot;
+  }
+}</pre></details></article><article data-kind="empty"><h3>small-text / trial-02 <span>empty</span></h3><p>Review + orchestration <b>14.10 s</b> · response to commit observed <b>182.7 ms</b> · device apply to commit <b>42.0 ms</b>.</p><p>Automatic expiry recorded: <b>yes</b>.</p><div class="visuals"><figure><div class="frame"><img src="../small-text/trial-02/source.jpg" alt="Camera snapshot for small-text/trial-02" loading="lazy"><svg viewBox="0 0 480 640" aria-label="Approximate Codex image-space proposals"></svg></div><figcaption>Captured image; boxes are proposals, not verified ground truth.</figcaption></figure><figure><img src="../small-text/trial-02/display.png" alt="Android surface screenshot, both eye halves" loading="lazy"><figcaption>Android surface; does not measure optical visibility.</figcaption></figure></div><p>The camera now faces a laptop, food containers, a box, and a whiteboard. Neither the silver bottle nor the orange bottle is visible, so no A/B labels are justified. Previous bottle identities must not be carried into this frame.</p><ul></ul><p class="downloads"><a href="../small-text/trial-02/source.jpg">source.jpg</a> · <a href="../small-text/trial-02/capture.json">capture.json</a> · <a href="../small-text/trial-02/codex-proposal.json">codex-proposal.json</a> · <a href="../small-text/trial-02/display.png">display.png</a> · <a href="../small-text/trial-02/result.json">result.json</a> · <a href="../small-text/trial-02/resources.jsonl">resources.jsonl</a></p><details><summary>Raw clocks, resource summary and outcome</summary><pre>{
+  &quot;trial&quot;: &quot;trial-02&quot;,
+  &quot;status&quot;: &quot;completed&quot;,
+  &quot;requestId&quot;: &quot;trial-02-fb5ff87981ca&quot;,
+  &quot;host&quot;: {
+    &quot;captureStartNs&quot;: 15556563884762,
+    &quot;captureCommandReturnedNs&quot;: 15557182916482,
+    &quot;frameReadyObservedNs&quot;: 15558054842474,
+    &quot;imagePullStartNs&quot;: 15558054843808,
+    &quot;imageReceivedNs&quot;: 15558106755082,
+    &quot;handoffReadyNs&quot;: 15558107224384,
+    &quot;submitReceivedNs&quot;: 15572209233211,
+    &quot;responseFileWriteStartNs&quot;: 15572209382653,
+    &quot;responseFileWrittenNs&quot;: 15572280234916,
+    &quot;applyCommandReturnedNs&quot;: 15572333019909,
+    &quot;commitObservedNs&quot;: 15572391884659,
+    &quot;screenshotReceivedNs&quot;: 15572778613907,
+    &quot;expiryObservedNs&quot;: 15582555809641
+  },
+  &quot;device&quot;: {
+    &quot;captureCommandReceivedNs&quot;: 6258323959329,
+    &quot;clock&quot;: &quot;android_elapsed_realtime_ns&quot;,
+    &quot;displayKind&quot;: &quot;head_locked_snapshot_labels&quot;,
+    &quot;requestId&quot;: &quot;trial-02-fb5ff87981ca&quot;,
+    &quot;phase&quot;: &quot;expired&quot;,
+    &quot;cameraWarmupMs&quot;: 600,
+    &quot;cameraStatus&quot;: &quot;Scanning QR \u00b7 camera 0 \u00b7 640\u00d7480&quot;,
+    &quot;frameCallbackReceivedNs&quot;: 6258993479797,
+    &quot;sourceSensorTimestampNs&quot;: 6258916881593,
+    &quot;frameSavedNs&quot;: 6259047261047,
+    &quot;sourceSha256&quot;: &quot;4cbbfce5a6c0ab66254d250ca5aa51f953e7d68ff5e01fd9be409a47b5435840&quot;,
+    &quot;imageWidth&quot;: 480,
+    &quot;imageHeight&quot;: 640,
+    &quot;jpegBytes&quot;: 83949,
+    &quot;applyReceivedNs&quot;: 6273464777448,
+    &quot;labels&quot;: [],
+    &quot;sourceAgeAtApplyMs&quot;: 14471.297651,
+    &quot;frameCommitCallbackSupported&quot;: true,
+    &quot;applyValidatedNs&quot;: 6273467382500,
+    &quot;firstDrawStartNs&quot;: 6273489026927,
+    &quot;firstDrawEndNs&quot;: 6273492535521,
+    &quot;hardwareAccelerated&quot;: true,
+    &quot;frameCommittedNs&quot;: 6273506742552,
+    &quot;commitMeaning&quot;: &quot;Android frame commit callback; not photon/optical visibility&quot;,
+    &quot;labelsClearedNs&quot;: 6283481009423
+  },
+  &quot;metrics&quot;: {
+    &quot;device_capture_command_to_frame_callback_ms&quot;: 669.520468,
+    &quot;device_frame_to_jpeg_ms&quot;: 53.78125,
+    &quot;host_capture_to_image_ready_ms&quot;: 1543.339622,
+    &quot;host_jpeg_transfer_ms&quot;: 51.911274,
+    &quot;codex_assisted_review_turnaround_ms&quot;: 14102.008827,
+    &quot;host_submit_to_commit_observed_ms&quot;: 182.651448,
+    &quot;host_response_file_transfer_ms&quot;: 70.852263,
+    &quot;device_apply_to_draw_start_ms&quot;: 24.249479,
+    &quot;device_draw_recording_ms&quot;: 3.508594,
+    &quot;device_apply_to_frame_commit_ms&quot;: 41.965104,
+    &quot;device_frame_to_frame_commit_ms&quot;: 14513.262755,
+    &quot;host_capture_to_commit_observed_ms&quot;: 15827.999897,
+    &quot;isolated_model_inference_ms&quot;: null,
+    &quot;optical_display_latency_ms&quot;: null
+  },
+  &quot;transfer_bytes&quot;: {
+    &quot;camera_jpeg&quot;: 83949,
+    &quot;device_label_json&quot;: 136
+  },
+  &quot;provider_kind&quot;: &quot;codex_conversation_vision&quot;,
+  &quot;isolated_inference_measured&quot;: false,
+  &quot;optical_visibility_verified&quot;: false,
+  &quot;resource_summary&quot;: {
+    &quot;device&quot;: {
+      &quot;sample_count&quot;: 47,
+      &quot;span_s&quot;: 25.820697105,
+      &quot;cpu_seconds_delta&quot;: 0.2899999999999998,
+      &quot;mean_cpu_percent_one_core&quot;: 1.1231300178330326,
+      &quot;peak_rss_mib&quot;: 156.8046875
+    },
+    &quot;host&quot;: {
+      &quot;sample_count&quot;: 47,
+      &quot;span_s&quot;: 25.820697105,
+      &quot;cpu_seconds_delta&quot;: 0.09999999999999998,
+      &quot;mean_cpu_percent_one_core&quot;: 0.38728621304587346,
+      &quot;peak_rss_mib&quot;: 51.52734375,
+      &quot;child_cpu_seconds_delta&quot;: 0.24182700000000001
+    }
+  },
+  &quot;operator_confirmed_identities&quot;: {
+    &quot;A&quot;: &quot;silver bottle&quot;,
+    &quot;B&quot;: &quot;orange bottle&quot;
+  }
+}</pre></details></article><article data-kind="bottles"><h3>large-text / trial-01 <span>bottles</span></h3><p>Review + orchestration <b>11.06 s</b> · response to commit observed <b>229.2 ms</b> · device apply to commit <b>71.2 ms</b>.</p><p>Automatic expiry recorded: <b>yes</b>.</p><div class="visuals"><figure><div class="frame"><img src="../large-text/trial-01/source.jpg" alt="Camera snapshot for large-text/trial-01" loading="lazy"><svg viewBox="0 0 480 640" aria-label="Approximate Codex image-space proposals"><rect x="298.56" y="94.72" width="58.08" height="199.04" fill="none" stroke="#40e0ed" stroke-width="3"/><text x="301.56" y="88.72" fill="#40e0ed" stroke="#102030" paint-order="stroke" stroke-width="3" font-size="20">A</text><rect x="177.6" y="62.72" width="72.48" height="229.12" fill="none" stroke="#ffb866" stroke-width="3"/><text x="180.6" y="56.72" fill="#ffb866" stroke="#102030" paint-order="stroke" stroke-width="3" font-size="20">B</text></svg></div><figcaption>Captured image; boxes are proposals, not verified ground truth.</figcaption></figure><figure><img src="../large-text/trial-01/display.png" alt="Android surface screenshot, both eye halves" loading="lazy"><figcaption>Android surface; does not measure optical visibility.</figcaption></figure></div><p>Both confirmed bottles are visible from a shifted camera viewpoint. Appearance still distinguishes silver A on the right from orange B on the left.</p><ul><li><b>A · Silver bottle</b>: The right bottle has a silver reflective body, screw cap and vertical smartwater branding.</li><li><b>B · Orange bottle</b>: The left bottle has an orange body, metallic collar and wide hinged gray cap.</li></ul><p class="downloads"><a href="../large-text/trial-01/source.jpg">source.jpg</a> · <a href="../large-text/trial-01/capture.json">capture.json</a> · <a href="../large-text/trial-01/codex-proposal.json">codex-proposal.json</a> · <a href="../large-text/trial-01/display.png">display.png</a> · <a href="../large-text/trial-01/result.json">result.json</a> · <a href="../large-text/trial-01/resources.jsonl">resources.jsonl</a></p><details><summary>Raw clocks, resource summary and outcome</summary><pre>{
+  &quot;trial&quot;: &quot;trial-01&quot;,
+  &quot;status&quot;: &quot;completed&quot;,
+  &quot;requestId&quot;: &quot;trial-01-180800cde09f&quot;,
+  &quot;host&quot;: {
+    &quot;captureStartNs&quot;: 15752279061758,
+    &quot;captureCommandReturnedNs&quot;: 15752982852589,
+    &quot;frameReadyObservedNs&quot;: 15754976397952,
+    &quot;imagePullStartNs&quot;: 15754976399273,
+    &quot;imageReceivedNs&quot;: 15755028198202,
+    &quot;handoffReadyNs&quot;: 15755028643776,
+    &quot;submitReceivedNs&quot;: 15766087775970,
+    &quot;responseFileWriteStartNs&quot;: 15766087970357,
+    &quot;responseFileWrittenNs&quot;: 15766159798083,
+    &quot;applyCommandReturnedNs&quot;: 15766250285643,
+    &quot;commitObservedNs&quot;: 15766316942597,
+    &quot;screenshotReceivedNs&quot;: 15766709473324,
+    &quot;expiryObservedNs&quot;: 15796374630937
+  },
+  &quot;device&quot;: {
+    &quot;captureCommandReceivedNs&quot;: 6454954065295,
+    &quot;clock&quot;: &quot;android_elapsed_realtime_ns&quot;,
+    &quot;displayKind&quot;: &quot;head_locked_snapshot_labels&quot;,
+    &quot;requestId&quot;: &quot;trial-01-180800cde09f&quot;,
+    &quot;phase&quot;: &quot;expired&quot;,
+    &quot;cameraWarmupMs&quot;: 600,
+    &quot;cameraStatus&quot;: &quot;Scanning QR \u00b7 camera 0 \u00b7 640\u00d7480&quot;,
+    &quot;frameCallbackReceivedNs&quot;: 6455927540712,
+    &quot;sourceSensorTimestampNs&quot;: 6455830163468,
+    &quot;frameSavedNs&quot;: 6455988810087,
+    &quot;sourceSha256&quot;: &quot;e631e51d3d985f7508bf1580109a33856733a8e017b6c061e431b687fcfb35ba&quot;,
+    &quot;imageWidth&quot;: 480,
+    &quot;imageHeight&quot;: 640,
+    &quot;jpegBytes&quot;: 61112,
+    &quot;applyReceivedNs&quot;: 6467356990811,
+    &quot;labels&quot;: [
+      {
+        &quot;identity&quot;: &quot;A&quot;,
+        &quot;label&quot;: &quot;Silver bottle&quot;,
+        &quot;side&quot;: &quot;right&quot;,
+        &quot;uncertain&quot;: false
+      },
+      {
+        &quot;identity&quot;: &quot;B&quot;,
+        &quot;label&quot;: &quot;Orange bottle&quot;,
+        &quot;side&quot;: &quot;left&quot;,
+        &quot;uncertain&quot;: false
+      }
+    ],
+    &quot;sourceAgeAtApplyMs&quot;: 11429.450099,
+    &quot;frameCommitCallbackSupported&quot;: true,
+    &quot;applyValidatedNs&quot;: 6467384593364,
+    &quot;firstDrawStartNs&quot;: 6467405807009,
+    &quot;firstDrawEndNs&quot;: 6467410687426,
+    &quot;hardwareAccelerated&quot;: true,
+    &quot;frameCommittedNs&quot;: 6467428187009,
+    &quot;commitMeaning&quot;: &quot;Android frame commit callback; not photon/optical visibility&quot;,
+    &quot;labelsClearedNs&quot;: 6497421821165
+  },
+  &quot;metrics&quot;: {
+    &quot;device_capture_command_to_frame_callback_ms&quot;: 973.475417,
+    &quot;device_frame_to_jpeg_ms&quot;: 61.269375,
+    &quot;host_capture_to_image_ready_ms&quot;: 2749.582018,
+    &quot;host_jpeg_transfer_ms&quot;: 51.798929,
+    &quot;codex_assisted_review_turnaround_ms&quot;: 11059.132194,
+    &quot;host_submit_to_commit_observed_ms&quot;: 229.166627,
+    &quot;host_response_file_transfer_ms&quot;: 71.827726,
+    &quot;device_apply_to_draw_start_ms&quot;: 48.816198,
+    &quot;device_draw_recording_ms&quot;: 4.880417,
+    &quot;device_apply_to_frame_commit_ms&quot;: 71.196198,
+    &quot;device_frame_to_frame_commit_ms&quot;: 11500.646297,
+    &quot;host_capture_to_commit_observed_ms&quot;: 14037.880839,
+    &quot;isolated_model_inference_ms&quot;: null,
+    &quot;optical_display_latency_ms&quot;: null
+  },
+  &quot;transfer_bytes&quot;: {
+    &quot;camera_jpeg&quot;: 61112,
+    &quot;device_label_json&quot;: 297
+  },
+  &quot;provider_kind&quot;: &quot;codex_conversation_vision&quot;,
+  &quot;isolated_inference_measured&quot;: false,
+  &quot;optical_visibility_verified&quot;: false,
+  &quot;resource_summary&quot;: {
+    &quot;device&quot;: {
+      &quot;sample_count&quot;: 73,
+      &quot;span_s&quot;: 40.534018229,
+      &quot;cpu_seconds_delta&quot;: 0.10999999999999988,
+      &quot;mean_cpu_percent_one_core&quot;: 0.27137699346397526,
+      &quot;peak_rss_mib&quot;: 152.765625
+    },
+    &quot;host&quot;: {
+      &quot;sample_count&quot;: 79,
+      &quot;span_s&quot;: 43.536788373,
+      &quot;cpu_seconds_delta&quot;: 0.21999999999999997,
+      &quot;mean_cpu_percent_one_core&quot;: 0.5053197725913019,
+      &quot;peak_rss_mib&quot;: 51.58984375,
+      &quot;child_cpu_seconds_delta&quot;: 0.500272
+    }
+  },
+  &quot;operator_confirmed_identities&quot;: {
+    &quot;A&quot;: &quot;silver bottle&quot;,
+    &quot;B&quot;: &quot;orange bottle&quot;
+  }
+}</pre></details></article><article data-kind="empty"><h3>large-text / trial-02 <span>empty</span></h3><p>Review + orchestration <b>11.59 s</b> · response to commit observed <b>174.0 ms</b> · device apply to commit <b>22.2 ms</b>.</p><p>Automatic expiry recorded: <b>no; hold outcome unconfirmed</b>.</p><div class="visuals"><figure><div class="frame"><img src="../large-text/trial-02/source.jpg" alt="Camera snapshot for large-text/trial-02" loading="lazy"><svg viewBox="0 0 480 640" aria-label="Approximate Codex image-space proposals"></svg></div><figcaption>Captured image; boxes are proposals, not verified ground truth.</figcaption></figure><figure><img src="../large-text/trial-02/display.png" alt="Android surface screenshot, both eye halves" loading="lazy"><figcaption>Android surface; does not measure optical visibility.</figcaption></figure></div><p>This frame shows a laptop, hands, food packaging and boxes on the table. The two reference bottles are outside the captured view, so neither A nor B should be labeled.</p><ul></ul><p class="downloads"><a href="../large-text/trial-02/source.jpg">source.jpg</a> · <a href="../large-text/trial-02/capture.json">capture.json</a> · <a href="../large-text/trial-02/codex-proposal.json">codex-proposal.json</a> · <a href="../large-text/trial-02/display.png">display.png</a> · <a href="../large-text/trial-02/result.json">result.json</a> · <a href="../large-text/trial-02/resources.jsonl">resources.jsonl</a></p><details><summary>Raw clocks, resource summary and outcome</summary><pre>{
+  &quot;trial&quot;: &quot;trial-02&quot;,
+  &quot;status&quot;: &quot;completed&quot;,
+  &quot;requestId&quot;: &quot;trial-02-ee77f3aeab10&quot;,
+  &quot;host&quot;: {
+    &quot;captureStartNs&quot;: 15852472151405,
+    &quot;captureCommandReturnedNs&quot;: 15853125432134,
+    &quot;frameReadyObservedNs&quot;: 15854755331856,
+    &quot;imagePullStartNs&quot;: 15854755333013,
+    &quot;imageReceivedNs&quot;: 15854817295143,
+    &quot;handoffReadyNs&quot;: 15854817727639,
+    &quot;submitReceivedNs&quot;: 15866403354092,
+    &quot;responseFileWriteStartNs&quot;: 15866403494802,
+    &quot;responseFileWrittenNs&quot;: 15866479390066,
+    &quot;applyCommandReturnedNs&quot;: 15866531981893,
+    &quot;commitObservedNs&quot;: 15866577310176,
+    &quot;screenshotReceivedNs&quot;: 15866968832724
+  },
+  &quot;device&quot;: {
+    &quot;captureCommandReceivedNs&quot;: 6554269897393,
+    &quot;clock&quot;: &quot;android_elapsed_realtime_ns&quot;,
+    &quot;displayKind&quot;: &quot;head_locked_snapshot_labels&quot;,
+    &quot;requestId&quot;: &quot;trial-02-ee77f3aeab10&quot;,
+    &quot;phase&quot;: &quot;displaying&quot;,
+    &quot;cameraWarmupMs&quot;: 600,
+    &quot;cameraStatus&quot;: &quot;Scanning QR \u00b7 camera 0 \u00b7 640\u00d7480&quot;,
+    &quot;frameCallbackReceivedNs&quot;: 6555708208226,
+    &quot;sourceSensorTimestampNs&quot;: 6555627906315,
+    &quot;frameSavedNs&quot;: 6555763951715,
+    &quot;sourceSha256&quot;: &quot;2d50cc7361fab37ddbcf5063c738a602b65ae9cab0d1c15f9382332d5ffb7bc4&quot;,
+    &quot;imageWidth&quot;: 480,
+    &quot;imageHeight&quot;: 640,
+    &quot;jpegBytes&quot;: 72992,
+    &quot;applyReceivedNs&quot;: 6567669708169,
+    &quot;labels&quot;: [],
+    &quot;sourceAgeAtApplyMs&quot;: 11961.499943,
+    &quot;frameCommitCallbackSupported&quot;: true,
+    &quot;applyValidatedNs&quot;: 6567672157752,
+    &quot;firstDrawStartNs&quot;: 6567677938534,
+    &quot;firstDrawEndNs&quot;: 6567679738638,
+    &quot;hardwareAccelerated&quot;: true,
+    &quot;frameCommittedNs&quot;: 6567691884888,
+    &quot;commitMeaning&quot;: &quot;Android frame commit callback; not photon/optical visibility&quot;
+  },
+  &quot;metrics&quot;: {
+    &quot;device_capture_command_to_frame_callback_ms&quot;: 1438.310833,
+    &quot;device_frame_to_jpeg_ms&quot;: 55.743489,
+    &quot;host_capture_to_image_ready_ms&quot;: 2345.576234,
+    &quot;host_jpeg_transfer_ms&quot;: 61.96213,
+    &quot;codex_assisted_review_turnaround_ms&quot;: 11585.626453,
+    &quot;host_submit_to_commit_observed_ms&quot;: 173.956084,
+    &quot;host_response_file_transfer_ms&quot;: 75.895264,
+    &quot;device_apply_to_draw_start_ms&quot;: 8.230365,
+    &quot;device_draw_recording_ms&quot;: 1.800104,
+    &quot;device_apply_to_frame_commit_ms&quot;: 22.176719,
+    &quot;device_frame_to_frame_commit_ms&quot;: 11983.676662,
+    &quot;host_capture_to_commit_observed_ms&quot;: 14105.158771,
+    &quot;isolated_model_inference_ms&quot;: null,
+    &quot;optical_display_latency_ms&quot;: null
+  },
+  &quot;transfer_bytes&quot;: {
+    &quot;camera_jpeg&quot;: 72992,
+    &quot;device_label_json&quot;: 136
+  },
+  &quot;provider_kind&quot;: &quot;codex_conversation_vision&quot;,
+  &quot;isolated_inference_measured&quot;: false,
+  &quot;optical_visibility_verified&quot;: false,
+  &quot;resource_summary&quot;: {
+    &quot;device&quot;: {
+      &quot;sample_count&quot;: 84,
+      &quot;span_s&quot;: 46.741690301,
+      &quot;cpu_seconds_delta&quot;: 0.29000000000000004,
+      &quot;mean_cpu_percent_one_core&quot;: 0.6204311357430643,
+      &quot;peak_rss_mib&quot;: 155.6015625
+    },
+    &quot;host&quot;: {
+      &quot;sample_count&quot;: 84,
+      &quot;span_s&quot;: 46.741690301,
+      &quot;cpu_seconds_delta&quot;: 0.19999999999999996,
+      &quot;mean_cpu_percent_one_core&quot;: 0.42788354189176836,
+      &quot;peak_rss_mib&quot;: 51.58984375,
+      &quot;child_cpu_seconds_delta&quot;: 0.5321400000000001
+    }
+  },
+  &quot;operator_confirmed_identities&quot;: {
+    &quot;A&quot;: &quot;silver bottle&quot;,
+    &quot;B&quot;: &quot;orange bottle&quot;
+  }
+}</pre></details></article><article data-kind="failed"><h3>large-text / trial-03 <span>failed</span></h3><div class="visuals"><figure><div class="frame"><img src="../large-text/trial-03/source.jpg" alt="Camera snapshot for large-text/trial-03" loading="lazy"><svg viewBox="0 0 480 640" aria-label="Approximate Codex image-space proposals"><rect x="264.96" y="96.0" width="49.92" height="196.48000000000002" fill="none" stroke="#40e0ed" stroke-width="3"/><text x="267.96" y="90.0" fill="#40e0ed" stroke="#102030" paint-order="stroke" stroke-width="3" font-size="20">A</text><rect x="136.79999999999998" y="53.76" width="73.92" height="238.72" fill="none" stroke="#ffb866" stroke-width="3"/><text x="139.79999999999998" y="47.76" fill="#ffb866" stroke="#102030" paint-order="stroke" stroke-width="3" font-size="20">B</text></svg></div><figcaption>Captured image; boxes are proposals, not verified ground truth.</figcaption></figure></div><p>Both reference bottles are visible. Color and shape support A as the silver bottle on the right and B as the orange bottle on the left.</p><ul><li><b>A · Silver bottle</b>: Tall silver metallic bottle with narrow screw neck, on the right.</li><li><b>B · Orange bottle</b>: Orange cylindrical body with a wide gray lid and latch, on the left.</li></ul><p class="downloads"><a href="../large-text/trial-03/source.jpg">source.jpg</a> · <a href="../large-text/trial-03/capture.json">capture.json</a> · <a href="../large-text/trial-03/codex-proposal.json">codex-proposal.json</a> · <a href="../large-text/trial-03/failure.json">failure.json</a> · <a href="../large-text/trial-03/resources.jsonl">resources.jsonl</a></p><details><summary>Raw clocks, resource summary and outcome</summary><pre>{
+  &quot;stage&quot;: &quot;delivery&quot;,
+  &quot;error&quot;: &quot;Device rejected: source_expired&quot;,
+  &quot;host&quot;: {
+    &quot;captureStartNs&quot;: 15906987584488,
+    &quot;captureCommandReturnedNs&quot;: 15907661502123,
+    &quot;frameReadyObservedNs&quot;: 15909151509234,
+    &quot;imagePullStartNs&quot;: 15909151510529,
+    &quot;imageReceivedNs&quot;: 15909207968989,
+    &quot;handoffReadyNs&quot;: 15909208259717,
+    &quot;submitReceivedNs&quot;: 16046917059771,
+    &quot;responseFileWriteStartNs&quot;: 16046917262811,
+    &quot;responseFileWrittenNs&quot;: 16046988954460,
+    &quot;applyCommandReturnedNs&quot;: 16047062875900
+  },
+  &quot;device&quot;: {
+    &quot;captureCommandReceivedNs&quot;: 6608808486955,
+    &quot;clock&quot;: &quot;android_elapsed_realtime_ns&quot;,
+    &quot;displayKind&quot;: &quot;head_locked_snapshot_labels&quot;,
+    &quot;requestId&quot;: &quot;trial-03-0ba595ad4cba&quot;,
+    &quot;phase&quot;: &quot;rejected&quot;,
+    &quot;cameraWarmupMs&quot;: 600,
+    &quot;cameraStatus&quot;: &quot;Scanning QR \u00b7 camera 0 \u00b7 640\u00d7480&quot;,
+    &quot;frameCallbackReceivedNs&quot;: 6610053353205,
+    &quot;sourceSensorTimestampNs&quot;: 6609975576912,
+    &quot;frameSavedNs&quot;: 6610107750288,
+    &quot;sourceSha256&quot;: &quot;2f8ae06f973bab0164a85f4bedd6ee4bb1ba9fcb0ad602b223ffeef36b04bf86&quot;,
+    &quot;imageWidth&quot;: 480,
+    &quot;imageHeight&quot;: 640,
+    &quot;jpegBytes&quot;: 60821,
+    &quot;rejectedNs&quot;: 6748191678413,
+    &quot;error&quot;: &quot;source_expired&quot;
+  }
+}</pre></details></article><article data-kind="bottles"><h3>large-text / trial-04 <span>bottles</span></h3><p>Review + orchestration <b>8.45 s</b> · response to commit observed <b>184.2 ms</b> · device apply to commit <b>23.5 ms</b>.</p><p>Automatic expiry recorded: <b>yes</b>.</p><div class="visuals"><figure><div class="frame"><img src="../large-text/trial-04/source.jpg" alt="Camera snapshot for large-text/trial-04" loading="lazy"><svg viewBox="0 0 480 640" aria-label="Approximate Codex image-space proposals"><rect x="264.48" y="96.64" width="49.92" height="195.20000000000002" fill="none" stroke="#40e0ed" stroke-width="3"/><text x="267.48" y="90.64" fill="#40e0ed" stroke="#102030" paint-order="stroke" stroke-width="3" font-size="20">A</text><rect x="137.28" y="54.4" width="73.44" height="237.44" fill="none" stroke="#ffb866" stroke-width="3"/><text x="140.28" y="48.4" fill="#ffb866" stroke="#102030" paint-order="stroke" stroke-width="3" font-size="20">B</text></svg></div><figcaption>Captured image; boxes are proposals, not verified ground truth.</figcaption></figure><figure><img src="../large-text/trial-04/display.png" alt="Android surface screenshot, both eye halves" loading="lazy"><figcaption>Android surface; does not measure optical visibility.</figcaption></figure></div><p>Both bottles are visible; body color and bottle shape support A on the right and B on the left.</p><ul><li><b>A · Silver bottle</b>: Silver metallic bottle with narrow screw neck on the right.</li><li><b>B · Orange bottle</b>: Orange body with broad gray lid and latch on the left.</li></ul><p class="downloads"><a href="../large-text/trial-04/source.jpg">source.jpg</a> · <a href="../large-text/trial-04/capture.json">capture.json</a> · <a href="../large-text/trial-04/codex-proposal.json">codex-proposal.json</a> · <a href="../large-text/trial-04/display.png">display.png</a> · <a href="../large-text/trial-04/result.json">result.json</a> · <a href="../large-text/trial-04/resources.jsonl">resources.jsonl</a></p><details><summary>Raw clocks, resource summary and outcome</summary><pre>{
+  &quot;trial&quot;: &quot;trial-04&quot;,
+  &quot;status&quot;: &quot;completed&quot;,
+  &quot;requestId&quot;: &quot;trial-04-5f046cd0487d&quot;,
+  &quot;host&quot;: {
+    &quot;captureStartNs&quot;: 16054353207971,
+    &quot;captureCommandReturnedNs&quot;: 16054988222466,
+    &quot;frameReadyObservedNs&quot;: 16055850366895,
+    &quot;imagePullStartNs&quot;: 16055850367801,
+    &quot;imageReceivedNs&quot;: 16055902819130,
+    &quot;handoffReadyNs&quot;: 16055903141513,
+    &quot;submitReceivedNs&quot;: 16064356220454,
+    &quot;responseFileWriteStartNs&quot;: 16064356431815,
+    &quot;responseFileWrittenNs&quot;: 16064428293669,
+    &quot;applyCommandReturnedNs&quot;: 16064490144277,
+    &quot;commitObservedNs&quot;: 16064540421256,
+    &quot;screenshotReceivedNs&quot;: 16064940068339,
+    &quot;expiryObservedNs&quot;: 16094625447124
+  },
+  &quot;device&quot;: {
+    &quot;captureCommandReceivedNs&quot;: 6756138246639,
+    &quot;clock&quot;: &quot;android_elapsed_realtime_ns&quot;,
+    &quot;displayKind&quot;: &quot;head_locked_snapshot_labels&quot;,
+    &quot;requestId&quot;: &quot;trial-04-5f046cd0487d&quot;,
+    &quot;phase&quot;: &quot;expired&quot;,
+    &quot;cameraWarmupMs&quot;: 600,
+    &quot;cameraStatus&quot;: &quot;Scanning QR \u00b7 camera 0 \u00b7 640\u00d7480&quot;,
+    &quot;frameCallbackReceivedNs&quot;: 6756875682993,
+    &quot;sourceSensorTimestampNs&quot;: 6756800296739,
+    &quot;frameSavedNs&quot;: 6756924553149,
+    &quot;sourceSha256&quot;: &quot;5d90bfb764707cd12d43181687e3c5f6b9bf64ef12ef6caee8ea5833c96fc7db&quot;,
+    &quot;imageWidth&quot;: 480,
+    &quot;imageHeight&quot;: 640,
+    &quot;jpegBytes&quot;: 61760,
+    &quot;applyReceivedNs&quot;: 6765629550958,
+    &quot;labels&quot;: [
+      {
+        &quot;identity&quot;: &quot;A&quot;,
+        &quot;label&quot;: &quot;Silver bottle&quot;,
+        &quot;side&quot;: &quot;right&quot;,
+        &quot;uncertain&quot;: false
+      },
+      {
+        &quot;identity&quot;: &quot;B&quot;,
+        &quot;label&quot;: &quot;Orange bottle&quot;,
+        &quot;side&quot;: &quot;left&quot;,
+        &quot;uncertain&quot;: false
+      }
+    ],
+    &quot;sourceAgeAtApplyMs&quot;: 8753.867965,
+    &quot;frameCommitCallbackSupported&quot;: true,
+    &quot;applyValidatedNs&quot;: 6765632930594,
+    &quot;firstDrawStartNs&quot;: 6765638467885,
+    &quot;firstDrawEndNs&quot;: 6765640917937,
+    &quot;hardwareAccelerated&quot;: true,
+    &quot;frameCommittedNs&quot;: 6765653030958,
+    &quot;commitMeaning&quot;: &quot;Android frame commit callback; not photon/optical visibility&quot;,
+    &quot;labelsClearedNs&quot;: 6795645196676
+  },
+  &quot;metrics&quot;: {
+    &quot;device_capture_command_to_frame_callback_ms&quot;: 737.436354,
+    &quot;device_frame_to_jpeg_ms&quot;: 48.870156,
+    &quot;host_capture_to_image_ready_ms&quot;: 1549.933542,
+    &quot;host_jpeg_transfer_ms&quot;: 52.451329,
+    &quot;codex_assisted_review_turnaround_ms&quot;: 8453.078941,
+    &quot;host_submit_to_commit_observed_ms&quot;: 184.200802,
+    &quot;host_response_file_transfer_ms&quot;: 71.861854,
+    &quot;device_apply_to_draw_start_ms&quot;: 8.916927,
+    &quot;device_draw_recording_ms&quot;: 2.450052,
+    &quot;device_apply_to_frame_commit_ms&quot;: 23.48,
+    &quot;device_frame_to_frame_commit_ms&quot;: 8777.347965,
+    &quot;host_capture_to_commit_observed_ms&quot;: 10187.213285,
+    &quot;isolated_model_inference_ms&quot;: null,
+    &quot;optical_display_latency_ms&quot;: null
+  },
+  &quot;transfer_bytes&quot;: {
+    &quot;camera_jpeg&quot;: 61760,
+    &quot;device_label_json&quot;: 297
+  },
+  &quot;provider_kind&quot;: &quot;codex_conversation_vision&quot;,
+  &quot;isolated_inference_measured&quot;: false,
+  &quot;optical_visibility_verified&quot;: false,
+  &quot;resource_summary&quot;: {
+    &quot;device&quot;: {
+      &quot;sample_count&quot;: 72,
+      &quot;span_s&quot;: 40.019849669,
+      &quot;cpu_seconds_delta&quot;: 0.2100000000000002,
+      &quot;mean_cpu_percent_one_core&quot;: 0.5247396023145721,
+      &quot;peak_rss_mib&quot;: 153.43359375
+    },
+    &quot;host&quot;: {
+      &quot;sample_count&quot;: 72,
+      &quot;span_s&quot;: 40.019849669,
+      &quot;cpu_seconds_delta&quot;: 0.18999999999999995,
+      &quot;mean_cpu_percent_one_core&quot;: 0.474764402094136,
+      &quot;peak_rss_mib&quot;: 51.83984375,
+      &quot;child_cpu_seconds_delta&quot;: 0.4832319999999999
+    }
+  },
+  &quot;operator_confirmed_identities&quot;: {
+    &quot;A&quot;: &quot;silver bottle&quot;,
+    &quot;B&quot;: &quot;orange bottle&quot;
+  }
+}</pre></details></article><article data-kind="bottles"><h3>large-text / trial-05 <span>bottles</span></h3><p>Review + orchestration <b>8.25 s</b> · response to commit observed <b>184.5 ms</b> · device apply to commit <b>29.4 ms</b>.</p><p>Automatic expiry recorded: <b>yes</b>.</p><div class="visuals"><figure><div class="frame"><img src="../large-text/trial-05/source.jpg" alt="Camera snapshot for large-text/trial-05" loading="lazy"><svg viewBox="0 0 480 640" aria-label="Approximate Codex image-space proposals"><rect x="264.96" y="96.0" width="49.92" height="196.48000000000002" fill="none" stroke="#40e0ed" stroke-width="3"/><text x="267.96" y="90.0" fill="#40e0ed" stroke="#102030" paint-order="stroke" stroke-width="3" font-size="20">A</text><rect x="136.79999999999998" y="54.4" width="74.39999999999999" height="238.08" fill="none" stroke="#ffb866" stroke-width="3"/><text x="139.79999999999998" y="48.4" fill="#ffb866" stroke="#102030" paint-order="stroke" stroke-width="3" font-size="20">B</text></svg></div><figcaption>Captured image; boxes are proposals, not verified ground truth.</figcaption></figure><figure><img src="../large-text/trial-05/display.png" alt="Android surface screenshot, both eye halves" loading="lazy"><figcaption>Android surface; does not measure optical visibility.</figcaption></figure></div><p>The silver and orange bottle bodies are fully visible. Their colors and shapes support A on the right and B on the left.</p><ul><li><b>A · Silver bottle</b>: Silver body, narrow neck and screw cap, on the right.</li><li><b>B · Orange bottle</b>: Orange body with broad gray lid and latch, on the left.</li></ul><p class="downloads"><a href="../large-text/trial-05/source.jpg">source.jpg</a> · <a href="../large-text/trial-05/capture.json">capture.json</a> · <a href="../large-text/trial-05/codex-proposal.json">codex-proposal.json</a> · <a href="../large-text/trial-05/display.png">display.png</a> · <a href="../large-text/trial-05/result.json">result.json</a> · <a href="../large-text/trial-05/resources.jsonl">resources.jsonl</a></p><details><summary>Raw clocks, resource summary and outcome</summary><pre>{
+  &quot;trial&quot;: &quot;trial-05&quot;,
+  &quot;status&quot;: &quot;completed&quot;,
+  &quot;requestId&quot;: &quot;trial-05-d41acdeddbff&quot;,
+  &quot;host&quot;: {
+    &quot;captureStartNs&quot;: 16099371706413,
+    &quot;captureCommandReturnedNs&quot;: 16100021729187,
+    &quot;frameReadyObservedNs&quot;: 16101034373429,
+    &quot;imagePullStartNs&quot;: 16101034374773,
+    &quot;imageReceivedNs&quot;: 16101087466887,
+    &quot;handoffReadyNs&quot;: 16101087876533,
+    &quot;submitReceivedNs&quot;: 16109333084851,
+    &quot;responseFileWriteStartNs&quot;: 16109333256164,
+    &quot;responseFileWrittenNs&quot;: 16109403200060,
+    &quot;applyCommandReturnedNs&quot;: 16109459270113,
+    &quot;commitObservedNs&quot;: 16109517622852,
+    &quot;screenshotReceivedNs&quot;: 16109917858453,
+    &quot;expiryObservedNs&quot;: 16139617464302
+  },
+  &quot;device&quot;: {
+    &quot;captureCommandReceivedNs&quot;: 6801170125736,
+    &quot;clock&quot;: &quot;android_elapsed_realtime_ns&quot;,
+    &quot;displayKind&quot;: &quot;head_locked_snapshot_labels&quot;,
+    &quot;requestId&quot;: &quot;trial-05-d41acdeddbff&quot;,
+    &quot;phase&quot;: &quot;expired&quot;,
+    &quot;cameraWarmupMs&quot;: 600,
+    &quot;cameraStatus&quot;: &quot;Scanning QR \u00b7 camera 0 \u00b7 640\u00d7480&quot;,
+    &quot;frameCallbackReceivedNs&quot;: 6801971258548,
+    &quot;sourceSensorTimestampNs&quot;: 6801892127065,
+    &quot;frameSavedNs&quot;: 6802017222975,
+    &quot;sourceSha256&quot;: &quot;23c754b4d57bd77b16f81620a12f5c3040a196d056f0ac23e52f80298bff5221&quot;,
+    &quot;imageWidth&quot;: 480,
+    &quot;imageHeight&quot;: 640,
+    &quot;jpegBytes&quot;: 61607,
+    &quot;applyReceivedNs&quot;: 6810600318701,
+    &quot;labels&quot;: [
+      {
+        &quot;identity&quot;: &quot;A&quot;,
+        &quot;label&quot;: &quot;Silver bottle&quot;,
+        &quot;side&quot;: &quot;right&quot;,
+        &quot;uncertain&quot;: false
+      },
+      {
+        &quot;identity&quot;: &quot;B&quot;,
+        &quot;label&quot;: &quot;Orange bottle&quot;,
+        &quot;side&quot;: &quot;left&quot;,
+        &quot;uncertain&quot;: false
+      }
+    ],
+    &quot;sourceAgeAtApplyMs&quot;: 8629.060153,
+    &quot;frameCommitCallbackSupported&quot;: true,
+    &quot;applyValidatedNs&quot;: 6810602915316,
+    &quot;firstDrawStartNs&quot;: 6810613615160,
+    &quot;firstDrawEndNs&quot;: 6810616741097,
+    &quot;hardwareAccelerated&quot;: true,
+    &quot;frameCommittedNs&quot;: 6810629701514,
+    &quot;commitMeaning&quot;: &quot;Android frame commit callback; not photon/optical visibility&quot;,
+    &quot;labelsClearedNs&quot;: 6840630422440
+  },
+  &quot;metrics&quot;: {
+    &quot;device_capture_command_to_frame_callback_ms&quot;: 801.132812,
+    &quot;device_frame_to_jpeg_ms&quot;: 45.964427,
+    &quot;host_capture_to_image_ready_ms&quot;: 1716.17012,
+    &quot;host_jpeg_transfer_ms&quot;: 53.092114,
+    &quot;codex_assisted_review_turnaround_ms&quot;: 8245.208318,
+    &quot;host_submit_to_commit_observed_ms&quot;: 184.538001,
+    &quot;host_response_file_transfer_ms&quot;: 69.943896,
+    &quot;device_apply_to_draw_start_ms&quot;: 13.296459,
+    &quot;device_draw_recording_ms&quot;: 3.125937,
+    &quot;device_apply_to_frame_commit_ms&quot;: 29.382813,
+    &quot;device_frame_to_frame_commit_ms&quot;: 8658.442966,
+    &quot;host_capture_to_commit_observed_ms&quot;: 10145.916439,
+    &quot;isolated_model_inference_ms&quot;: null,
+    &quot;optical_display_latency_ms&quot;: null
+  },
+  &quot;transfer_bytes&quot;: {
+    &quot;camera_jpeg&quot;: 61607,
+    &quot;device_label_json&quot;: 297
+  },
+  &quot;provider_kind&quot;: &quot;codex_conversation_vision&quot;,
+  &quot;isolated_inference_measured&quot;: false,
+  &quot;optical_visibility_verified&quot;: false,
+  &quot;resource_summary&quot;: {
+    &quot;device&quot;: {
+      &quot;sample_count&quot;: 72,
+      &quot;span_s&quot;: 40.056370501,
+      &quot;cpu_seconds_delta&quot;: 0.18000000000000016,
+      &quot;mean_cpu_percent_one_core&quot;: 0.4493667243154406,
+      &quot;peak_rss_mib&quot;: 154.92578125
+    },
+    &quot;host&quot;: {
+      &quot;sample_count&quot;: 72,
+      &quot;span_s&quot;: 40.056370501,
+      &quot;cpu_seconds_delta&quot;: 0.18999999999999995,
+      &quot;mean_cpu_percent_one_core&quot;: 0.47433154233296454,
+      &quot;peak_rss_mib&quot;: 51.96484375,
+      &quot;child_cpu_seconds_delta&quot;: 0.48104900000000006
+    }
+  },
+  &quot;operator_confirmed_identities&quot;: {
+    &quot;A&quot;: &quot;silver bottle&quot;,
+    &quot;B&quot;: &quot;orange bottle&quot;
+  }
+}</pre></details></article></main><script>document.getElementById("filter").addEventListener("change",e=>{document.querySelectorAll("article[data-kind]").forEach(a=>a.hidden=e.target.value!=="all"&&a.dataset.kind!==e.target.value)})</script></html>

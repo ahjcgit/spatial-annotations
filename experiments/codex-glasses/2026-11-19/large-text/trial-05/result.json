@@ -1,0 +1,104 @@
+{
+  "trial": "trial-05",
+  "status": "completed",
+  "requestId": "trial-05-d41acdeddbff",
+  "host": {
+    "captureStartNs": 16099371706413,
+    "captureCommandReturnedNs": 16100021729187,
+    "frameReadyObservedNs": 16101034373429,
+    "imagePullStartNs": 16101034374773,
+    "imageReceivedNs": 16101087466887,
+    "handoffReadyNs": 16101087876533,
+    "submitReceivedNs": 16109333084851,
+    "responseFileWriteStartNs": 16109333256164,
+    "responseFileWrittenNs": 16109403200060,
+    "applyCommandReturnedNs": 16109459270113,
+    "commitObservedNs": 16109517622852,
+    "screenshotReceivedNs": 16109917858453,
+    "expiryObservedNs": 16139617464302
+  },
+  "device": {
+    "captureCommandReceivedNs": 6801170125736,
+    "clock": "android_elapsed_realtime_ns",
+    "displayKind": "head_locked_snapshot_labels",
+    "requestId": "trial-05-d41acdeddbff",
+    "phase": "expired",
+    "cameraWarmupMs": 600,
+    "cameraStatus": "Scanning QR \u00b7 camera 0 \u00b7 640\u00d7480",
+    "frameCallbackReceivedNs": 6801971258548,
+    "sourceSensorTimestampNs": 6801892127065,
+    "frameSavedNs": 6802017222975,
+    "sourceSha256": "23c754b4d57bd77b16f81620a12f5c3040a196d056f0ac23e52f80298bff5221",
+    "imageWidth": 480,
+    "imageHeight": 640,
+    "jpegBytes": 61607,
+    "applyReceivedNs": 6810600318701,
+    "labels": [
+      {
+        "identity": "A",
+        "label": "Silver bottle",
+        "side": "right",
+        "uncertain": false
+      },
+      {
+        "identity": "B",
+        "label": "Orange bottle",
+        "side": "left",
+        "uncertain": false
+      }
+    ],
+    "sourceAgeAtApplyMs": 8629.060153,
+    "frameCommitCallbackSupported": true,
+    "applyValidatedNs": 6810602915316,
+    "firstDrawStartNs": 6810613615160,
+    "firstDrawEndNs": 6810616741097,
+    "hardwareAccelerated": true,
+    "frameCommittedNs": 6810629701514,
+    "commitMeaning": "Android frame commit callback; not photon/optical visibility",
+    "labelsClearedNs": 6840630422440
+  },
+  "metrics": {
+    "device_capture_command_to_frame_callback_ms": 801.132812,
+    "device_frame_to_jpeg_ms": 45.964427,
+    "host_capture_to_image_ready_ms": 1716.17012,
+    "host_jpeg_transfer_ms": 53.092114,
+    "codex_assisted_review_turnaround_ms": 8245.208318,
+    "host_submit_to_commit_observed_ms": 184.538001,
+    "host_response_file_transfer_ms": 69.943896,
+    "device_apply_to_draw_start_ms": 13.296459,
+    "device_draw_recording_ms": 3.125937,
+    "device_apply_to_frame_commit_ms": 29.382813,
+    "device_frame_to_frame_commit_ms": 8658.442966,
+    "host_capture_to_commit_observed_ms": 10145.916439,
+    "isolated_model_inference_ms": null,
+    "optical_display_latency_ms": null
+  },
+  "transfer_bytes": {
+    "camera_jpeg": 61607,
+    "device_label_json": 297
+  },
+  "provider_kind": "codex_conversation_vision",
+  "isolated_inference_measured": false,
+  "optical_visibility_verified": false,
+  "resource_summary": {
+    "device": {
+      "sample_count": 72,
+      "span_s": 40.056370501,
+      "cpu_seconds_delta": 0.18000000000000016,
+      "mean_cpu_percent_one_core": 0.4493667243154406,
+      "peak_rss_mib": 154.92578125
+    },
+    "host": {
+      "sample_count": 72,
+      "span_s": 40.056370501,
+      "cpu_seconds_delta": 0.18999999999999995,
+      "mean_cpu_percent_one_core": 0.47433154233296454,
+      "peak_rss_mib": 51.96484375,
+      "child_cpu_seconds_delta": 0.48104900000000006
+    }
+  },
+  "operator_confirmed_identities": {
+    "A": "silver bottle",
+    "B": "orange bottle"
+  }
+}

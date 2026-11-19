@@ -1,0 +1,74 @@
+{
+  "trial_id": "trial-02",
+  "provider_kind": "codex_conversation_vision",
+  "source": {
+    "runId": "80eb3daa-2efa-4fb7-8af9-7163229888fb",
+    "frameId": 783,
+    "sourceFrameTimestampNs": 4059052883937,
+    "imageWidth": 480,
+    "imageHeight": 640,
+    "captured_at": "2026-11-19T22:36:35.258644+00:00",
+    "trial": "trial-02",
+    "protocol": "Requested position-swap check; actual arrangement must be observed in the image.",
+    "reference_trial": "trial-01",
+    "source_sha256": "03a22d1f8df9f7e228902fab9890ca6d9b127444b8a99d7461dbaded33a9e78f",
+    "status": "captured_awaiting_codex_review",
+    "ground_truth_verified": false
+  },
+  "reference_trial": "trial-01",
+  "reference_source_sha256": "36cc6e1eed40ef945698cafb2a16bf379876d99a7d593b0ad2a71056b77189c9",
+  "execution": "Codex assistant inspected the fresh image using the prior trial image and appearance descriptions in conversation context. No nested agents or inference API calls.",
+  "result": {
+    "scene": "The two bottles have exchanged left/right positions: the orange bottle is now on the left and the silver bottle is on the right. Both are fully visible.",
+    "objects": [
+      {
+        "label": "A: silver bottle",
+        "box": [
+          512,
+          114,
+          629,
+          459
+        ],
+        "evidence": "The right bottle retains the reflective silver body, tapered shoulders, narrow ridged screw cap, and vertical smartwater branding seen on A in trial 1.",
+        "uncertain": false
+      },
+      {
+        "label": "B: orange bottle",
+        "box": [
+          202,
+          27,
+          384,
+          458
+        ],
+        "evidence": "The left bottle retains the orange body, silver neck, and wide gray cap with a hinged side feature seen on B in trial 1.",
+        "uncertain": false
+      }
+    ]
+  },
+  "reasoning_summary": "Body color, cap shape, and printed branding agree with the previous identities even though positions changed. The orange bottle appears larger in this frame, but that does not change its identity.",
+  "comparison": [
+    {
+      "id": "A",
+      "appearance": "silver bottle",
+      "trial_1_position": "left",
+      "trial_2_position": "right",
+      "identity_preserved_by_codex_review": true
+    },
+    {
+      "id": "B",
+      "appearance": "orange bottle",
+      "trial_1_position": "right",
+      "trial_2_position": "left",
+      "identity_preserved_by_codex_review": true
+    }
+  ],
+  "outcome": "Position swap observed; appearance-based A/B assignments consistent across the two snapshots.",
+  "limitations": "Two assistant-reviewed snapshots only; not continuous tracking, automatic H0-H4 execution, independently verified accuracy, or live glasses labels.",
+  "identity_status": "Provisional trial identities; no backend UUID assignment.",
+  "box_coordinates": "Approximate visible extents; xyxy integers normalized 0..1000.",
+  "ground_truth_verified": false,
+  "request_latency_ms": null,
+  "saved_notes_retrieved": false,
+  "displayed_on_glasses": false,
+  "status": "captured_and_codex_reviewed_awaiting_operator_confirmation"
+}

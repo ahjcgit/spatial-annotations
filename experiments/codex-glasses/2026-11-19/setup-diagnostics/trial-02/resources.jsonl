@@ -1,0 +1,31 @@
+{"hostMonotonicNs": 15439236025936, "phase": "capture", "host": {"cpu_seconds": 0.23, "rss_bytes": 53587968, "child_cpu_seconds": 0.023181}}
+{"hostMonotonicNs": 15439736409654, "phase": "capture", "host": {"cpu_seconds": 0.23, "rss_bytes": 53587968, "child_cpu_seconds": 0.023181}}
+{"hostMonotonicNs": 15440236852838, "phase": "capture", "host": {"cpu_seconds": 0.24, "rss_bytes": 53587968, "child_cpu_seconds": 0.036855}}
+{"hostMonotonicNs": 15440737356692, "phase": "capture", "host": {"cpu_seconds": 0.24, "rss_bytes": 53587968, "child_cpu_seconds": 0.04815199999999999}}
+{"hostMonotonicNs": 15441237950772, "phase": "capture", "host": {"cpu_seconds": 0.24, "rss_bytes": 53587968, "child_cpu_seconds": 0.056564}}
+{"hostMonotonicNs": 15441738418954, "phase": "capture", "host": {"cpu_seconds": 0.24, "rss_bytes": 53587968, "child_cpu_seconds": 0.06482299999999999}}
+{"hostMonotonicNs": 15442238971624, "phase": "review", "host": {"cpu_seconds": 0.25, "rss_bytes": 53719040, "child_cpu_seconds": 0.074956}, "device": {"cpu_seconds": 1.47, "rss_bytes": 164720640}}
+{"hostMonotonicNs": 15442788043544, "phase": "review", "host": {"cpu_seconds": 0.25, "rss_bytes": 53719040, "child_cpu_seconds": 0.078343}, "device": {"cpu_seconds": 1.47, "rss_bytes": 164720640}}
+{"hostMonotonicNs": 15443338786125, "phase": "review", "host": {"cpu_seconds": 0.26, "rss_bytes": 53850112, "child_cpu_seconds": 0.08091699999999999}, "device": {"cpu_seconds": 1.47, "rss_bytes": 164720640}}
+{"hostMonotonicNs": 15443896576248, "phase": "review", "host": {"cpu_seconds": 0.26, "rss_bytes": 53850112, "child_cpu_seconds": 0.083895}, "device": {"cpu_seconds": 1.48, "rss_bytes": 164700160}}
+{"hostMonotonicNs": 15444464764827, "phase": "review", "host": {"cpu_seconds": 0.26, "rss_bytes": 53850112, "child_cpu_seconds": 0.08603}, "device": {"cpu_seconds": 1.48, "rss_bytes": 164700160}}
+{"hostMonotonicNs": 15445026485067, "phase": "review", "host": {"cpu_seconds": 0.26, "rss_bytes": 53850112, "child_cpu_seconds": 0.08937699999999998}, "device": {"cpu_seconds": 1.48, "rss_bytes": 164700160}}
+{"hostMonotonicNs": 15445586644979, "phase": "review", "host": {"cpu_seconds": 0.27, "rss_bytes": 53850112, "child_cpu_seconds": 0.092698}, "device": {"cpu_seconds": 1.48, "rss_bytes": 164700160}}
+{"hostMonotonicNs": 15446147173742, "phase": "review", "host": {"cpu_seconds": 0.27, "rss_bytes": 53850112, "child_cpu_seconds": 0.09536999999999998}, "device": {"cpu_seconds": 1.48, "rss_bytes": 164700160}}
+{"hostMonotonicNs": 15446707320635, "phase": "review", "host": {"cpu_seconds": 0.27, "rss_bytes": 53850112, "child_cpu_seconds": 0.098803}, "device": {"cpu_seconds": 1.48, "rss_bytes": 164700160}}
+{"hostMonotonicNs": 15447270662827, "phase": "review", "host": {"cpu_seconds": 0.27, "rss_bytes": 53850112, "child_cpu_seconds": 0.102103}, "device": {"cpu_seconds": 1.48, "rss_bytes": 164700160}}
+{"hostMonotonicNs": 15447846436006, "phase": "review", "host": {"cpu_seconds": 0.27, "rss_bytes": 53850112, "child_cpu_seconds": 0.105547}, "device": {"cpu_seconds": 1.48, "rss_bytes": 164700160}}
+{"hostMonotonicNs": 15448422078005, "phase": "review", "host": {"cpu_seconds": 0.27, "rss_bytes": 53850112, "child_cpu_seconds": 0.10904}, "device": {"cpu_seconds": 1.48, "rss_bytes": 164700160}}
+{"hostMonotonicNs": 15448981484153, "phase": "review", "host": {"cpu_seconds": 0.28, "rss_bytes": 53850112, "child_cpu_seconds": 0.11236299999999999}, "device": {"cpu_seconds": 1.48, "rss_bytes": 164700160}}
+{"hostMonotonicNs": 15449556955071, "phase": "review", "host": {"cpu_seconds": 0.28, "rss_bytes": 53850112, "child_cpu_seconds": 0.115255}, "device": {"cpu_seconds": 1.48, "rss_bytes": 164700160}}
+{"hostMonotonicNs": 15450134416957, "phase": "review", "host": {"cpu_seconds": 0.28, "rss_bytes": 53850112, "child_cpu_seconds": 0.118673}, "device": {"cpu_seconds": 1.48, "rss_bytes": 164700160}}
+{"hostMonotonicNs": 15450711549809, "phase": "review", "host": {"cpu_seconds": 0.28, "rss_bytes": 53850112, "child_cpu_seconds": 0.121891}, "device": {"cpu_seconds": 1.48, "rss_bytes": 164700160}}
+{"hostMonotonicNs": 15451285631628, "phase": "review", "host": {"cpu_seconds": 0.28, "rss_bytes": 53850112, "child_cpu_seconds": 0.12400299999999999}, "device": {"cpu_seconds": 1.48, "rss_bytes": 164700160}}
+{"hostMonotonicNs": 15451863865693, "phase": "review", "host": {"cpu_seconds": 0.28, "rss_bytes": 53850112, "child_cpu_seconds": 0.127444}, "device": {"cpu_seconds": 1.48, "rss_bytes": 164700160}}
+{"hostMonotonicNs": 15452437683899, "phase": "review", "host": {"cpu_seconds": 0.28, "rss_bytes": 53850112, "child_cpu_seconds": 0.130854}, "device": {"cpu_seconds": 1.48, "rss_bytes": 164700160}}
+{"hostMonotonicNs": 15453028069126, "phase": "review", "host": {"cpu_seconds": 0.29, "rss_bytes": 53850112, "child_cpu_seconds": 0.13416}, "device": {"cpu_seconds": 1.48, "rss_bytes": 164700160}}
+{"hostMonotonicNs": 15453589882703, "phase": "review", "host": {"cpu_seconds": 0.29, "rss_bytes": 53850112, "child_cpu_seconds": 0.13758199999999998}, "device": {"cpu_seconds": 1.48, "rss_bytes": 164700160}}
+{"hostMonotonicNs": 15454166186009, "phase": "review", "host": {"cpu_seconds": 0.29, "rss_bytes": 53850112, "child_cpu_seconds": 0.141069}, "device": {"cpu_seconds": 1.48, "rss_bytes": 164700160}}
+{"hostMonotonicNs": 15454741035719, "phase": "review", "host": {"cpu_seconds": 0.29, "rss_bytes": 53850112, "child_cpu_seconds": 0.144334}, "device": {"cpu_seconds": 1.48, "rss_bytes": 164700160}}
+{"hostMonotonicNs": 15455298946364, "phase": "review", "host": {"cpu_seconds": 0.29, "rss_bytes": 53850112, "child_cpu_seconds": 0.147585}, "device": {"cpu_seconds": 1.48, "rss_bytes": 164700160}}
+{"hostMonotonicNs": 15455860462433, "phase": "review", "host": {"cpu_seconds": 0.29, "rss_bytes": 53850112, "child_cpu_seconds": 0.150827}, "device": {"cpu_seconds": 1.48, "rss_bytes": 164700160}}

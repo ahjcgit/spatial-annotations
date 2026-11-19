@@ -1,0 +1,8 @@
+{
+  "stage": "capture",
+  "error": "ADB operation failed: ",
+  "host": {
+    "captureStartNs": 15353910738849,
+    "captureCommandReturnedNs": 15354616618829
+  }
+}

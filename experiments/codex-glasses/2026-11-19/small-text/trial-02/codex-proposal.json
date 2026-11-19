@@ -1,0 +1,6 @@
+{
+  "requestId": "trial-02-fb5ff87981ca",
+  "sourceSha256": "4cbbfce5a6c0ab66254d250ca5aa51f953e7d68ff5e01fd9be409a47b5435840",
+  "labels": [],
+  "reasoning_summary": "The camera now faces a laptop, food containers, a box, and a whiteboard. Neither the silver bottle nor the orange bottle is visible, so no A/B labels are justified. Previous bottle identities must not be carried into this frame."
+}

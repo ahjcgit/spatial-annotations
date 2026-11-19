@@ -1,0 +1,31 @@
+{
+  "requestId": "trial-04-5f046cd0487d",
+  "sourceSha256": "5d90bfb764707cd12d43181687e3c5f6b9bf64ef12ef6caee8ea5833c96fc7db",
+  "labels": [
+    {
+      "identity": "A",
+      "label": "Silver bottle",
+      "uncertain": false,
+      "box": [
+        551,
+        151,
+        655,
+        456
+      ],
+      "evidence": "Silver metallic bottle with narrow screw neck on the right."
+    },
+    {
+      "identity": "B",
+      "label": "Orange bottle",
+      "uncertain": false,
+      "box": [
+        286,
+        85,
+        439,
+        456
+      ],
+      "evidence": "Orange body with broad gray lid and latch on the left."
+    }
+  ],
+  "reasoning_summary": "Both bottles are visible; body color and bottle shape support A on the right and B on the left."
+}

@@ -18,6 +18,16 @@ Kotlin Android app, FastAPI/SQLite backend and browser companion need no proprie
 
 **Start with the browser test below. It needs neither glasses, an Android emulator nor a webcam.**
 
+For real-camera snapshots reviewed by Codex, or an optional local VLM endpoint,
+see [VLM camera probes](docs/VLM_CAMERA_PROBE.md). This produces proposed boxes,
+descriptive labels, and brief visual evidence. The separate
+[Codex-to-glasses measurement bench](docs/CODEX_GLASSES_BENCH.md) now sends those
+labels to a debug glasses viewer with timed delivery and resource sampling.
+[November 19 evidence and results](experiments/codex-glasses/2026-11-19/README.md)
+include raw frames, traces, failures, wearer feedback, and a portable web report.
+This is a snapshot list; physical alignment and integration with registered notes
+remain future work.
+
 ## Live color presentation on the computer and glasses
 
 Open **http://127.0.0.1:8014** for the no-login presentation. **Start live** continuously

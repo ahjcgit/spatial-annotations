@@ -1,0 +1,79 @@
+{
+  "trial_id": "trial-03",
+  "provider_kind": "codex_conversation_vision",
+  "source": {
+    "runId": "4e00552e-855f-411c-b836-02e5d01cbbef",
+    "frameId": 973,
+    "sourceFrameTimestampNs": 4218167209854,
+    "imageWidth": 480,
+    "imageHeight": 640,
+    "captured_at": "2026-11-19T22:39:14.550253+00:00",
+    "trial": "trial-03",
+    "capture_attempt": 2,
+    "protocol": "Requested partial-occlusion check; actual scene and visible evidence must be inspected.",
+    "reference_trials": [
+      "trial-01",
+      "trial-02"
+    ],
+    "source_sha256": "94a4c9d49a15bc990b5cfee4a0d48757411d98868712e322addc73983906efa9",
+    "status": "captured_awaiting_codex_review",
+    "ground_truth_verified": false
+  },
+  "reference_trials": [
+    "trial-01",
+    "trial-02"
+  ],
+  "execution": "Codex assistant visually inspected the fresh image with prior trial images and appearance descriptions in conversation context. No nested agents or inference API calls.",
+  "result": {
+    "scene": "A silver bottle is fully visible on the right. A foreground bag hides the body of the left bottle, leaving its gray cap and metallic collar visible.",
+    "objects": [
+      {
+        "label": "A: silver bottle",
+        "box": [
+          502,
+          112,
+          624,
+          459
+        ],
+        "evidence": "The reflective body, narrow ridged screw cap, tapered shoulders, and vertical smartwater branding remain visible and match A in the prior snapshots.",
+        "uncertain": false
+      },
+      {
+        "label": "B candidate: cap only",
+        "box": [
+          190,
+          26,
+          374,
+          171
+        ],
+        "evidence": "The exposed wide gray cap, protruding side hinge, and metallic collar resemble B. The foreground bag hides the body, so its orange color cannot be verified in this frame.",
+        "uncertain": true
+      }
+    ]
+  },
+  "reasoning_summary": "A is supported by multiple visible distinguishing features. B is a plausible candidate because of the characteristic cap and metallic collar, but its previously distinctive orange body is occluded. The orange printing on the foreground bag is not evidence of the hidden bottle color. Position alone is not used to confirm identity.",
+  "comparison": [
+    {
+      "id": "A",
+      "observation": "Fully visible silver bottle on right",
+      "assignment": "supported_proposal",
+      "occluded": false
+    },
+    {
+      "id": "B",
+      "observation": "Cap and collar visible above foreground bag on left",
+      "assignment": "uncertain_candidate",
+      "occluded": true,
+      "box_scope": "Visible cap and collar only; no hidden full-bottle box inferred."
+    }
+  ],
+  "outcome": "Partial occlusion observed. A remains supported; B is proposed with uncertainty rather than treated as a confirmed identity.",
+  "limitations": "Assistant review of snapshots; not continuous tracking, automatic H0-H4 execution, independently verified accuracy, or live glasses labels.",
+  "identity_status": "Provisional trial identities; B held uncertain; no backend UUID assignment.",
+  "box_coordinates": "Approximate visible extents; xyxy integers normalized 0..1000.",
+  "ground_truth_verified": false,
+  "request_latency_ms": null,
+  "saved_notes_retrieved": false,
+  "displayed_on_glasses": false,
+  "status": "captured_and_codex_reviewed_awaiting_operator_confirmation"
+}

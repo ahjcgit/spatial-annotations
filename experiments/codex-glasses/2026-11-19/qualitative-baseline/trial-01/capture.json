@@ -1,0 +1,13 @@
+{
+  "runId": "9883cb33-b34a-47b8-9b88-b58e714237ba",
+  "frameId": 553,
+  "sourceFrameTimestampNs": 3937755768763,
+  "imageWidth": 480,
+  "imageHeight": 640,
+  "captured_at": "2026-11-19T22:34:34.000210+00:00",
+  "trial": "trial-01",
+  "operator_context": "User reports two bottles with different colors.",
+  "source_sha256": "36cc6e1eed40ef945698cafb2a16bf379876d99a7d593b0ad2a71056b77189c9",
+  "status": "captured_awaiting_codex_review",
+  "ground_truth_verified": false
+}

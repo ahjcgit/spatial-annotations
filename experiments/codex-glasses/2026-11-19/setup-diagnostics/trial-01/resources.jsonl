@@ -1,0 +1,2 @@
+{"hostMonotonicNs": 15353910917459, "phase": "capture", "host": {"cpu_seconds": 0.24, "rss_bytes": 53276672, "child_cpu_seconds": 0.024116}}
+{"hostMonotonicNs": 15354411399762, "phase": "capture", "host": {"cpu_seconds": 0.24, "rss_bytes": 53276672, "child_cpu_seconds": 0.024116}}

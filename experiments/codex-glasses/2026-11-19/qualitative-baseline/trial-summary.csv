@@ -1,0 +1,5 @@
+trial_id,condition,captured_at,frame_id,A_proposal,B_proposal,source_sha256,result_file
+trial-01,baseline,2026-11-19T22:34:34.000210+00:00,553,supported,supported,36cc6e1eed40ef945698cafb2a16bf379876d99a7d593b0ad2a71056b77189c9,artifacts/vlm-probes/bottle-trials/trial-01/codex-result.json
+trial-02,position_swap,2026-11-19T22:36:35.258644+00:00,783,supported,supported,03a22d1f8df9f7e228902fab9890ca6d9b127444b8a99d7461dbaded33a9e78f,artifacts/vlm-probes/bottle-trials/trial-02/codex-result.json
+trial-03,partial_occlusion,2026-11-19T22:39:14.550253+00:00,973,supported,uncertain,94a4c9d49a15bc990b5cfee4a0d48757411d98868712e322addc73983906efa9,artifacts/vlm-probes/bottle-trials/trial-03/codex-result.json
+trial-04,reappearance,2026-11-19T22:41:08.372633+00:00,976,supported,supported,a9ea538e5b4606826f2bbf3c8ff01a5309bf36140c6182e8660f1c4283a68305,artifacts/vlm-probes/bottle-trials/trial-04/codex-result.json

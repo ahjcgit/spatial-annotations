@@ -1,0 +1,6 @@
+{
+  "requestId": "trial-02-ee77f3aeab10",
+  "sourceSha256": "2d50cc7361fab37ddbcf5063c738a602b65ae9cab0d1c15f9382332d5ffb7bc4",
+  "labels": [],
+  "reasoning_summary": "This frame shows a laptop, hands, food packaging and boxes on the table. The two reference bottles are outside the captured view, so neither A nor B should be labeled."
+}

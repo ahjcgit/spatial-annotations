@@ -1,0 +1,2 @@
+# Preserve the original CSV bytes, including standard CRLF record separators.
+qualitative-baseline/trial-summary.csv -text whitespace=cr-at-eol

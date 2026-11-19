@@ -1,0 +1,28 @@
+{
+  "host": {
+    "captureStartNs": 15556563884762,
+    "captureCommandReturnedNs": 15557182916482,
+    "frameReadyObservedNs": 15558054842474,
+    "imagePullStartNs": 15558054843808,
+    "imageReceivedNs": 15558106755082,
+    "handoffReadyNs": 15558107224384
+  },
+  "device": {
+    "captureCommandReceivedNs": 6258323959329,
+    "clock": "android_elapsed_realtime_ns",
+    "displayKind": "head_locked_snapshot_labels",
+    "requestId": "trial-02-fb5ff87981ca",
+    "phase": "captured",
+    "cameraWarmupMs": 600,
+    "cameraStatus": "Scanning QR \u00b7 camera 0 \u00b7 640\u00d7480",
+    "frameCallbackReceivedNs": 6258993479797,
+    "sourceSensorTimestampNs": 6258916881593,
+    "frameSavedNs": 6259047261047,
+    "sourceSha256": "4cbbfce5a6c0ab66254d250ca5aa51f953e7d68ff5e01fd9be409a47b5435840",
+    "imageWidth": 480,
+    "imageHeight": 640,
+    "jpegBytes": 83949
+  },
+  "captured_at": "2026-11-19T23:13:15.154001+00:00",
+  "jpeg_bytes": 83949
+}

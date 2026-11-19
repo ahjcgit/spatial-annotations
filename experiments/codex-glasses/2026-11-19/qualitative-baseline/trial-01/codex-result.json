@@ -1,0 +1,57 @@
+{
+  "trial_id": "trial-01",
+  "provider_kind": "codex_conversation_vision",
+  "source": {
+    "runId": "9883cb33-b34a-47b8-9b88-b58e714237ba",
+    "frameId": 553,
+    "sourceFrameTimestampNs": 3937755768763,
+    "imageWidth": 480,
+    "imageHeight": 640,
+    "captured_at": "2026-11-19T22:34:34.000210+00:00",
+    "trial": "trial-01",
+    "operator_context": "User reports two bottles with different colors.",
+    "source_sha256": "36cc6e1eed40ef945698cafb2a16bf379876d99a7d593b0ad2a71056b77189c9",
+    "status": "captured_awaiting_codex_review",
+    "ground_truth_verified": false
+  },
+  "execution": "Codex assistant inspected the captured image in this conversation. No nested agents or inference API calls.",
+  "result": {
+    "scene": "Two upright bottles stand separately on a wooden table: a metallic silver bottle on the left and an orange-bodied bottle with a gray metallic cap on the right. Both are fully visible.",
+    "objects": [
+      {
+        "label": "A: silver bottle",
+        "box": [
+          178,
+          70,
+          327,
+          462
+        ],
+        "evidence": "The left bottle has a reflective silver body, tapered shoulders, a narrow ridged screw cap, and vertical smartwater branding.",
+        "uncertain": false
+      },
+      {
+        "label": "B: orange bottle",
+        "box": [
+          433,
+          78,
+          586,
+          457
+        ],
+        "evidence": "The right bottle has a bright orange body or sleeve, a silver neck, and a wide gray cap with a protruding hinged feature.",
+        "uncertain": false
+      }
+    ]
+  },
+  "reasoning_summary": "Two distinct bottle silhouettes are separated by a visible gap. Body color differentiates them, with cap shape and printed branding providing additional visible evidence. Left/right describe this frame only and must not define identity after movement.",
+  "provisional_ids": {
+    "A": "silver bottle in this initial frame",
+    "B": "orange bottle in this initial frame"
+  },
+  "identity_status": "Provisional trial labels awaiting operator confirmation; no backend UUID assignment.",
+  "box_coordinates": "Approximate visible extents; xyxy integers normalized 0..1000.",
+  "ground_truth_verified": false,
+  "request_latency_ms": null,
+  "saved_notes_retrieved": false,
+  "displayed_on_glasses": false,
+  "status": "captured_and_codex_reviewed_awaiting_operator_confirmation"
+}

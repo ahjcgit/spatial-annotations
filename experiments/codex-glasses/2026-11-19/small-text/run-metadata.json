@@ -1,0 +1,44 @@
+{
+  "schema_version": 1,
+  "started_at": "2026-11-19T23:12:24.160727+00:00",
+  "provider_kind": "codex_conversation_vision",
+  "exact_model_version": null,
+  "operator_confirmed_identities": {
+    "A": "silver bottle",
+    "B": "orange bottle"
+  },
+  "identity_confirmation_source": "User confirmation in this session; boxes and optical readability not yet verified.",
+  "device": {
+    "model": "ARGF20",
+    "product": "RayNeoX3Pro",
+    "android": "12",
+    "sdk": "32",
+    "firmware": "SKQ1.250204.001 release-keys"
+  },
+  "host": {
+    "platform": "Linux-7.3.3-200.fc44.x86_64-x86_64-with-glibc2.43",
+    "python": "3.11.18",
+    "logical_cpus": 8
+  },
+  "transport": "USB ADB, app-private JSON files",
+  "resource_sampling": {
+    "interval_s": 0.5,
+    "device_hz": 100,
+    "device_page_bytes": 4096,
+    "scope": "App process CPU/RSS and Python bench process CPU/RSS; host child CPU includes ADB sampling overhead. Remote Codex compute is unavailable."
+  },
+  "display": {
+    "kind": "head_locked_snapshot_labels_in_both_eyes",
+    "expires_ms": 10000,
+    "max_snapshot_age_ms": 120000,
+    "commit_measurement": "Android frame commit callback; not optical visibility or binocular comfort"
+  },
+  "timing_definitions": {
+    "review_turnaround": "Host image-ready to submit-handler receipt; includes Codex conversation, tool operations and orchestration. Not isolated inference.",
+    "device_frame_to_commit": "Camera callback receipt to frame commit, both Android elapsedRealtimeNanos. Sensor timestamp not subtracted.",
+    "host_commit_observed": "Polling observation after device commit; includes polling/transport delay.",
+    "device_draw_recording": "CPU wall time recording Canvas commands, not GPU or optical presentation."
+  },
+  "design": "Repeated captures of one operator-confirmed stationary scene. Technical timing repeats, not independent accuracy trials.",
+  "apk_sha256": "b00856fef25afeaed60b2db3f0f97df9ec501f2ac92bbc20d0f92096e0c33269"
+}

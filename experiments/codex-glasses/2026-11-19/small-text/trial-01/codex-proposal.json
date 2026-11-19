@@ -1,0 +1,31 @@
+{
+  "requestId": "trial-01-c5e9e40ecc3d",
+  "sourceSha256": "0a1e2316a5c1d70a896a273ec42e968e927b5c48047486b1b4c7b160d4245980",
+  "labels": [
+    {
+      "identity": "A",
+      "label": "Silver bottle",
+      "uncertain": false,
+      "box": [
+        495,
+        116,
+        606,
+        457
+      ],
+      "evidence": "Silver body, tapered shoulder, narrow screw cap and vertical branding on the right."
+    },
+    {
+      "identity": "B",
+      "label": "Orange bottle",
+      "uncertain": false,
+      "box": [
+        181,
+        26,
+        365,
+        457
+      ],
+      "evidence": "Orange body with metallic collar and broad gray hinged cap on the left."
+    }
+  ],
+  "reasoning_summary": "Both bottles are unobscured. Body color and cap shape support the operator-confirmed A silver and B orange identities."
+}

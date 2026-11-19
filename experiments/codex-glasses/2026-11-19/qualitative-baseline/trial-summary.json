@@ -1,0 +1,51 @@
+{
+  "provider_kind": "codex_conversation_vision",
+  "evidence_kind": "four_physical_camera_snapshots_with_assistant_review",
+  "trials": [
+    {
+      "trial_id": "trial-01",
+      "condition": "baseline",
+      "captured_at": "2026-11-19T22:34:34.000210+00:00",
+      "frame_id": 553,
+      "A_proposal": "supported",
+      "B_proposal": "supported",
+      "source_sha256": "36cc6e1eed40ef945698cafb2a16bf379876d99a7d593b0ad2a71056b77189c9",
+      "result_file": "artifacts/vlm-probes/bottle-trials/trial-01/codex-result.json"
+    },
+    {
+      "trial_id": "trial-02",
+      "condition": "position_swap",
+      "captured_at": "2026-11-19T22:36:35.258644+00:00",
+      "frame_id": 783,
+      "A_proposal": "supported",
+      "B_proposal": "supported",
+      "source_sha256": "03a22d1f8df9f7e228902fab9890ca6d9b127444b8a99d7461dbaded33a9e78f",
+      "result_file": "artifacts/vlm-probes/bottle-trials/trial-02/codex-result.json"
+    },
+    {
+      "trial_id": "trial-03",
+      "condition": "partial_occlusion",
+      "captured_at": "2026-11-19T22:39:14.550253+00:00",
+      "frame_id": 973,
+      "A_proposal": "supported",
+      "B_proposal": "uncertain",
+      "source_sha256": "94a4c9d49a15bc990b5cfee4a0d48757411d98868712e322addc73983906efa9",
+      "result_file": "artifacts/vlm-probes/bottle-trials/trial-03/codex-result.json"
+    },
+    {
+      "trial_id": "trial-04",
+      "condition": "reappearance",
+      "captured_at": "2026-11-19T22:41:08.372633+00:00",
+      "frame_id": 976,
+      "A_proposal": "supported",
+      "B_proposal": "supported",
+      "source_sha256": "a9ea538e5b4606826f2bbf3c8ff01a5309bf36140c6182e8660f1c4283a68305",
+      "result_file": "artifacts/vlm-probes/bottle-trials/trial-04/codex-result.json"
+    }
+  ],
+  "observations": "Initial A/B labels followed appearance after a position swap. B was marked uncertain during body occlusion and supported again after its orange body reappeared.",
+  "ground_truth_verified": false,
+  "accuracy_estimate": null,
+  "reacquisition_latency_ms": null,
+  "limitations": "One informal sequence, two visually distinct bottles, no repeatability estimate, no continuously recorded motion, no automated VLM API or glasses overlay."
+}

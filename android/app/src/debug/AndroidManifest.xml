@@ -1,5 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
     <application>
         <activity android:name=".DemoActivity" android:exported="true" android:launchMode="singleTop" android:label="Spatial Demo" />
+        <activity android:name=".CodexProbeActivity" android:exported="true" android:launchMode="singleTop" android:label="Codex measurement" />
     </application>
 </manifest>

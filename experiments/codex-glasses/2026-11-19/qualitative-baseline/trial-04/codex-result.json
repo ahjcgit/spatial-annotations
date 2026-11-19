@@ -1,0 +1,90 @@
+{
+  "trial_id": "trial-04",
+  "provider_kind": "codex_conversation_vision",
+  "source": {
+    "runId": "f592290c-11e4-40e8-a09c-9c2a70e8a8b5",
+    "frameId": 976,
+    "sourceFrameTimestampNs": 4332099888614,
+    "imageWidth": 480,
+    "imageHeight": 640,
+    "captured_at": "2026-11-19T22:41:08.372633+00:00",
+    "trial": "trial-04",
+    "protocol": "Requested reappearance after partial occlusion; actual visibility must be inspected.",
+    "reference_trials": [
+      "trial-01",
+      "trial-02",
+      "trial-03"
+    ],
+    "source_sha256": "a9ea538e5b4606826f2bbf3c8ff01a5309bf36140c6182e8660f1c4283a68305",
+    "status": "captured_awaiting_codex_review",
+    "ground_truth_verified": false,
+    "startup_observations": [
+      {
+        "phase": "connecting",
+        "frameId": 0
+      },
+      {
+        "phase": "capturing",
+        "frameId": 0
+      }
+    ]
+  },
+  "reference_trials": [
+    "trial-01",
+    "trial-02",
+    "trial-03"
+  ],
+  "execution": "Codex assistant inspected the fresh image with prior trial images and appearance descriptions in conversation context. No nested agents or inference API calls.",
+  "result": {
+    "scene": "The foreground obstruction has been removed. Both bottles are fully visible again: the orange bottle on the left and the silver bottle on the right.",
+    "objects": [
+      {
+        "label": "A: silver bottle",
+        "box": [
+          502,
+          114,
+          622,
+          459
+        ],
+        "evidence": "The right bottle has the reflective silver body, narrow ridged screw cap, tapered shoulders, and vertical smartwater branding that distinguish A.",
+        "uncertain": false
+      },
+      {
+        "label": "B: orange bottle",
+        "box": [
+          190,
+          25,
+          375,
+          458
+        ],
+        "evidence": "The left bottle now shows its orange body again, together with the same metallic collar and wide gray hinged cap seen before and during occlusion.",
+        "uncertain": false
+      }
+    ]
+  },
+  "reasoning_summary": "B was uncertain when only its cap was exposed in trial 3. The newly visible orange body provides distinguishing evidence again, together with the unchanged cap and collar. A retains its silver body and branding. The matches use appearance rather than position.",
+  "comparison": [
+    {
+      "id": "A",
+      "observation": "Fully visible silver bottle on right",
+      "assignment": "supported_proposal",
+      "occluded": false
+    },
+    {
+      "id": "B",
+      "observation": "Orange body, metallic collar, and gray cap fully visible on left",
+      "assignment": "supported_proposal",
+      "occluded": false,
+      "previous_assignment": "uncertain_candidate in trial-03"
+    }
+  ],
+  "outcome": "Obstruction removed; both appearance-based identity proposals are supported again. B changes from uncertain candidate to supported proposal.",
+  "limitations": "Re-identification across separately requested snapshots, not measured continuous tracking or reacquisition latency. No independent human ground truth, automatic H0-H4 execution, or live glasses labels.",
+  "identity_status": "Provisional trial identities; no backend UUID assignment.",
+  "box_coordinates": "Approximate visible extents; xyxy integers normalized 0..1000.",
+  "ground_truth_verified": false,
+  "request_latency_ms": null,
+  "saved_notes_retrieved": false,
+  "displayed_on_glasses": false,
+  "status": "captured_and_codex_reviewed_awaiting_operator_confirmation"
+}

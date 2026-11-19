@@ -1,0 +1,42 @@
+{"hostMonotonicNs": 15520085625067, "phase": "capture", "host": {"cpu_seconds": 0.25, "rss_bytes": 53637120, "child_cpu_seconds": 0.023463}}
+{"hostMonotonicNs": 15520586082160, "phase": "capture", "host": {"cpu_seconds": 0.25, "rss_bytes": 53768192, "child_cpu_seconds": 0.023463}}
+{"hostMonotonicNs": 15521086524679, "phase": "capture", "host": {"cpu_seconds": 0.26, "rss_bytes": 53768192, "child_cpu_seconds": 0.037307}}
+{"hostMonotonicNs": 15521586940666, "phase": "capture", "host": {"cpu_seconds": 0.26, "rss_bytes": 53768192, "child_cpu_seconds": 0.049477999999999994}}
+{"hostMonotonicNs": 15522087325727, "phase": "capture", "host": {"cpu_seconds": 0.26, "rss_bytes": 53768192, "child_cpu_seconds": 0.058818999999999996}}
+{"hostMonotonicNs": 15522587643095, "phase": "capture", "host": {"cpu_seconds": 0.26, "rss_bytes": 53768192, "child_cpu_seconds": 0.067452}}
+{"hostMonotonicNs": 15523087931044, "phase": "review", "host": {"cpu_seconds": 0.27, "rss_bytes": 53768192, "child_cpu_seconds": 0.08103199999999999}, "device": {"cpu_seconds": 1.07, "rss_bytes": 158908416}}
+{"hostMonotonicNs": 15523636737785, "phase": "review", "host": {"cpu_seconds": 0.27, "rss_bytes": 53768192, "child_cpu_seconds": 0.084405}, "device": {"cpu_seconds": 1.08, "rss_bytes": 159174656}}
+{"hostMonotonicNs": 15524183148572, "phase": "review", "host": {"cpu_seconds": 0.27, "rss_bytes": 53768192, "child_cpu_seconds": 0.087827}, "device": {"cpu_seconds": 1.08, "rss_bytes": 159174656}}
+{"hostMonotonicNs": 15524733999345, "phase": "review", "host": {"cpu_seconds": 0.27, "rss_bytes": 53768192, "child_cpu_seconds": 0.091414}, "device": {"cpu_seconds": 1.08, "rss_bytes": 159174656}}
+{"hostMonotonicNs": 15525287494621, "phase": "review", "host": {"cpu_seconds": 0.28, "rss_bytes": 53768192, "child_cpu_seconds": 0.09482499999999999}, "device": {"cpu_seconds": 1.08, "rss_bytes": 159739904}}
+{"hostMonotonicNs": 15525854902393, "phase": "review", "host": {"cpu_seconds": 0.28, "rss_bytes": 53768192, "child_cpu_seconds": 0.097856}, "device": {"cpu_seconds": 1.08, "rss_bytes": 159715328}}
+{"hostMonotonicNs": 15526414375410, "phase": "review", "host": {"cpu_seconds": 0.28, "rss_bytes": 53768192, "child_cpu_seconds": 0.1012}, "device": {"cpu_seconds": 1.1, "rss_bytes": 160067584}}
+{"hostMonotonicNs": 15526977075529, "phase": "review", "host": {"cpu_seconds": 0.28, "rss_bytes": 53768192, "child_cpu_seconds": 0.10473099999999999}, "device": {"cpu_seconds": 1.1, "rss_bytes": 160067584}}
+{"hostMonotonicNs": 15527537950854, "phase": "review", "host": {"cpu_seconds": 0.28, "rss_bytes": 53768192, "child_cpu_seconds": 0.108186}, "device": {"cpu_seconds": 1.13, "rss_bytes": 160165888}}
+{"hostMonotonicNs": 15528125867868, "phase": "review", "host": {"cpu_seconds": 0.29, "rss_bytes": 53768192, "child_cpu_seconds": 0.11154800000000001}, "device": {"cpu_seconds": 1.13, "rss_bytes": 160165888}}
+{"hostMonotonicNs": 15528688397270, "phase": "review", "host": {"cpu_seconds": 0.29, "rss_bytes": 53768192, "child_cpu_seconds": 0.114814}, "device": {"cpu_seconds": 1.13, "rss_bytes": 160165888}}
+{"hostMonotonicNs": 15529249289982, "phase": "review", "host": {"cpu_seconds": 0.3, "rss_bytes": 53768192, "child_cpu_seconds": 0.11668599999999998}, "device": {"cpu_seconds": 1.13, "rss_bytes": 160165888}}
+{"hostMonotonicNs": 15529811713710, "phase": "review", "host": {"cpu_seconds": 0.3, "rss_bytes": 53768192, "child_cpu_seconds": 0.119904}, "device": {"cpu_seconds": 1.13, "rss_bytes": 160165888}}
+{"hostMonotonicNs": 15530387921379, "phase": "review", "host": {"cpu_seconds": 0.3, "rss_bytes": 53768192, "child_cpu_seconds": 0.12302899999999999}, "device": {"cpu_seconds": 1.13, "rss_bytes": 160165888}}
+{"hostMonotonicNs": 15530962566015, "phase": "review", "host": {"cpu_seconds": 0.3, "rss_bytes": 53768192, "child_cpu_seconds": 0.125101}, "device": {"cpu_seconds": 1.13, "rss_bytes": 160165888}}
+{"hostMonotonicNs": 15531522113498, "phase": "review", "host": {"cpu_seconds": 0.3, "rss_bytes": 53768192, "child_cpu_seconds": 0.128511}, "device": {"cpu_seconds": 1.13, "rss_bytes": 160165888}}
+{"hostMonotonicNs": 15532083967231, "phase": "review", "host": {"cpu_seconds": 0.3, "rss_bytes": 53768192, "child_cpu_seconds": 0.13103599999999999}, "device": {"cpu_seconds": 1.13, "rss_bytes": 160165888}}
+{"hostMonotonicNs": 15532641172106, "phase": "review", "host": {"cpu_seconds": 0.3, "rss_bytes": 53768192, "child_cpu_seconds": 0.133229}, "device": {"cpu_seconds": 1.13, "rss_bytes": 160165888}}
+{"hostMonotonicNs": 15533200240840, "phase": "display_hold", "host": {"cpu_seconds": 0.31, "rss_bytes": 53768192, "child_cpu_seconds": 0.14334}, "device": {"cpu_seconds": 1.19, "rss_bytes": 160641024}}
+{"hostMonotonicNs": 15533751064387, "phase": "display_hold", "host": {"cpu_seconds": 0.31, "rss_bytes": 53768192, "child_cpu_seconds": 0.152828}, "device": {"cpu_seconds": 1.19, "rss_bytes": 160641024}}
+{"hostMonotonicNs": 15534324206086, "phase": "display_hold", "host": {"cpu_seconds": 0.31, "rss_bytes": 53768192, "child_cpu_seconds": 0.16138999999999998}, "device": {"cpu_seconds": 1.19, "rss_bytes": 160641024}}
+{"hostMonotonicNs": 15534882015946, "phase": "display_hold", "host": {"cpu_seconds": 0.32, "rss_bytes": 53899264, "child_cpu_seconds": 0.16649499999999998}, "device": {"cpu_seconds": 1.19, "rss_bytes": 160641024}}
+{"hostMonotonicNs": 15535458875899, "phase": "display_hold", "host": {"cpu_seconds": 0.32, "rss_bytes": 53899264, "child_cpu_seconds": 0.17328}, "device": {"cpu_seconds": 1.19, "rss_bytes": 160641024}}
+{"hostMonotonicNs": 15536035413484, "phase": "display_hold", "host": {"cpu_seconds": 0.32, "rss_bytes": 53899264, "child_cpu_seconds": 0.18008899999999997}, "device": {"cpu_seconds": 1.19, "rss_bytes": 160641024}}
+{"hostMonotonicNs": 15536608786746, "phase": "display_hold", "host": {"cpu_seconds": 0.33, "rss_bytes": 53899264, "child_cpu_seconds": 0.18989999999999999}, "device": {"cpu_seconds": 1.19, "rss_bytes": 160641024}}
+{"hostMonotonicNs": 15537176380614, "phase": "display_hold", "host": {"cpu_seconds": 0.33, "rss_bytes": 53899264, "child_cpu_seconds": 0.19614199999999998}, "device": {"cpu_seconds": 1.19, "rss_bytes": 160641024}}
+{"hostMonotonicNs": 15537742170980, "phase": "display_hold", "host": {"cpu_seconds": 0.33, "rss_bytes": 53899264, "child_cpu_seconds": 0.202927}, "device": {"cpu_seconds": 1.19, "rss_bytes": 160641024}}
+{"hostMonotonicNs": 15538304779951, "phase": "display_hold", "host": {"cpu_seconds": 0.33, "rss_bytes": 53899264, "child_cpu_seconds": 0.20945899999999998}, "device": {"cpu_seconds": 1.19, "rss_bytes": 160641024}}
+{"hostMonotonicNs": 15538865085468, "phase": "display_hold", "host": {"cpu_seconds": 0.34, "rss_bytes": 53899264, "child_cpu_seconds": 0.214777}, "device": {"cpu_seconds": 1.19, "rss_bytes": 160641024}}
+{"hostMonotonicNs": 15539422081821, "phase": "display_hold", "host": {"cpu_seconds": 0.34, "rss_bytes": 53899264, "child_cpu_seconds": 0.22279}, "device": {"cpu_seconds": 1.19, "rss_bytes": 160641024}}
+{"hostMonotonicNs": 15539984083531, "phase": "display_hold", "host": {"cpu_seconds": 0.34, "rss_bytes": 53899264, "child_cpu_seconds": 0.22966399999999998}, "device": {"cpu_seconds": 1.19, "rss_bytes": 160641024}}
+{"hostMonotonicNs": 15540544557447, "phase": "display_hold", "host": {"cpu_seconds": 0.34, "rss_bytes": 53899264, "child_cpu_seconds": 0.236502}, "device": {"cpu_seconds": 1.19, "rss_bytes": 160641024}}
+{"hostMonotonicNs": 15541105568343, "phase": "display_hold", "host": {"cpu_seconds": 0.35, "rss_bytes": 53899264, "child_cpu_seconds": 0.243274}, "device": {"cpu_seconds": 1.19, "rss_bytes": 160641024}}
+{"hostMonotonicNs": 15541664290683, "phase": "display_hold", "host": {"cpu_seconds": 0.35, "rss_bytes": 53899264, "child_cpu_seconds": 0.248854}, "device": {"cpu_seconds": 1.19, "rss_bytes": 160641024}}
+{"hostMonotonicNs": 15542212766106, "phase": "display_hold", "host": {"cpu_seconds": 0.35, "rss_bytes": 53899264, "child_cpu_seconds": 0.258719}, "device": {"cpu_seconds": 1.19, "rss_bytes": 160641024}}
+{"hostMonotonicNs": 15542788946339, "phase": "display_hold", "host": {"cpu_seconds": 0.35, "rss_bytes": 53899264, "child_cpu_seconds": 0.265116}, "device": {"cpu_seconds": 1.19, "rss_bytes": 160641024}}

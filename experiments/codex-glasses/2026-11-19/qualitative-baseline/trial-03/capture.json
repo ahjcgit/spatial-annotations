@@ -1,0 +1,18 @@
+{
+  "runId": "4e00552e-855f-411c-b836-02e5d01cbbef",
+  "frameId": 973,
+  "sourceFrameTimestampNs": 4218167209854,
+  "imageWidth": 480,
+  "imageHeight": 640,
+  "captured_at": "2026-11-19T22:39:14.550253+00:00",
+  "trial": "trial-03",
+  "capture_attempt": 2,
+  "protocol": "Requested partial-occlusion check; actual scene and visible evidence must be inspected.",
+  "reference_trials": [
+    "trial-01",
+    "trial-02"
+  ],
+  "source_sha256": "94a4c9d49a15bc990b5cfee4a0d48757411d98868712e322addc73983906efa9",
+  "status": "captured_awaiting_codex_review",
+  "ground_truth_verified": false
+}

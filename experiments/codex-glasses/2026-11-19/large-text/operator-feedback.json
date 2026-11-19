@@ -1,0 +1,9 @@
+{
+  "source": "wearer response in this conversation",
+  "scope": "large-text viewer after trial-01; not a separate per-trial rating",
+  "reported": "Readable, but the labels are not really lined up with the display as much as I would hope, it would be nice if it was similar how to the bounding box of the capture image worked.",
+  "readability": "readable_per_wearer",
+  "object_alignment": "unsatisfactory; fixed list is not object-aligned",
+  "optical_latency_measured": false,
+  "interpretation": "Larger text was reported readable. Simultaneous font, duration and side-cue changes are not a controlled comparison. No calibrated physical alignment was implemented."
+}
