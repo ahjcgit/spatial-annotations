@@ -9,6 +9,8 @@ On November 24 we used conversational Codex vision to read 12 regions from four 
 
 **Unit of analysis:** a region of an archived photo. The nine target regions share three two-bottle photos. An additional target-free photo supplies two of the three negative regions. The reference pair comes from a fifth photo. These counts describe this particular read.
 
+The [timed follow-up](usability/README.md) repeats all 24 visual decisions and records per-decision turnaround, CPU, resident memory and input size.
+
 ### Inspect the experiment
 
 1. Open the [enrollment pair](references.png). A has a narrow screw closure, tapered shoulders and vertical lettering. B has a wide hinged closure and prominent collar.

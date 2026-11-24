@@ -59,6 +59,11 @@
   </div>
   <details><summary>Timing by text variant and scene</summary><div class="table-wrap"><table><thead><tr><th>Variant / scene</th><th>n</th><th>Capture → commit (s)</th><th>Review + tools (s)</th><th>Delivery (ms)</th><th>Device apply → commit (ms)</th></tr></thead><tbody id="groups"></tbody></table></div><p class="note">Median (min–max). One-sample rows describe that trial only. Scene, order, warm state, review behavior and display duration changed together.</p></details>
   <details><summary>Resource measurements and their limits</summary><p id="resources"></p><p>These are sampled Android app and Python bench process peaks, not remote-model or whole-system memory. Sampling was about every 0.5 seconds; it cannot reliably resolve a roughly 0.2-second delivery phase. Zero CPU tick increments during a hold do not establish zero energy cost.</p><a id="resource-link">Open phase-resource CSV</a></details>
+  <div id="label-latency"><h3>November 24 · Time for one label decision</h3>
+    <p>Across 12 paired targets, a cropped view took a median <strong>4.64 s</strong> and the full scene took <strong>4.75 s</strong> from image preparation to decision receipt. With a five-second example deadline, crops returned 3 of 9 correct bottle labels in time. Full scenes returned 5 of 9.</p>
+    <p>The local image worker used a median 2.14 ms of CPU per crop and 3.62 ms per scene, with about 31 MiB resident at image-ready. The earlier physical run recorded a median 154 MiB sampled peak for the glasses app. The model ran remotely and its compute usage was unavailable.</p>
+    <a href="https://github.com/ahjcgit/spatial-annotations/blob/analysis/codex-glasses-results/experiments/context-labels/2026-11-24/usability/README.md">Inspect paired timings, resource measurements and raw data</a>
+  </div>
 </section>
 
 <section id="trials" aria-labelledby="trial-title">
