@@ -342,6 +342,8 @@ Camera-image placement metrics do not establish optical/world alignment.
 
 ### Experimental two-object identity recovery
 
+The [temporal label replay](experiments/context-labels/temporal-judge/README.md) contains the presentation summary, actual per-scene decision log and measured cost of adding a previous image. The [next label-judge study](docs/VLM_LABEL_JUDGE_STUDY.md) includes a 30-take operator sheet.
+
 Start with the [paired image experiment](experiments/context-labels/2026-11-24/README.md) and [next glasses session protocol](docs/CONTEXT_LABEL_GLASSES_SESSION.md) for context-aware, object-specific labels.
 
 The latest physical run is a separate **Codex-to-RayNeo snapshot pilot** with two bottles.

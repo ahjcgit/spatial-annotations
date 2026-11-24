@@ -2,6 +2,8 @@
 
 **Decision to make:** when two objects look alike, does giving an advanced vision model an overview or an earlier verified view help the wearer find the correct object? Count a visible wrong note as an error even if the system corrects it a moment later.
 
+The [VLM label-judge study](VLM_LABEL_JUDGE_STUDY.md) specifies the paired comparisons, manipulation schedule and scoring for the next collection.
+
 ### Bring and enroll · 10 minutes
 
 Use two bottles of the **same model, finish and color** with small stable differences, plus an unregistered third if available. For example, A has a dent near its base and B has a worn seam on its handle. If using laptops, try a corner nick and a worn hinge. Inspect both objects before choosing the cues. Use the body as the identity that owns the note. A detachable lid, sleeve, position on the table or neighboring charger can all move independently.

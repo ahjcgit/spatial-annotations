@@ -1,0 +1,166 @@
+{
+  "attempts": 20,
+  "failed": 0,
+  "modes": {
+    "start": {
+      "trials": 4,
+      "agreement_with_archived_calls": 8,
+      "actions": {
+        "SHOW": 8
+      },
+      "total_ms": {
+        "n": 4,
+        "median": 3755.5360305,
+        "min": 3533.437728,
+        "max": 4860.559258
+      },
+      "prep_ms": {
+        "n": 4,
+        "median": 4.887841,
+        "min": 4.36549,
+        "max": 12.750165
+      },
+      "review_ms": {
+        "n": 4,
+        "median": 3750.5853564999998,
+        "min": 3520.623139,
+        "max": 4856.123316
+      },
+      "policy_ms": {
+        "n": 4,
+        "median": 0.063775,
+        "min": 0.06254,
+        "max": 0.070452
+      },
+      "cpu_ms": {
+        "n": 4,
+        "median": 5.0684155,
+        "min": 4.573503,
+        "max": 12.893026
+      },
+      "rss_after_mib": {
+        "n": 4,
+        "median": 30.73828125,
+        "min": 27.00390625,
+        "max": 31.125
+      },
+      "bytes": {
+        "n": 4,
+        "median": 75650.0,
+        "min": 75335,
+        "max": 76254
+      }
+    },
+    "current": {
+      "trials": 8,
+      "agreement_with_archived_calls": 16,
+      "actions": {
+        "SHOW": 11,
+        "CLEAR": 4,
+        "VERIFY": 1
+      },
+      "total_ms": {
+        "n": 8,
+        "median": 4423.381422500001,
+        "min": 3568.587805,
+        "max": 8966.635034
+      },
+      "prep_ms": {
+        "n": 8,
+        "median": 4.4500025,
+        "min": 4.193773,
+        "max": 6.305045
+      },
+      "review_ms": {
+        "n": 8,
+        "median": 4417.163587,
+        "min": 3564.256192,
+        "max": 8961.99878
+      },
+      "policy_ms": {
+        "n": 8,
+        "median": 0.06829299999999999,
+        "min": 0.057527,
+        "max": 0.091309
+      },
+      "cpu_ms": {
+        "n": 8,
+        "median": 4.615197,
+        "min": 4.336681,
+        "max": 6.48032
+      },
+      "rss_after_mib": {
+        "n": 8,
+        "median": 33.4765625,
+        "min": 31.16015625,
+        "max": 33.4765625
+      },
+      "bytes": {
+        "n": 8,
+        "median": 75931.5,
+        "min": 70995,
+        "max": 99104
+      }
+    },
+    "history": {
+      "trials": 8,
+      "agreement_with_archived_calls": 16,
+      "actions": {
+        "SHOW": 11,
+        "VERIFY": 1,
+        "CLEAR": 4
+      },
+      "total_ms": {
+        "n": 8,
+        "median": 4665.3046859999995,
+        "min": 3766.174107,
+        "max": 7861.545724
+      },
+      "prep_ms": {
+        "n": 8,
+        "median": 7.315595,
+        "min": 6.883074,
+        "max": 8.579734
+      },
+      "review_ms": {
+        "n": 8,
+        "median": 4657.947291500001,
+        "min": 3759.029509,
+        "max": 7854.061271
+      },
+      "policy_ms": {
+        "n": 8,
+        "median": 0.0687125,
+        "min": 0.062404,
+        "max": 0.149556
+      },
+      "cpu_ms": {
+        "n": 8,
+        "median": 7.4975345,
+        "min": 7.127011,
+        "max": 8.730144
+      },
+      "rss_after_mib": {
+        "n": 8,
+        "median": 33.4765625,
+        "min": 31.16015625,
+        "max": 33.4765625
+      },
+      "bytes": {
+        "n": 8,
+        "median": 140846.0,
+        "min": 132870,
+        "max": 164671
+      }
+    }
+  },
+  "paired_frames": 8,
+  "changed_frames": 0,
+  "paired_added_ms": {
+    "n": 8,
+    "median": 306.79355699999974,
+    "min": -3398.3280430000004,
+    "max": 2915.4219459999995
+  },
+  "worker_process_max_hwm_mib": 34.4765625
+}

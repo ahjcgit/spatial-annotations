@@ -11,6 +11,8 @@ On November 24 we used conversational Codex vision to read 12 regions from four 
 
 The [timed follow-up](usability/README.md) repeats all 24 visual decisions and records per-decision turnaround, CPU, resident memory and input size.
 
+The [temporal replay and decision log](../temporal-judge/README.md) tests whether showing the previous camera image changes the label action on those scenes.
+
 ### Inspect the experiment
 
 1. Open the [enrollment pair](references.png). A has a narrow screw closure, tapered shoulders and vertical lettering. B has a wide hinged closure and prominent collar.
