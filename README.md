@@ -342,6 +342,13 @@ Camera-image placement metrics do not establish optical/world alignment.
 
 ### Experimental two-object identity recovery
 
+The latest physical run is a separate **Codex-to-RayNeo snapshot pilot** with two bottles.
+Open its [results dashboard](experiments/codex-glasses/2026-11-19/dashboard/index.html)
+using the [analysis and serving guide](docs/CODEX_PILOT_ANALYSIS.md). The dashboard verifies
+the archived files and timings, shows images and failed attempts, and identifies Qwen and
+earlier Codex artifacts referenced in the guides but absent from Git. It does not claim
+that the snapshot pilot executed H0–H4 or measured persistent-identity accuracy.
+
 The current experiment compares **H0 geometry, H1 appearance, H2 local VLM, H3 frontier
 VLM, and H4 adaptive escalation** on shared recorded inputs. Follow the
 [step-by-step H0–H4 guide](docs/IDENTITY_H0_H4.md) to generate fixtures, register laptops,

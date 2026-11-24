@@ -1,0 +1,2815 @@
+window.PILOT_DATA = {
+  "schema_version": 1,
+  "archive": "2026-11-19",
+  "evidence_commit": "33666abf62b4e67117bedf75745c93e8c48b45a6",
+  "integrity": {
+    "ok": true,
+    "checks": [
+      {
+        "name": "Archive SHA-256",
+        "passed": true,
+        "detail": ".gitattributes"
+      },
+      {
+        "name": "Archive SHA-256",
+        "passed": true,
+        "detail": "README.md"
+      },
+      {
+        "name": "Archive SHA-256",
+        "passed": true,
+        "detail": "large-text/operator-feedback.json"
+      },
+      {
+        "name": "Archive SHA-256",
+        "passed": true,
+        "detail": "large-text/run-metadata.json"
+      },
+      {
+        "name": "Archive SHA-256",
+        "passed": true,
+        "detail": "large-text/trial-01/capture.json"
+      },
+      {
+        "name": "Archive SHA-256",
+        "passed": true,
+        "detail": "large-text/trial-01/codex-proposal.json"
+      },
+      {
+        "name": "Archive SHA-256",
+        "passed": true,
+        "detail": "large-text/trial-01/display.png"
+      },
+      {
+        "name": "Archive SHA-256",
+        "passed": true,
+        "detail": "large-text/trial-01/resources.jsonl"
+      },
+      {
+        "name": "Archive SHA-256",
+        "passed": true,
+        "detail": "large-text/trial-01/result.json"
+      },
+      {
+        "name": "Archive SHA-256",
+        "passed": true,
+        "detail": "large-text/trial-01/source.jpg"
+      },
+      {
+        "name": "Archive SHA-256",
+        "passed": true,
+        "detail": "large-text/trial-02/capture.json"
+      },
+      {
+        "name": "Archive SHA-256",
+        "passed": true,
+        "detail": "large-text/trial-02/codex-proposal.json"
+      },
+      {
+        "name": "Archive SHA-256",
+        "passed": true,
+        "detail": "large-text/trial-02/display.png"
+      },
+      {
+        "name": "Archive SHA-256",
+        "passed": true,
+        "detail": "large-text/trial-02/resources.jsonl"
+      },
+      {
+        "name": "Archive SHA-256",
+        "passed": true,
+        "detail": "large-text/trial-02/result.json"
+      },
+      {
+        "name": "Archive SHA-256",
+        "passed": true,
+        "detail": "large-text/trial-02/source.jpg"
+      },
+      {
+        "name": "Archive SHA-256",
+        "passed": true,
+        "detail": "large-text/trial-03/capture.json"
+      },
+      {
+        "name": "Archive SHA-256",
+        "passed": true,
+        "detail": "large-text/trial-03/codex-proposal.json"
+      },
+      {
+        "name": "Archive SHA-256",
+        "passed": true,
+        "detail": "large-text/trial-03/failure.json"
+      },
+      {
+        "name": "Archive SHA-256",
+        "passed": true,
+        "detail": "large-text/trial-03/resources.jsonl"
+      },
+      {
+        "name": "Archive SHA-256",
+        "passed": true,
+        "detail": "large-text/trial-03/source.jpg"
+      },
+      {
+        "name": "Archive SHA-256",
+        "passed": true,
+        "detail": "large-text/trial-04/capture.json"
+      },
+      {
+        "name": "Archive SHA-256",
+        "passed": true,
+        "detail": "large-text/trial-04/codex-proposal.json"
+      },
+      {
+        "name": "Archive SHA-256",
+        "passed": true,
+        "detail": "large-text/trial-04/display.png"
+      },
+      {
+        "name": "Archive SHA-256",
+        "passed": true,
+        "detail": "large-text/trial-04/resources.jsonl"
+      },
+      {
+        "name": "Archive SHA-256",
+        "passed": true,
+        "detail": "large-text/trial-04/result.json"
+      },
+      {
+        "name": "Archive SHA-256",
+        "passed": true,
+        "detail": "large-text/trial-04/source.jpg"
+      },
+      {
+        "name": "Archive SHA-256",
+        "passed": true,
+        "detail": "large-text/trial-05/capture.json"
+      },
+      {
+        "name": "Archive SHA-256",
+        "passed": true,
+        "detail": "large-text/trial-05/codex-proposal.json"
+      },
+      {
+        "name": "Archive SHA-256",
+        "passed": true,
+        "detail": "large-text/trial-05/display.png"
+      },
+      {
+        "name": "Archive SHA-256",
+        "passed": true,
+        "detail": "large-text/trial-05/resources.jsonl"
+      },
+      {
+        "name": "Archive SHA-256",
+        "passed": true,
+        "detail": "large-text/trial-05/result.json"
+      },
+      {
+        "name": "Archive SHA-256",
+        "passed": true,
+        "detail": "large-text/trial-05/source.jpg"
+      },
+      {
+        "name": "Archive SHA-256",
+        "passed": true,
+        "detail": "qualitative-baseline/trial-01/capture.json"
+      },
+      {
+        "name": "Archive SHA-256",
+        "passed": true,
+        "detail": "qualitative-baseline/trial-01/codex-result.json"
+      },
+      {
+        "name": "Archive SHA-256",
+        "passed": true,
+        "detail": "qualitative-baseline/trial-01/labels.png"
+      },
+      {
+        "name": "Archive SHA-256",
+        "passed": true,
+        "detail": "qualitative-baseline/trial-01/source.jpg"
+      },
+      {
+        "name": "Archive SHA-256",
+        "passed": true,
+        "detail": "qualitative-baseline/trial-02/capture.json"
+      },
+      {
+        "name": "Archive SHA-256",
+        "passed": true,
+        "detail": "qualitative-baseline/trial-02/codex-result.json"
+      },
+      {
+        "name": "Archive SHA-256",
+        "passed": true,
+        "detail": "qualitative-baseline/trial-02/labels.png"
+      },
+      {
+        "name": "Archive SHA-256",
+        "passed": true,
+        "detail": "qualitative-baseline/trial-02/source.jpg"
+      },
+      {
+        "name": "Archive SHA-256",
+        "passed": true,
+        "detail": "qualitative-baseline/trial-03/capture-attempt-01.json"
+      },
+      {
+        "name": "Archive SHA-256",
+        "passed": true,
+        "detail": "qualitative-baseline/trial-03/capture.json"
+      },
+      {
+        "name": "Archive SHA-256",
+        "passed": true,
+        "detail": "qualitative-baseline/trial-03/codex-result.json"
+      },
+      {
+        "name": "Archive SHA-256",
+        "passed": true,
+        "detail": "qualitative-baseline/trial-03/labels.png"
+      },
+      {
+        "name": "Archive SHA-256",
+        "passed": true,
+        "detail": "qualitative-baseline/trial-03/source.jpg"
+      },
+      {
+        "name": "Archive SHA-256",
+        "passed": true,
+        "detail": "qualitative-baseline/trial-04/capture.json"
+      },
+      {
+        "name": "Archive SHA-256",
+        "passed": true,
+        "detail": "qualitative-baseline/trial-04/codex-result.json"
+      },
+      {
+        "name": "Archive SHA-256",
+        "passed": true,
+        "detail": "qualitative-baseline/trial-04/labels.png"
+      },
+      {
+        "name": "Archive SHA-256",
+        "passed": true,
+        "detail": "qualitative-baseline/trial-04/source.jpg"
+      },
+      {
+        "name": "Archive SHA-256",
+        "passed": true,
+        "detail": "qualitative-baseline/trial-summary.csv"
+      },
+      {
+        "name": "Archive SHA-256",
+        "passed": true,
+        "detail": "qualitative-baseline/trial-summary.json"
+      },
+      {
+        "name": "Archive SHA-256",
+        "passed": true,
+        "detail": "report/index.html"
+      },
+      {
+        "name": "Archive SHA-256",
+        "passed": true,
+        "detail": "report/phase-resources.csv"
+      },
+      {
+        "name": "Archive SHA-256",
+        "passed": true,
+        "detail": "report/summary.json"
+      },
+      {
+        "name": "Archive SHA-256",
+        "passed": true,
+        "detail": "report/timing.png"
+      },
+      {
+        "name": "Archive SHA-256",
+        "passed": true,
+        "detail": "report/timing.svg"
+      },
+      {
+        "name": "Archive SHA-256",
+        "passed": true,
+        "detail": "report/trials.csv"
+      },
+      {
+        "name": "Archive SHA-256",
+        "passed": true,
+        "detail": "setup-diagnostics/run-metadata.json"
+      },
+      {
+        "name": "Archive SHA-256",
+        "passed": true,
+        "detail": "setup-diagnostics/trial-01/failure.json"
+      },
+      {
+        "name": "Archive SHA-256",
+        "passed": true,
+        "detail": "setup-diagnostics/trial-01/resources.jsonl"
+      },
+      {
+        "name": "Archive SHA-256",
+        "passed": true,
+        "detail": "setup-diagnostics/trial-02/capture.json"
+      },
+      {
+        "name": "Archive SHA-256",
+        "passed": true,
+        "detail": "setup-diagnostics/trial-02/codex-proposal.json"
+      },
+      {
+        "name": "Archive SHA-256",
+        "passed": true,
+        "detail": "setup-diagnostics/trial-02/failure.json"
+      },
+      {
+        "name": "Archive SHA-256",
+        "passed": true,
+        "detail": "setup-diagnostics/trial-02/resources.jsonl"
+      },
+      {
+        "name": "Archive SHA-256",
+        "passed": true,
+        "detail": "setup-diagnostics/trial-02/source.jpg"
+      },
+      {
+        "name": "Archive SHA-256",
+        "passed": true,
+        "detail": "small-text/operator-feedback.json"
+      },
+      {
+        "name": "Archive SHA-256",
+        "passed": true,
+        "detail": "small-text/run-metadata.json"
+      },
+      {
+        "name": "Archive SHA-256",
+        "passed": true,
+        "detail": "small-text/trial-01/capture.json"
+      },
+      {
+        "name": "Archive SHA-256",
+        "passed": true,
+        "detail": "small-text/trial-01/codex-proposal.json"
+      },
+      {
+        "name": "Archive SHA-256",
+        "passed": true,
+        "detail": "small-text/trial-01/display.png"
+      },
+      {
+        "name": "Archive SHA-256",
+        "passed": true,
+        "detail": "small-text/trial-01/resources.jsonl"
+      },
+      {
+        "name": "Archive SHA-256",
+        "passed": true,
+        "detail": "small-text/trial-01/result.json"
+      },
+      {
+        "name": "Archive SHA-256",
+        "passed": true,
+        "detail": "small-text/trial-01/source.jpg"
+      },
+      {
+        "name": "Archive SHA-256",
+        "passed": true,
+        "detail": "small-text/trial-02/capture.json"
+      },
+      {
+        "name": "Archive SHA-256",
+        "passed": true,
+        "detail": "small-text/trial-02/codex-proposal.json"
+      },
+      {
+        "name": "Archive SHA-256",
+        "passed": true,
+        "detail": "small-text/trial-02/display.png"
+      },
+      {
+        "name": "Archive SHA-256",
+        "passed": true,
+        "detail": "small-text/trial-02/resources.jsonl"
+      },
+      {
+        "name": "Archive SHA-256",
+        "passed": true,
+        "detail": "small-text/trial-02/result.json"
+      },
+      {
+        "name": "Archive SHA-256",
+        "passed": true,
+        "detail": "small-text/trial-02/source.jpg"
+      },
+      {
+        "name": "Archive SHA-256",
+        "passed": true,
+        "detail": "validation.json"
+      },
+      {
+        "name": "Recorded source SHA-256",
+        "passed": true,
+        "detail": "scripts/codex_glasses_bench.py"
+      },
+      {
+        "name": "Recorded source SHA-256",
+        "passed": true,
+        "detail": "scripts/analyze_codex_bench.py"
+      },
+      {
+        "name": "Recorded source SHA-256",
+        "passed": true,
+        "detail": "scripts/vlm_camera_probe.py"
+      },
+      {
+        "name": "Recorded source SHA-256",
+        "passed": true,
+        "detail": "android/app/src/debug/AndroidManifest.xml"
+      },
+      {
+        "name": "Recorded source SHA-256",
+        "passed": true,
+        "detail": "android/app/src/debug/java/org/spatial/annotations/CodexProbeActivity.kt"
+      },
+      {
+        "name": "Recorded source SHA-256",
+        "passed": true,
+        "detail": "android/app/src/debug/java/org/spatial/annotations/CodexProbeProtocol.kt"
+      },
+      {
+        "name": "Relocated result reference",
+        "passed": true,
+        "detail": "artifacts/vlm-probes/bottle-trials/trial-01/codex-result.json"
+      },
+      {
+        "name": "Relocated result reference",
+        "passed": true,
+        "detail": "artifacts/vlm-probes/bottle-trials/trial-02/codex-result.json"
+      },
+      {
+        "name": "Relocated result reference",
+        "passed": true,
+        "detail": "artifacts/vlm-probes/bottle-trials/trial-03/codex-result.json"
+      },
+      {
+        "name": "Relocated result reference",
+        "passed": true,
+        "detail": "artifacts/vlm-probes/bottle-trials/trial-04/codex-result.json"
+      },
+      {
+        "name": "Capture image association",
+        "passed": true,
+        "detail": "setup-diagnostics/trial-02"
+      },
+      {
+        "name": "Reviewed image association",
+        "passed": true,
+        "detail": "setup-diagnostics/trial-02"
+      },
+      {
+        "name": "Capture image association",
+        "passed": true,
+        "detail": "small-text/trial-01"
+      },
+      {
+        "name": "Reviewed image association",
+        "passed": true,
+        "detail": "small-text/trial-01"
+      },
+      {
+        "name": "Commit request association",
+        "passed": true,
+        "detail": "small-text/trial-01"
+      },
+      {
+        "name": "Commit image association",
+        "passed": true,
+        "detail": "small-text/trial-01"
+      },
+      {
+        "name": "Frame commit recorded",
+        "passed": true,
+        "detail": "small-text/trial-01"
+      },
+      {
+        "name": "Raw clock recomputation",
+        "passed": true,
+        "detail": "small-text/trial-01: host_capture_to_image_ready_ms"
+      },
+      {
+        "name": "Raw clock recomputation",
+        "passed": true,
+        "detail": "small-text/trial-01: codex_assisted_review_turnaround_ms"
+      },
+      {
+        "name": "Raw clock recomputation",
+        "passed": true,
+        "detail": "small-text/trial-01: host_submit_to_commit_observed_ms"
+      },
+      {
+        "name": "Raw clock recomputation",
+        "passed": true,
+        "detail": "small-text/trial-01: host_capture_to_commit_observed_ms"
+      },
+      {
+        "name": "Raw clock recomputation",
+        "passed": true,
+        "detail": "small-text/trial-01: device_apply_to_frame_commit_ms"
+      },
+      {
+        "name": "Raw clock recomputation",
+        "passed": true,
+        "detail": "small-text/trial-01: device_frame_to_frame_commit_ms"
+      },
+      {
+        "name": "Host stages sum to total",
+        "passed": true,
+        "detail": "small-text/trial-01"
+      },
+      {
+        "name": "Unmeasured quantities remain null",
+        "passed": true,
+        "detail": "small-text/trial-01"
+      },
+      {
+        "name": "Completed trial evidence",
+        "passed": true,
+        "detail": "small-text/trial-01: capture.json"
+      },
+      {
+        "name": "Completed trial evidence",
+        "passed": true,
+        "detail": "small-text/trial-01: source.jpg"
+      },
+      {
+        "name": "Completed trial evidence",
+        "passed": true,
+        "detail": "small-text/trial-01: display.png"
+      },
+      {
+        "name": "Completed trial evidence",
+        "passed": true,
+        "detail": "small-text/trial-01: codex-proposal.json"
+      },
+      {
+        "name": "Completed trial evidence",
+        "passed": true,
+        "detail": "small-text/trial-01: resources.jsonl"
+      },
+      {
+        "name": "Acknowledged labels match proposal",
+        "passed": true,
+        "detail": "small-text/trial-01"
+      },
+      {
+        "name": "Capture image association",
+        "passed": true,
+        "detail": "small-text/trial-02"
+      },
+      {
+        "name": "Reviewed image association",
+        "passed": true,
+        "detail": "small-text/trial-02"
+      },
+      {
+        "name": "Commit request association",
+        "passed": true,
+        "detail": "small-text/trial-02"
+      },
+      {
+        "name": "Commit image association",
+        "passed": true,
+        "detail": "small-text/trial-02"
+      },
+      {
+        "name": "Frame commit recorded",
+        "passed": true,
+        "detail": "small-text/trial-02"
+      },
+      {
+        "name": "Raw clock recomputation",
+        "passed": true,
+        "detail": "small-text/trial-02: host_capture_to_image_ready_ms"
+      },
+      {
+        "name": "Raw clock recomputation",
+        "passed": true,
+        "detail": "small-text/trial-02: codex_assisted_review_turnaround_ms"
+      },
+      {
+        "name": "Raw clock recomputation",
+        "passed": true,
+        "detail": "small-text/trial-02: host_submit_to_commit_observed_ms"
+      },
+      {
+        "name": "Raw clock recomputation",
+        "passed": true,
+        "detail": "small-text/trial-02: host_capture_to_commit_observed_ms"
+      },
+      {
+        "name": "Raw clock recomputation",
+        "passed": true,
+        "detail": "small-text/trial-02: device_apply_to_frame_commit_ms"
+      },
+      {
+        "name": "Raw clock recomputation",
+        "passed": true,
+        "detail": "small-text/trial-02: device_frame_to_frame_commit_ms"
+      },
+      {
+        "name": "Host stages sum to total",
+        "passed": true,
+        "detail": "small-text/trial-02"
+      },
+      {
+        "name": "Unmeasured quantities remain null",
+        "passed": true,
+        "detail": "small-text/trial-02"
+      },
+      {
+        "name": "Completed trial evidence",
+        "passed": true,
+        "detail": "small-text/trial-02: capture.json"
+      },
+      {
+        "name": "Completed trial evidence",
+        "passed": true,
+        "detail": "small-text/trial-02: source.jpg"
+      },
+      {
+        "name": "Completed trial evidence",
+        "passed": true,
+        "detail": "small-text/trial-02: display.png"
+      },
+      {
+        "name": "Completed trial evidence",
+        "passed": true,
+        "detail": "small-text/trial-02: codex-proposal.json"
+      },
+      {
+        "name": "Completed trial evidence",
+        "passed": true,
+        "detail": "small-text/trial-02: resources.jsonl"
+      },
+      {
+        "name": "Acknowledged labels match proposal",
+        "passed": true,
+        "detail": "small-text/trial-02"
+      },
+      {
+        "name": "Capture image association",
+        "passed": true,
+        "detail": "large-text/trial-01"
+      },
+      {
+        "name": "Reviewed image association",
+        "passed": true,
+        "detail": "large-text/trial-01"
+      },
+      {
+        "name": "Commit request association",
+        "passed": true,
+        "detail": "large-text/trial-01"
+      },
+      {
+        "name": "Commit image association",
+        "passed": true,
+        "detail": "large-text/trial-01"
+      },
+      {
+        "name": "Frame commit recorded",
+        "passed": true,
+        "detail": "large-text/trial-01"
+      },
+      {
+        "name": "Raw clock recomputation",
+        "passed": true,
+        "detail": "large-text/trial-01: host_capture_to_image_ready_ms"
+      },
+      {
+        "name": "Raw clock recomputation",
+        "passed": true,
+        "detail": "large-text/trial-01: codex_assisted_review_turnaround_ms"
+      },
+      {
+        "name": "Raw clock recomputation",
+        "passed": true,
+        "detail": "large-text/trial-01: host_submit_to_commit_observed_ms"
+      },
+      {
+        "name": "Raw clock recomputation",
+        "passed": true,
+        "detail": "large-text/trial-01: host_capture_to_commit_observed_ms"
+      },
+      {
+        "name": "Raw clock recomputation",
+        "passed": true,
+        "detail": "large-text/trial-01: device_apply_to_frame_commit_ms"
+      },
+      {
+        "name": "Raw clock recomputation",
+        "passed": true,
+        "detail": "large-text/trial-01: device_frame_to_frame_commit_ms"
+      },
+      {
+        "name": "Host stages sum to total",
+        "passed": true,
+        "detail": "large-text/trial-01"
+      },
+      {
+        "name": "Unmeasured quantities remain null",
+        "passed": true,
+        "detail": "large-text/trial-01"
+      },
+      {
+        "name": "Completed trial evidence",
+        "passed": true,
+        "detail": "large-text/trial-01: capture.json"
+      },
+      {
+        "name": "Completed trial evidence",
+        "passed": true,
+        "detail": "large-text/trial-01: source.jpg"
+      },
+      {
+        "name": "Completed trial evidence",
+        "passed": true,
+        "detail": "large-text/trial-01: display.png"
+      },
+      {
+        "name": "Completed trial evidence",
+        "passed": true,
+        "detail": "large-text/trial-01: codex-proposal.json"
+      },
+      {
+        "name": "Completed trial evidence",
+        "passed": true,
+        "detail": "large-text/trial-01: resources.jsonl"
+      },
+      {
+        "name": "Acknowledged labels match proposal",
+        "passed": true,
+        "detail": "large-text/trial-01"
+      },
+      {
+        "name": "Capture image association",
+        "passed": true,
+        "detail": "large-text/trial-02"
+      },
+      {
+        "name": "Reviewed image association",
+        "passed": true,
+        "detail": "large-text/trial-02"
+      },
+      {
+        "name": "Commit request association",
+        "passed": true,
+        "detail": "large-text/trial-02"
+      },
+      {
+        "name": "Commit image association",
+        "passed": true,
+        "detail": "large-text/trial-02"
+      },
+      {
+        "name": "Frame commit recorded",
+        "passed": true,
+        "detail": "large-text/trial-02"
+      },
+      {
+        "name": "Raw clock recomputation",
+        "passed": true,
+        "detail": "large-text/trial-02: host_capture_to_image_ready_ms"
+      },
+      {
+        "name": "Raw clock recomputation",
+        "passed": true,
+        "detail": "large-text/trial-02: codex_assisted_review_turnaround_ms"
+      },
+      {
+        "name": "Raw clock recomputation",
+        "passed": true,
+        "detail": "large-text/trial-02: host_submit_to_commit_observed_ms"
+      },
+      {
+        "name": "Raw clock recomputation",
+        "passed": true,
+        "detail": "large-text/trial-02: host_capture_to_commit_observed_ms"
+      },
+      {
+        "name": "Raw clock recomputation",
+        "passed": true,
+        "detail": "large-text/trial-02: device_apply_to_frame_commit_ms"
+      },
+      {
+        "name": "Raw clock recomputation",
+        "passed": true,
+        "detail": "large-text/trial-02: device_frame_to_frame_commit_ms"
+      },
+      {
+        "name": "Host stages sum to total",
+        "passed": true,
+        "detail": "large-text/trial-02"
+      },
+      {
+        "name": "Unmeasured quantities remain null",
+        "passed": true,
+        "detail": "large-text/trial-02"
+      },
+      {
+        "name": "Completed trial evidence",
+        "passed": true,
+        "detail": "large-text/trial-02: capture.json"
+      },
+      {
+        "name": "Completed trial evidence",
+        "passed": true,
+        "detail": "large-text/trial-02: source.jpg"
+      },
+      {
+        "name": "Completed trial evidence",
+        "passed": true,
+        "detail": "large-text/trial-02: display.png"
+      },
+      {
+        "name": "Completed trial evidence",
+        "passed": true,
+        "detail": "large-text/trial-02: codex-proposal.json"
+      },
+      {
+        "name": "Completed trial evidence",
+        "passed": true,
+        "detail": "large-text/trial-02: resources.jsonl"
+      },
+      {
+        "name": "Acknowledged labels match proposal",
+        "passed": true,
+        "detail": "large-text/trial-02"
+      },
+      {
+        "name": "Capture image association",
+        "passed": true,
+        "detail": "large-text/trial-03"
+      },
+      {
+        "name": "Reviewed image association",
+        "passed": true,
+        "detail": "large-text/trial-03"
+      },
+      {
+        "name": "Capture image association",
+        "passed": true,
+        "detail": "large-text/trial-04"
+      },
+      {
+        "name": "Reviewed image association",
+        "passed": true,
+        "detail": "large-text/trial-04"
+      },
+      {
+        "name": "Commit request association",
+        "passed": true,
+        "detail": "large-text/trial-04"
+      },
+      {
+        "name": "Commit image association",
+        "passed": true,
+        "detail": "large-text/trial-04"
+      },
+      {
+        "name": "Frame commit recorded",
+        "passed": true,
+        "detail": "large-text/trial-04"
+      },
+      {
+        "name": "Raw clock recomputation",
+        "passed": true,
+        "detail": "large-text/trial-04: host_capture_to_image_ready_ms"
+      },
+      {
+        "name": "Raw clock recomputation",
+        "passed": true,
+        "detail": "large-text/trial-04: codex_assisted_review_turnaround_ms"
+      },
+      {
+        "name": "Raw clock recomputation",
+        "passed": true,
+        "detail": "large-text/trial-04: host_submit_to_commit_observed_ms"
+      },
+      {
+        "name": "Raw clock recomputation",
+        "passed": true,
+        "detail": "large-text/trial-04: host_capture_to_commit_observed_ms"
+      },
+      {
+        "name": "Raw clock recomputation",
+        "passed": true,
+        "detail": "large-text/trial-04: device_apply_to_frame_commit_ms"
+      },
+      {
+        "name": "Raw clock recomputation",
+        "passed": true,
+        "detail": "large-text/trial-04: device_frame_to_frame_commit_ms"
+      },
+      {
+        "name": "Host stages sum to total",
+        "passed": true,
+        "detail": "large-text/trial-04"
+      },
+      {
+        "name": "Unmeasured quantities remain null",
+        "passed": true,
+        "detail": "large-text/trial-04"
+      },
+      {
+        "name": "Completed trial evidence",
+        "passed": true,
+        "detail": "large-text/trial-04: capture.json"
+      },
+      {
+        "name": "Completed trial evidence",
+        "passed": true,
+        "detail": "large-text/trial-04: source.jpg"
+      },
+      {
+        "name": "Completed trial evidence",
+        "passed": true,
+        "detail": "large-text/trial-04: display.png"
+      },
+      {
+        "name": "Completed trial evidence",
+        "passed": true,
+        "detail": "large-text/trial-04: codex-proposal.json"
+      },
+      {
+        "name": "Completed trial evidence",
+        "passed": true,
+        "detail": "large-text/trial-04: resources.jsonl"
+      },
+      {
+        "name": "Acknowledged labels match proposal",
+        "passed": true,
+        "detail": "large-text/trial-04"
+      },
+      {
+        "name": "Capture image association",
+        "passed": true,
+        "detail": "large-text/trial-05"
+      },
+      {
+        "name": "Reviewed image association",
+        "passed": true,
+        "detail": "large-text/trial-05"
+      },
+      {
+        "name": "Commit request association",
+        "passed": true,
+        "detail": "large-text/trial-05"
+      },
+      {
+        "name": "Commit image association",
+        "passed": true,
+        "detail": "large-text/trial-05"
+      },
+      {
+        "name": "Frame commit recorded",
+        "passed": true,
+        "detail": "large-text/trial-05"
+      },
+      {
+        "name": "Raw clock recomputation",
+        "passed": true,
+        "detail": "large-text/trial-05: host_capture_to_image_ready_ms"
+      },
+      {
+        "name": "Raw clock recomputation",
+        "passed": true,
+        "detail": "large-text/trial-05: codex_assisted_review_turnaround_ms"
+      },
+      {
+        "name": "Raw clock recomputation",
+        "passed": true,
+        "detail": "large-text/trial-05: host_submit_to_commit_observed_ms"
+      },
+      {
+        "name": "Raw clock recomputation",
+        "passed": true,
+        "detail": "large-text/trial-05: host_capture_to_commit_observed_ms"
+      },
+      {
+        "name": "Raw clock recomputation",
+        "passed": true,
+        "detail": "large-text/trial-05: device_apply_to_frame_commit_ms"
+      },
+      {
+        "name": "Raw clock recomputation",
+        "passed": true,
+        "detail": "large-text/trial-05: device_frame_to_frame_commit_ms"
+      },
+      {
+        "name": "Host stages sum to total",
+        "passed": true,
+        "detail": "large-text/trial-05"
+      },
+      {
+        "name": "Unmeasured quantities remain null",
+        "passed": true,
+        "detail": "large-text/trial-05"
+      },
+      {
+        "name": "Completed trial evidence",
+        "passed": true,
+        "detail": "large-text/trial-05: capture.json"
+      },
+      {
+        "name": "Completed trial evidence",
+        "passed": true,
+        "detail": "large-text/trial-05: source.jpg"
+      },
+      {
+        "name": "Completed trial evidence",
+        "passed": true,
+        "detail": "large-text/trial-05: display.png"
+      },
+      {
+        "name": "Completed trial evidence",
+        "passed": true,
+        "detail": "large-text/trial-05: codex-proposal.json"
+      },
+      {
+        "name": "Completed trial evidence",
+        "passed": true,
+        "detail": "large-text/trial-05: resources.jsonl"
+      },
+      {
+        "name": "Acknowledged labels match proposal",
+        "passed": true,
+        "detail": "large-text/trial-05"
+      },
+      {
+        "name": "Capture image association",
+        "passed": true,
+        "detail": "qualitative-baseline/trial-01"
+      },
+      {
+        "name": "Reviewed image association",
+        "passed": true,
+        "detail": "qualitative-baseline/trial-01"
+      },
+      {
+        "name": "Capture image association",
+        "passed": true,
+        "detail": "qualitative-baseline/trial-02"
+      },
+      {
+        "name": "Reviewed image association",
+        "passed": true,
+        "detail": "qualitative-baseline/trial-02"
+      },
+      {
+        "name": "Capture image association",
+        "passed": true,
+        "detail": "qualitative-baseline/trial-03"
+      },
+      {
+        "name": "Reviewed image association",
+        "passed": true,
+        "detail": "qualitative-baseline/trial-03"
+      },
+      {
+        "name": "Capture image association",
+        "passed": true,
+        "detail": "qualitative-baseline/trial-04"
+      },
+      {
+        "name": "Reviewed image association",
+        "passed": true,
+        "detail": "qualitative-baseline/trial-04"
+      },
+      {
+        "name": "Manifest inventory",
+        "passed": true,
+        "detail": "completed_timed_trials"
+      },
+      {
+        "name": "Manifest inventory",
+        "passed": true,
+        "detail": "failed_attempts"
+      },
+      {
+        "name": "Manifest inventory",
+        "passed": true,
+        "detail": "qualitative_snapshot_trials"
+      },
+      {
+        "name": "Archived CSV inventory",
+        "passed": true,
+        "detail": "report/trials.csv"
+      },
+      {
+        "name": "Archived CSV timing",
+        "passed": true,
+        "detail": "small-text/trial-01: host_capture_to_image_ready_ms"
+      },
+      {
+        "name": "Archived CSV timing",
+        "passed": true,
+        "detail": "small-text/trial-01: codex_assisted_review_turnaround_ms"
+      },
+      {
+        "name": "Archived CSV timing",
+        "passed": true,
+        "detail": "small-text/trial-01: host_submit_to_commit_observed_ms"
+      },
+      {
+        "name": "Archived CSV timing",
+        "passed": true,
+        "detail": "small-text/trial-01: host_capture_to_commit_observed_ms"
+      },
+      {
+        "name": "Archived CSV timing",
+        "passed": true,
+        "detail": "small-text/trial-01: device_apply_to_frame_commit_ms"
+      },
+      {
+        "name": "Archived CSV timing",
+        "passed": true,
+        "detail": "small-text/trial-01: device_frame_to_frame_commit_ms"
+      },
+      {
+        "name": "Archived CSV timing",
+        "passed": true,
+        "detail": "small-text/trial-02: host_capture_to_image_ready_ms"
+      },
+      {
+        "name": "Archived CSV timing",
+        "passed": true,
+        "detail": "small-text/trial-02: codex_assisted_review_turnaround_ms"
+      },
+      {
+        "name": "Archived CSV timing",
+        "passed": true,
+        "detail": "small-text/trial-02: host_submit_to_commit_observed_ms"
+      },
+      {
+        "name": "Archived CSV timing",
+        "passed": true,
+        "detail": "small-text/trial-02: host_capture_to_commit_observed_ms"
+      },
+      {
+        "name": "Archived CSV timing",
+        "passed": true,
+        "detail": "small-text/trial-02: device_apply_to_frame_commit_ms"
+      },
+      {
+        "name": "Archived CSV timing",
+        "passed": true,
+        "detail": "small-text/trial-02: device_frame_to_frame_commit_ms"
+      },
+      {
+        "name": "Archived CSV timing",
+        "passed": true,
+        "detail": "large-text/trial-01: host_capture_to_image_ready_ms"
+      },
+      {
+        "name": "Archived CSV timing",
+        "passed": true,
+        "detail": "large-text/trial-01: codex_assisted_review_turnaround_ms"
+      },
+      {
+        "name": "Archived CSV timing",
+        "passed": true,
+        "detail": "large-text/trial-01: host_submit_to_commit_observed_ms"
+      },
+      {
+        "name": "Archived CSV timing",
+        "passed": true,
+        "detail": "large-text/trial-01: host_capture_to_commit_observed_ms"
+      },
+      {
+        "name": "Archived CSV timing",
+        "passed": true,
+        "detail": "large-text/trial-01: device_apply_to_frame_commit_ms"
+      },
+      {
+        "name": "Archived CSV timing",
+        "passed": true,
+        "detail": "large-text/trial-01: device_frame_to_frame_commit_ms"
+      },
+      {
+        "name": "Archived CSV timing",
+        "passed": true,
+        "detail": "large-text/trial-02: host_capture_to_image_ready_ms"
+      },
+      {
+        "name": "Archived CSV timing",
+        "passed": true,
+        "detail": "large-text/trial-02: codex_assisted_review_turnaround_ms"
+      },
+      {
+        "name": "Archived CSV timing",
+        "passed": true,
+        "detail": "large-text/trial-02: host_submit_to_commit_observed_ms"
+      },
+      {
+        "name": "Archived CSV timing",
+        "passed": true,
+        "detail": "large-text/trial-02: host_capture_to_commit_observed_ms"
+      },
+      {
+        "name": "Archived CSV timing",
+        "passed": true,
+        "detail": "large-text/trial-02: device_apply_to_frame_commit_ms"
+      },
+      {
+        "name": "Archived CSV timing",
+        "passed": true,
+        "detail": "large-text/trial-02: device_frame_to_frame_commit_ms"
+      },
+      {
+        "name": "Archived CSV timing",
+        "passed": true,
+        "detail": "large-text/trial-04: host_capture_to_image_ready_ms"
+      },
+      {
+        "name": "Archived CSV timing",
+        "passed": true,
+        "detail": "large-text/trial-04: codex_assisted_review_turnaround_ms"
+      },
+      {
+        "name": "Archived CSV timing",
+        "passed": true,
+        "detail": "large-text/trial-04: host_submit_to_commit_observed_ms"
+      },
+      {
+        "name": "Archived CSV timing",
+        "passed": true,
+        "detail": "large-text/trial-04: host_capture_to_commit_observed_ms"
+      },
+      {
+        "name": "Archived CSV timing",
+        "passed": true,
+        "detail": "large-text/trial-04: device_apply_to_frame_commit_ms"
+      },
+      {
+        "name": "Archived CSV timing",
+        "passed": true,
+        "detail": "large-text/trial-04: device_frame_to_frame_commit_ms"
+      },
+      {
+        "name": "Archived CSV timing",
+        "passed": true,
+        "detail": "large-text/trial-05: host_capture_to_image_ready_ms"
+      },
+      {
+        "name": "Archived CSV timing",
+        "passed": true,
+        "detail": "large-text/trial-05: codex_assisted_review_turnaround_ms"
+      },
+      {
+        "name": "Archived CSV timing",
+        "passed": true,
+        "detail": "large-text/trial-05: host_submit_to_commit_observed_ms"
+      },
+      {
+        "name": "Archived CSV timing",
+        "passed": true,
+        "detail": "large-text/trial-05: host_capture_to_commit_observed_ms"
+      },
+      {
+        "name": "Archived CSV timing",
+        "passed": true,
+        "detail": "large-text/trial-05: device_apply_to_frame_commit_ms"
+      },
+      {
+        "name": "Archived CSV timing",
+        "passed": true,
+        "detail": "large-text/trial-05: device_frame_to_frame_commit_ms"
+      }
+    ],
+    "archive_files": 81,
+    "source_files": 6
+  },
+  "inventory": {
+    "completed": 6,
+    "failed": 3,
+    "qualitative": 4,
+    "qualitative_retries": 1,
+    "expiry_observed": 5
+  },
+  "totals": {
+    "host_capture_to_image_ready_ms": {
+      "n": 6,
+      "median": 2030.873177,
+      "min": 1543.339622,
+      "max": 2835.114371,
+      "p95": null
+    },
+    "codex_assisted_review_turnaround_ms": {
+      "n": 6,
+      "median": 10419.1512035,
+      "min": 8245.208318,
+      "max": 14102.008827,
+      "p95": null
+    },
+    "host_submit_to_commit_observed_ms": {
+      "n": 6,
+      "median": 184.3694015,
+      "min": 173.956084,
+      "max": 229.166627,
+      "p95": null
+    },
+    "host_capture_to_commit_observed_ms": {
+      "n": 6,
+      "median": 13432.4098265,
+      "min": 10145.916439,
+      "max": 15827.999897,
+      "p95": null
+    },
+    "device_apply_to_frame_commit_ms": {
+      "n": 6,
+      "median": 35.6739585,
+      "min": 22.176719,
+      "max": 71.196198,
+      "p95": null
+    },
+    "device_frame_to_frame_commit_ms": {
+      "n": 6,
+      "median": 10879.7332505,
+      "min": 8658.442966,
+      "max": 14513.262755,
+      "p95": null
+    }
+  },
+  "review_fraction": 0.8196981289198333,
+  "groups": [
+    {
+      "run": "large-text",
+      "condition": "no_labels",
+      "n": 1,
+      "metrics": {
+        "host_capture_to_image_ready_ms": {
+          "n": 1,
+          "median": 2345.576234,
+          "min": 2345.576234,
+          "max": 2345.576234,
+          "p95": null
+        },
+        "codex_assisted_review_turnaround_ms": {
+          "n": 1,
+          "median": 11585.626453,
+          "min": 11585.626453,
+          "max": 11585.626453,
+          "p95": null
+        },
+        "host_submit_to_commit_observed_ms": {
+          "n": 1,
+          "median": 173.956084,
+          "min": 173.956084,
+          "max": 173.956084,
+          "p95": null
+        },
+        "host_capture_to_commit_observed_ms": {
+          "n": 1,
+          "median": 14105.158771,
+          "min": 14105.158771,
+          "max": 14105.158771,
+          "p95": null
+        },
+        "device_apply_to_frame_commit_ms": {
+          "n": 1,
+          "median": 22.176719,
+          "min": 22.176719,
+          "max": 22.176719,
+          "p95": null
+        },
+        "device_frame_to_frame_commit_ms": {
+          "n": 1,
+          "median": 11983.676662,
+          "min": 11983.676662,
+          "max": 11983.676662,
+          "p95": null
+        }
+      }
+    },
+    {
+      "run": "large-text",
+      "condition": "two_labels",
+      "n": 3,
+      "metrics": {
+        "host_capture_to_image_ready_ms": {
+          "n": 3,
+          "median": 1716.17012,
+          "min": 1549.933542,
+          "max": 2749.582018,
+          "p95": null
+        },
+        "codex_assisted_review_turnaround_ms": {
+          "n": 3,
+          "median": 8453.078941,
+          "min": 8245.208318,
+          "max": 11059.132194,
+          "p95": null
+        },
+        "host_submit_to_commit_observed_ms": {
+          "n": 3,
+          "median": 184.538001,
+          "min": 184.200802,
+          "max": 229.166627,
+          "p95": null
+        },
+        "host_capture_to_commit_observed_ms": {
+          "n": 3,
+          "median": 10187.213285,
+          "min": 10145.916439,
+          "max": 14037.880839,
+          "p95": null
+        },
+        "device_apply_to_frame_commit_ms": {
+          "n": 3,
+          "median": 29.382813,
+          "min": 23.48,
+          "max": 71.196198,
+          "p95": null
+        },
+        "device_frame_to_frame_commit_ms": {
+          "n": 3,
+          "median": 8777.347965,
+          "min": 8658.442966,
+          "max": 11500.646297,
+          "p95": null
+        }
+      }
+    },
+    {
+      "run": "small-text",
+      "condition": "no_labels",
+      "n": 1,
+      "metrics": {
+        "host_capture_to_image_ready_ms": {
+          "n": 1,
+          "median": 1543.339622,
+          "min": 1543.339622,
+          "max": 1543.339622,
+          "p95": null
+        },
+        "codex_assisted_review_turnaround_ms": {
+          "n": 1,
+          "median": 14102.008827,
+          "min": 14102.008827,
+          "max": 14102.008827,
+          "p95": null
+        },
+        "host_submit_to_commit_observed_ms": {
+          "n": 1,
+          "median": 182.651448,
+          "min": 182.651448,
+          "max": 182.651448,
+          "p95": null
+        },
+        "host_capture_to_commit_observed_ms": {
+          "n": 1,
+          "median": 15827.999897,
+          "min": 15827.999897,
+          "max": 15827.999897,
+          "p95": null
+        },
+        "device_apply_to_frame_commit_ms": {
+          "n": 1,
+          "median": 41.965104,
+          "min": 41.965104,
+          "max": 41.965104,
+          "p95": null
+        },
+        "device_frame_to_frame_commit_ms": {
+          "n": 1,
+          "median": 14513.262755,
+          "min": 14513.262755,
+          "max": 14513.262755,
+          "p95": null
+        }
+      }
+    },
+    {
+      "run": "small-text",
+      "condition": "two_labels",
+      "n": 1,
+      "metrics": {
+        "host_capture_to_image_ready_ms": {
+          "n": 1,
+          "median": 2835.114371,
+          "min": 2835.114371,
+          "max": 2835.114371,
+          "p95": null
+        },
+        "codex_assisted_review_turnaround_ms": {
+          "n": 1,
+          "median": 9779.170213,
+          "min": 9779.170213,
+          "max": 9779.170213,
+          "p95": null
+        },
+        "host_submit_to_commit_observed_ms": {
+          "n": 1,
+          "median": 212.65423,
+          "min": 212.65423,
+          "max": 212.65423,
+          "p95": null
+        },
+        "host_capture_to_commit_observed_ms": {
+          "n": 1,
+          "median": 12826.938814,
+          "min": 12826.938814,
+          "max": 12826.938814,
+          "p95": null
+        },
+        "device_apply_to_frame_commit_ms": {
+          "n": 1,
+          "median": 69.541042,
+          "min": 69.541042,
+          "max": 69.541042,
+          "p95": null
+        },
+        "device_frame_to_frame_commit_ms": {
+          "n": 1,
+          "median": 10258.820204,
+          "min": 10258.820204,
+          "max": 10258.820204,
+          "p95": null
+        }
+      }
+    }
+  ],
+  "trials": [
+    {
+      "id": "setup-diagnostics/trial-01",
+      "run": "setup-diagnostics",
+      "trial": "trial-01",
+      "status": "failed",
+      "condition": "no_review",
+      "labels": [],
+      "metrics": {
+        "host_capture_to_image_ready_ms": null,
+        "codex_assisted_review_turnaround_ms": null,
+        "host_submit_to_commit_observed_ms": null,
+        "host_capture_to_commit_observed_ms": null,
+        "device_apply_to_frame_commit_ms": null,
+        "device_frame_to_frame_commit_ms": null
+      },
+      "failure": {
+        "stage": "capture",
+        "error": "ADB operation failed: ",
+        "host": {
+          "captureStartNs": 15353910738849,
+          "captureCommandReturnedNs": 15354616618829
+        }
+      },
+      "review": null,
+      "captured_at": null,
+      "files": [
+        {
+          "name": "failure.json",
+          "url": "../setup-diagnostics/trial-01/failure.json"
+        },
+        {
+          "name": "resources.jsonl",
+          "url": "../setup-diagnostics/trial-01/resources.jsonl"
+        }
+      ],
+      "source": null,
+      "display": null,
+      "expiry_observed": null,
+      "source_age_at_apply_ms": null,
+      "resources": null,
+      "hold_status_saved": false,
+      "retries": []
+    },
+    {
+      "id": "setup-diagnostics/trial-02",
+      "run": "setup-diagnostics",
+      "trial": "trial-02",
+      "status": "failed",
+      "condition": "two_labels",
+      "labels": [
+        {
+          "identity": "A",
+          "label": "Silver bottle",
+          "box": [
+            495,
+            116,
+            606,
+            457
+          ],
+          "uncertain": false,
+          "evidence": "Reflective silver body, narrow screw cap, and vertical smartwater branding on the right."
+        },
+        {
+          "identity": "B",
+          "label": "Orange bottle",
+          "box": [
+            181,
+            26,
+            365,
+            457
+          ],
+          "uncertain": false,
+          "evidence": "Orange body with metallic collar and broad gray hinged cap on the left."
+        }
+      ],
+      "metrics": {
+        "host_capture_to_image_ready_ms": 2652.769088,
+        "codex_assisted_review_turnaround_ms": 14007.831987,
+        "host_submit_to_commit_observed_ms": null,
+        "host_capture_to_commit_observed_ms": null,
+        "device_apply_to_frame_commit_ms": null,
+        "device_frame_to_frame_commit_ms": null
+      },
+      "failure": {
+        "stage": "delivery",
+        "error": "Device rejected: not_awaiting_response",
+        "host": {
+          "captureStartNs": 15439235811194,
+          "captureCommandReturnedNs": 15439872075745,
+          "frameReadyObservedNs": 15441835209679,
+          "imagePullStartNs": 15441835211158,
+          "imageReceivedNs": 15441888176276,
+          "handoffReadyNs": 15441888580282,
+          "submitReceivedNs": 15455896412269,
+          "responseFileWriteStartNs": 15455896629916,
+          "responseFileWrittenNs": 15455952912580,
+          "applyCommandReturnedNs": 15456010047345
+        },
+        "device": {
+          "captureCommandReceivedNs": 6141009871978,
+          "clock": "android_elapsed_realtime_ns",
+          "displayKind": "head_locked_snapshot_labels",
+          "requestId": "trial-02-53bfa79fe101",
+          "phase": "rejected",
+          "cameraWarmupMs": 600,
+          "cameraStatus": "Scanning QR \u00b7 camera 0 \u00b7 640\u00d7480",
+          "frameCallbackReceivedNs": 6142776865883,
+          "sourceSensorTimestampNs": 6142694408729,
+          "frameSavedNs": 6142826759060,
+          "sourceSha256": "b544f8fe32c31943cd42026870d760747a98702af23fd067a86f52f326895f4a",
+          "imageWidth": 480,
+          "imageHeight": 640,
+          "jpegBytes": 61722,
+          "pausedNs": 6157144070617,
+          "rejectedNs": 6157147720774,
+          "error": "not_awaiting_response"
+        }
+      },
+      "review": "Both bottles are visible. Color, cap structure and branding support A on the right and B on the left, consistent with the operator-confirmed identities.",
+      "captured_at": "2026-11-19T23:11:18.935358+00:00",
+      "files": [
+        {
+          "name": "capture.json",
+          "url": "../setup-diagnostics/trial-02/capture.json"
+        },
+        {
+          "name": "codex-proposal.json",
+          "url": "../setup-diagnostics/trial-02/codex-proposal.json"
+        },
+        {
+          "name": "failure.json",
+          "url": "../setup-diagnostics/trial-02/failure.json"
+        },
+        {
+          "name": "resources.jsonl",
+          "url": "../setup-diagnostics/trial-02/resources.jsonl"
+        },
+        {
+          "name": "source.jpg",
+          "url": "../setup-diagnostics/trial-02/source.jpg"
+        }
+      ],
+      "source": "../setup-diagnostics/trial-02/source.jpg",
+      "display": null,
+      "expiry_observed": null,
+      "source_age_at_apply_ms": null,
+      "resources": null,
+      "hold_status_saved": false,
+      "retries": []
+    },
+    {
+      "id": "small-text/trial-01",
+      "run": "small-text",
+      "trial": "trial-01",
+      "status": "completed",
+      "condition": "two_labels",
+      "labels": [
+        {
+          "identity": "A",
+          "label": "Silver bottle",
+          "box": [
+            495,
+            116,
+            606,
+            457
+          ],
+          "uncertain": false,
+          "evidence": "Silver body, tapered shoulder, narrow screw cap and vertical branding on the right."
+        },
+        {
+          "identity": "B",
+          "label": "Orange bottle",
+          "box": [
+            181,
+            26,
+            365,
+            457
+          ],
+          "uncertain": false,
+          "evidence": "Orange body with metallic collar and broad gray hinged cap on the left."
+        }
+      ],
+      "metrics": {
+        "host_capture_to_image_ready_ms": 2835.114371,
+        "codex_assisted_review_turnaround_ms": 9779.170213,
+        "host_submit_to_commit_observed_ms": 212.65423,
+        "host_capture_to_commit_observed_ms": 12826.938814,
+        "device_apply_to_frame_commit_ms": 69.541042,
+        "device_frame_to_frame_commit_ms": 10258.820204
+      },
+      "failure": null,
+      "review": "Both bottles are unobscured. Body color and cap shape support the operator-confirmed A silver and B orange identities.",
+      "captured_at": "2026-11-19T23:12:39.967306+00:00",
+      "files": [
+        {
+          "name": "capture.json",
+          "url": "../small-text/trial-01/capture.json"
+        },
+        {
+          "name": "codex-proposal.json",
+          "url": "../small-text/trial-01/codex-proposal.json"
+        },
+        {
+          "name": "display.png",
+          "url": "../small-text/trial-01/display.png"
+        },
+        {
+          "name": "resources.jsonl",
+          "url": "../small-text/trial-01/resources.jsonl"
+        },
+        {
+          "name": "result.json",
+          "url": "../small-text/trial-01/result.json"
+        },
+        {
+          "name": "source.jpg",
+          "url": "../small-text/trial-01/source.jpg"
+        }
+      ],
+      "source": "../small-text/trial-01/source.jpg",
+      "display": "../small-text/trial-01/display.png",
+      "expiry_observed": true,
+      "source_age_at_apply_ms": 10189.279162,
+      "resources": {
+        "device": {
+          "sample_count": 36,
+          "span_s": 19.701015295,
+          "cpu_seconds_delta": 0.11999999999999988,
+          "mean_cpu_percent_one_core": 0.6091056638611674,
+          "peak_rss_mib": 153.19921875
+        },
+        "host": {
+          "sample_count": 42,
+          "span_s": 22.703321272,
+          "cpu_seconds_delta": 0.09999999999999998,
+          "mean_cpu_percent_one_core": 0.4404641893665574,
+          "peak_rss_mib": 51.40234375,
+          "child_cpu_seconds_delta": 0.241653
+        }
+      },
+      "hold_status_saved": false,
+      "retries": []
+    },
+    {
+      "id": "small-text/trial-02",
+      "run": "small-text",
+      "trial": "trial-02",
+      "status": "completed",
+      "condition": "no_labels",
+      "labels": [],
+      "metrics": {
+        "host_capture_to_image_ready_ms": 1543.339622,
+        "codex_assisted_review_turnaround_ms": 14102.008827,
+        "host_submit_to_commit_observed_ms": 182.651448,
+        "host_capture_to_commit_observed_ms": 15827.999897,
+        "device_apply_to_frame_commit_ms": 41.965104,
+        "device_frame_to_frame_commit_ms": 14513.262755
+      },
+      "failure": null,
+      "review": "The camera now faces a laptop, food containers, a box, and a whiteboard. Neither the silver bottle nor the orange bottle is visible, so no A/B labels are justified. Previous bottle identities must not be carried into this frame.",
+      "captured_at": "2026-11-19T23:13:15.154001+00:00",
+      "files": [
+        {
+          "name": "capture.json",
+          "url": "../small-text/trial-02/capture.json"
+        },
+        {
+          "name": "codex-proposal.json",
+          "url": "../small-text/trial-02/codex-proposal.json"
+        },
+        {
+          "name": "display.png",
+          "url": "../small-text/trial-02/display.png"
+        },
+        {
+          "name": "resources.jsonl",
+          "url": "../small-text/trial-02/resources.jsonl"
+        },
+        {
+          "name": "result.json",
+          "url": "../small-text/trial-02/result.json"
+        },
+        {
+          "name": "source.jpg",
+          "url": "../small-text/trial-02/source.jpg"
+        }
+      ],
+      "source": "../small-text/trial-02/source.jpg",
+      "display": "../small-text/trial-02/display.png",
+      "expiry_observed": true,
+      "source_age_at_apply_ms": 14471.297651,
+      "resources": {
+        "device": {
+          "sample_count": 47,
+          "span_s": 25.820697105,
+          "cpu_seconds_delta": 0.2899999999999998,
+          "mean_cpu_percent_one_core": 1.1231300178330326,
+          "peak_rss_mib": 156.8046875
+        },
+        "host": {
+          "sample_count": 47,
+          "span_s": 25.820697105,
+          "cpu_seconds_delta": 0.09999999999999998,
+          "mean_cpu_percent_one_core": 0.38728621304587346,
+          "peak_rss_mib": 51.52734375,
+          "child_cpu_seconds_delta": 0.24182700000000001
+        }
+      },
+      "hold_status_saved": false,
+      "retries": []
+    },
+    {
+      "id": "large-text/trial-01",
+      "run": "large-text",
+      "trial": "trial-01",
+      "status": "completed",
+      "condition": "two_labels",
+      "labels": [
+        {
+          "identity": "A",
+          "label": "Silver bottle",
+          "box": [
+            622,
+            148,
+            743,
+            459
+          ],
+          "uncertain": false,
+          "evidence": "The right bottle has a silver reflective body, screw cap and vertical smartwater branding."
+        },
+        {
+          "identity": "B",
+          "label": "Orange bottle",
+          "box": [
+            370,
+            98,
+            521,
+            456
+          ],
+          "uncertain": false,
+          "evidence": "The left bottle has an orange body, metallic collar and wide hinged gray cap."
+        }
+      ],
+      "metrics": {
+        "host_capture_to_image_ready_ms": 2749.582018,
+        "codex_assisted_review_turnaround_ms": 11059.132194,
+        "host_submit_to_commit_observed_ms": 229.166627,
+        "host_capture_to_commit_observed_ms": 14037.880839,
+        "device_apply_to_frame_commit_ms": 71.196198,
+        "device_frame_to_frame_commit_ms": 11500.646297
+      },
+      "failure": null,
+      "review": "Both confirmed bottles are visible from a shifted camera viewpoint. Appearance still distinguishes silver A on the right from orange B on the left.",
+      "captured_at": "2026-11-19T23:16:32.075428+00:00",
+      "files": [
+        {
+          "name": "capture.json",
+          "url": "../large-text/trial-01/capture.json"
+        },
+        {
+          "name": "codex-proposal.json",
+          "url": "../large-text/trial-01/codex-proposal.json"
+        },
+        {
+          "name": "display.png",
+          "url": "../large-text/trial-01/display.png"
+        },
+        {
+          "name": "resources.jsonl",
+          "url": "../large-text/trial-01/resources.jsonl"
+        },
+        {
+          "name": "result.json",
+          "url": "../large-text/trial-01/result.json"
+        },
+        {
+          "name": "source.jpg",
+          "url": "../large-text/trial-01/source.jpg"
+        }
+      ],
+      "source": "../large-text/trial-01/source.jpg",
+      "display": "../large-text/trial-01/display.png",
+      "expiry_observed": true,
+      "source_age_at_apply_ms": 11429.450099,
+      "resources": {
+        "device": {
+          "sample_count": 73,
+          "span_s": 40.534018229,
+          "cpu_seconds_delta": 0.10999999999999988,
+          "mean_cpu_percent_one_core": 0.27137699346397526,
+          "peak_rss_mib": 152.765625
+        },
+        "host": {
+          "sample_count": 79,
+          "span_s": 43.536788373,
+          "cpu_seconds_delta": 0.21999999999999997,
+          "mean_cpu_percent_one_core": 0.5053197725913019,
+          "peak_rss_mib": 51.58984375,
+          "child_cpu_seconds_delta": 0.500272
+        }
+      },
+      "hold_status_saved": false,
+      "retries": []
+    },
+    {
+      "id": "large-text/trial-02",
+      "run": "large-text",
+      "trial": "trial-02",
+      "status": "completed",
+      "condition": "no_labels",
+      "labels": [],
+      "metrics": {
+        "host_capture_to_image_ready_ms": 2345.576234,
+        "codex_assisted_review_turnaround_ms": 11585.626453,
+        "host_submit_to_commit_observed_ms": 173.956084,
+        "host_capture_to_commit_observed_ms": 14105.158771,
+        "device_apply_to_frame_commit_ms": 22.176719,
+        "device_frame_to_frame_commit_ms": 11983.676662
+      },
+      "failure": null,
+      "review": "This frame shows a laptop, hands, food packaging and boxes on the table. The two reference bottles are outside the captured view, so neither A nor B should be labeled.",
+      "captured_at": "2026-11-19T23:18:11.864505+00:00",
+      "files": [
+        {
+          "name": "capture.json",
+          "url": "../large-text/trial-02/capture.json"
+        },
+        {
+          "name": "codex-proposal.json",
+          "url": "../large-text/trial-02/codex-proposal.json"
+        },
+        {
+          "name": "display.png",
+          "url": "../large-text/trial-02/display.png"
+        },
+        {
+          "name": "resources.jsonl",
+          "url": "../large-text/trial-02/resources.jsonl"
+        },
+        {
+          "name": "result.json",
+          "url": "../large-text/trial-02/result.json"
+        },
+        {
+          "name": "source.jpg",
+          "url": "../large-text/trial-02/source.jpg"
+        }
+      ],
+      "source": "../large-text/trial-02/source.jpg",
+      "display": "../large-text/trial-02/display.png",
+      "expiry_observed": false,
+      "source_age_at_apply_ms": 11961.499943,
+      "resources": {
+        "device": {
+          "sample_count": 84,
+          "span_s": 46.741690301,
+          "cpu_seconds_delta": 0.29000000000000004,
+          "mean_cpu_percent_one_core": 0.6204311357430643,
+          "peak_rss_mib": 155.6015625
+        },
+        "host": {
+          "sample_count": 84,
+          "span_s": 46.741690301,
+          "cpu_seconds_delta": 0.19999999999999996,
+          "mean_cpu_percent_one_core": 0.42788354189176836,
+          "peak_rss_mib": 51.58984375,
+          "child_cpu_seconds_delta": 0.5321400000000001
+        }
+      },
+      "hold_status_saved": false,
+      "retries": []
+    },
+    {
+      "id": "large-text/trial-03",
+      "run": "large-text",
+      "trial": "trial-03",
+      "status": "failed",
+      "condition": "two_labels",
+      "labels": [
+        {
+          "identity": "A",
+          "label": "Silver bottle",
+          "box": [
+            552,
+            150,
+            656,
+            457
+          ],
+          "uncertain": false,
+          "evidence": "Tall silver metallic bottle with narrow screw neck, on the right."
+        },
+        {
+          "identity": "B",
+          "label": "Orange bottle",
+          "box": [
+            285,
+            84,
+            439,
+            457
+          ],
+          "uncertain": false,
+          "evidence": "Orange cylindrical body with a wide gray lid and latch, on the left."
+        }
+      ],
+      "metrics": {
+        "host_capture_to_image_ready_ms": 2220.675229,
+        "codex_assisted_review_turnaround_ms": 137708.800054,
+        "host_submit_to_commit_observed_ms": null,
+        "host_capture_to_commit_observed_ms": null,
+        "device_apply_to_frame_commit_ms": null,
+        "device_frame_to_frame_commit_ms": null
+      },
+      "failure": {
+        "stage": "delivery",
+        "error": "Device rejected: source_expired",
+        "host": {
+          "captureStartNs": 15906987584488,
+          "captureCommandReturnedNs": 15907661502123,
+          "frameReadyObservedNs": 15909151509234,
+          "imagePullStartNs": 15909151510529,
+          "imageReceivedNs": 15909207968989,
+          "handoffReadyNs": 15909208259717,
+          "submitReceivedNs": 16046917059771,
+          "responseFileWriteStartNs": 16046917262811,
+          "responseFileWrittenNs": 16046988954460,
+          "applyCommandReturnedNs": 16047062875900
+        },
+        "device": {
+          "captureCommandReceivedNs": 6608808486955,
+          "clock": "android_elapsed_realtime_ns",
+          "displayKind": "head_locked_snapshot_labels",
+          "requestId": "trial-03-0ba595ad4cba",
+          "phase": "rejected",
+          "cameraWarmupMs": 600,
+          "cameraStatus": "Scanning QR \u00b7 camera 0 \u00b7 640\u00d7480",
+          "frameCallbackReceivedNs": 6610053353205,
+          "sourceSensorTimestampNs": 6609975576912,
+          "frameSavedNs": 6610107750288,
+          "sourceSha256": "2f8ae06f973bab0164a85f4bedd6ee4bb1ba9fcb0ad602b223ffeef36b04bf86",
+          "imageWidth": 480,
+          "imageHeight": 640,
+          "jpegBytes": 60821,
+          "rejectedNs": 6748191678413,
+          "error": "source_expired"
+        }
+      },
+      "review": "Both reference bottles are visible. Color and shape support A as the silver bottle on the right and B as the orange bottle on the left.",
+      "captured_at": "2026-11-19T23:19:06.255030+00:00",
+      "files": [
+        {
+          "name": "capture.json",
+          "url": "../large-text/trial-03/capture.json"
+        },
+        {
+          "name": "codex-proposal.json",
+          "url": "../large-text/trial-03/codex-proposal.json"
+        },
+        {
+          "name": "failure.json",
+          "url": "../large-text/trial-03/failure.json"
+        },
+        {
+          "name": "resources.jsonl",
+          "url": "../large-text/trial-03/resources.jsonl"
+        },
+        {
+          "name": "source.jpg",
+          "url": "../large-text/trial-03/source.jpg"
+        }
+      ],
+      "source": "../large-text/trial-03/source.jpg",
+      "display": null,
+      "expiry_observed": null,
+      "source_age_at_apply_ms": null,
+      "resources": null,
+      "hold_status_saved": false,
+      "retries": []
+    },
+    {
+      "id": "large-text/trial-04",
+      "run": "large-text",
+      "trial": "trial-04",
+      "status": "completed",
+      "condition": "two_labels",
+      "labels": [
+        {
+          "identity": "A",
+          "label": "Silver bottle",
+          "box": [
+            551,
+            151,
+            655,
+            456
+          ],
+          "uncertain": false,
+          "evidence": "Silver metallic bottle with narrow screw neck on the right."
+        },
+        {
+          "identity": "B",
+          "label": "Orange bottle",
+          "box": [
+            286,
+            85,
+            439,
+            456
+          ],
+          "uncertain": false,
+          "evidence": "Orange body with broad gray lid and latch on the left."
+        }
+      ],
+      "metrics": {
+        "host_capture_to_image_ready_ms": 1549.933542,
+        "codex_assisted_review_turnaround_ms": 8453.078941,
+        "host_submit_to_commit_observed_ms": 184.200802,
+        "host_capture_to_commit_observed_ms": 10187.213285,
+        "device_apply_to_frame_commit_ms": 23.48,
+        "device_frame_to_frame_commit_ms": 8777.347965
+      },
+      "failure": null,
+      "review": "Both bottles are visible; body color and bottle shape support A on the right and B on the left.",
+      "captured_at": "2026-11-19T23:21:32.949915+00:00",
+      "files": [
+        {
+          "name": "capture.json",
+          "url": "../large-text/trial-04/capture.json"
+        },
+        {
+          "name": "codex-proposal.json",
+          "url": "../large-text/trial-04/codex-proposal.json"
+        },
+        {
+          "name": "display.png",
+          "url": "../large-text/trial-04/display.png"
+        },
+        {
+          "name": "resources.jsonl",
+          "url": "../large-text/trial-04/resources.jsonl"
+        },
+        {
+          "name": "result.json",
+          "url": "../large-text/trial-04/result.json"
+        },
+        {
+          "name": "source.jpg",
+          "url": "../large-text/trial-04/source.jpg"
+        }
+      ],
+      "source": "../large-text/trial-04/source.jpg",
+      "display": "../large-text/trial-04/display.png",
+      "expiry_observed": true,
+      "source_age_at_apply_ms": 8753.867965,
+      "resources": {
+        "device": {
+          "sample_count": 72,
+          "span_s": 40.019849669,
+          "cpu_seconds_delta": 0.2100000000000002,
+          "mean_cpu_percent_one_core": 0.5247396023145721,
+          "peak_rss_mib": 153.43359375
+        },
+        "host": {
+          "sample_count": 72,
+          "span_s": 40.019849669,
+          "cpu_seconds_delta": 0.18999999999999995,
+          "mean_cpu_percent_one_core": 0.474764402094136,
+          "peak_rss_mib": 51.83984375,
+          "child_cpu_seconds_delta": 0.4832319999999999
+        }
+      },
+      "hold_status_saved": false,
+      "retries": []
+    },
+    {
+      "id": "large-text/trial-05",
+      "run": "large-text",
+      "trial": "trial-05",
+      "status": "completed",
+      "condition": "two_labels",
+      "labels": [
+        {
+          "identity": "A",
+          "label": "Silver bottle",
+          "box": [
+            552,
+            150,
+            656,
+            457
+          ],
+          "uncertain": false,
+          "evidence": "Silver body, narrow neck and screw cap, on the right."
+        },
+        {
+          "identity": "B",
+          "label": "Orange bottle",
+          "box": [
+            285,
+            85,
+            440,
+            457
+          ],
+          "uncertain": false,
+          "evidence": "Orange body with broad gray lid and latch, on the left."
+        }
+      ],
+      "metrics": {
+        "host_capture_to_image_ready_ms": 1716.17012,
+        "codex_assisted_review_turnaround_ms": 8245.208318,
+        "host_submit_to_commit_observed_ms": 184.538001,
+        "host_capture_to_commit_observed_ms": 10145.916439,
+        "device_apply_to_frame_commit_ms": 29.382813,
+        "device_frame_to_frame_commit_ms": 8658.442966
+      },
+      "failure": null,
+      "review": "The silver and orange bottle bodies are fully visible. Their colors and shapes support A on the right and B on the left.",
+      "captured_at": "2026-11-19T23:22:18.134655+00:00",
+      "files": [
+        {
+          "name": "capture.json",
+          "url": "../large-text/trial-05/capture.json"
+        },
+        {
+          "name": "codex-proposal.json",
+          "url": "../large-text/trial-05/codex-proposal.json"
+        },
+        {
+          "name": "display.png",
+          "url": "../large-text/trial-05/display.png"
+        },
+        {
+          "name": "resources.jsonl",
+          "url": "../large-text/trial-05/resources.jsonl"
+        },
+        {
+          "name": "result.json",
+          "url": "../large-text/trial-05/result.json"
+        },
+        {
+          "name": "source.jpg",
+          "url": "../large-text/trial-05/source.jpg"
+        }
+      ],
+      "source": "../large-text/trial-05/source.jpg",
+      "display": "../large-text/trial-05/display.png",
+      "expiry_observed": true,
+      "source_age_at_apply_ms": 8629.060153,
+      "resources": {
+        "device": {
+          "sample_count": 72,
+          "span_s": 40.056370501,
+          "cpu_seconds_delta": 0.18000000000000016,
+          "mean_cpu_percent_one_core": 0.4493667243154406,
+          "peak_rss_mib": 154.92578125
+        },
+        "host": {
+          "sample_count": 72,
+          "span_s": 40.056370501,
+          "cpu_seconds_delta": 0.18999999999999995,
+          "mean_cpu_percent_one_core": 0.47433154233296454,
+          "peak_rss_mib": 51.96484375,
+          "child_cpu_seconds_delta": 0.48104900000000006
+        }
+      },
+      "hold_status_saved": false,
+      "retries": []
+    },
+    {
+      "id": "qualitative-baseline/trial-01",
+      "run": "qualitative-baseline",
+      "trial": "trial-01",
+      "status": "review_only",
+      "condition": "baseline",
+      "labels": [
+        {
+          "identity": "A",
+          "label": "A: silver bottle",
+          "box": [
+            178,
+            70,
+            327,
+            462
+          ],
+          "uncertain": false,
+          "evidence": "The left bottle has a reflective silver body, tapered shoulders, a narrow ridged screw cap, and vertical smartwater branding."
+        },
+        {
+          "identity": "B",
+          "label": "B: orange bottle",
+          "box": [
+            433,
+            78,
+            586,
+            457
+          ],
+          "uncertain": false,
+          "evidence": "The right bottle has a bright orange body or sleeve, a silver neck, and a wide gray cap with a protruding hinged feature."
+        }
+      ],
+      "metrics": {
+        "host_capture_to_image_ready_ms": null,
+        "codex_assisted_review_turnaround_ms": null,
+        "host_submit_to_commit_observed_ms": null,
+        "host_capture_to_commit_observed_ms": null,
+        "device_apply_to_frame_commit_ms": null,
+        "device_frame_to_frame_commit_ms": null
+      },
+      "failure": null,
+      "review": "Two distinct bottle silhouettes are separated by a visible gap. Body color differentiates them, with cap shape and printed branding providing additional visible evidence. Left/right describe this frame only and must not define identity after movement.",
+      "captured_at": "2026-11-19T22:34:34.000210+00:00",
+      "files": [
+        {
+          "name": "capture.json",
+          "url": "../qualitative-baseline/trial-01/capture.json"
+        },
+        {
+          "name": "codex-result.json",
+          "url": "../qualitative-baseline/trial-01/codex-result.json"
+        },
+        {
+          "name": "labels.png",
+          "url": "../qualitative-baseline/trial-01/labels.png"
+        },
+        {
+          "name": "source.jpg",
+          "url": "../qualitative-baseline/trial-01/source.jpg"
+        }
+      ],
+      "source": "../qualitative-baseline/trial-01/source.jpg",
+      "display": null,
+      "expiry_observed": null,
+      "source_age_at_apply_ms": null,
+      "resources": null,
+      "hold_status_saved": false,
+      "retries": []
+    },
+    {
+      "id": "qualitative-baseline/trial-02",
+      "run": "qualitative-baseline",
+      "trial": "trial-02",
+      "status": "review_only",
+      "condition": "position_swap",
+      "labels": [
+        {
+          "identity": "A",
+          "label": "A: silver bottle",
+          "box": [
+            512,
+            114,
+            629,
+            459
+          ],
+          "uncertain": false,
+          "evidence": "The right bottle retains the reflective silver body, tapered shoulders, narrow ridged screw cap, and vertical smartwater branding seen on A in trial 1."
+        },
+        {
+          "identity": "B",
+          "label": "B: orange bottle",
+          "box": [
+            202,
+            27,
+            384,
+            458
+          ],
+          "uncertain": false,
+          "evidence": "The left bottle retains the orange body, silver neck, and wide gray cap with a hinged side feature seen on B in trial 1."
+        }
+      ],
+      "metrics": {
+        "host_capture_to_image_ready_ms": null,
+        "codex_assisted_review_turnaround_ms": null,
+        "host_submit_to_commit_observed_ms": null,
+        "host_capture_to_commit_observed_ms": null,
+        "device_apply_to_frame_commit_ms": null,
+        "device_frame_to_frame_commit_ms": null
+      },
+      "failure": null,
+      "review": "Body color, cap shape, and printed branding agree with the previous identities even though positions changed. The orange bottle appears larger in this frame, but that does not change its identity.",
+      "captured_at": "2026-11-19T22:36:35.258644+00:00",
+      "files": [
+        {
+          "name": "capture.json",
+          "url": "../qualitative-baseline/trial-02/capture.json"
+        },
+        {
+          "name": "codex-result.json",
+          "url": "../qualitative-baseline/trial-02/codex-result.json"
+        },
+        {
+          "name": "labels.png",
+          "url": "../qualitative-baseline/trial-02/labels.png"
+        },
+        {
+          "name": "source.jpg",
+          "url": "../qualitative-baseline/trial-02/source.jpg"
+        }
+      ],
+      "source": "../qualitative-baseline/trial-02/source.jpg",
+      "display": null,
+      "expiry_observed": null,
+      "source_age_at_apply_ms": null,
+      "resources": null,
+      "hold_status_saved": false,
+      "retries": []
+    },
+    {
+      "id": "qualitative-baseline/trial-03",
+      "run": "qualitative-baseline",
+      "trial": "trial-03",
+      "status": "review_only",
+      "condition": "partial_occlusion",
+      "labels": [
+        {
+          "identity": "A",
+          "label": "A: silver bottle",
+          "box": [
+            502,
+            112,
+            624,
+            459
+          ],
+          "uncertain": false,
+          "evidence": "The reflective body, narrow ridged screw cap, tapered shoulders, and vertical smartwater branding remain visible and match A in the prior snapshots."
+        },
+        {
+          "identity": "B candidate",
+          "label": "B candidate: cap only",
+          "box": [
+            190,
+            26,
+            374,
+            171
+          ],
+          "uncertain": true,
+          "evidence": "The exposed wide gray cap, protruding side hinge, and metallic collar resemble B. The foreground bag hides the body, so its orange color cannot be verified in this frame."
+        }
+      ],
+      "metrics": {
+        "host_capture_to_image_ready_ms": null,
+        "codex_assisted_review_turnaround_ms": null,
+        "host_submit_to_commit_observed_ms": null,
+        "host_capture_to_commit_observed_ms": null,
+        "device_apply_to_frame_commit_ms": null,
+        "device_frame_to_frame_commit_ms": null
+      },
+      "failure": null,
+      "review": "A is supported by multiple visible distinguishing features. B is a plausible candidate because of the characteristic cap and metallic collar, but its previously distinctive orange body is occluded. The orange printing on the foreground bag is not evidence of the hidden bottle color. Position alone is not used to confirm identity.",
+      "captured_at": "2026-11-19T22:39:14.550253+00:00",
+      "files": [
+        {
+          "name": "capture-attempt-01.json",
+          "url": "../qualitative-baseline/trial-03/capture-attempt-01.json"
+        },
+        {
+          "name": "capture.json",
+          "url": "../qualitative-baseline/trial-03/capture.json"
+        },
+        {
+          "name": "codex-result.json",
+          "url": "../qualitative-baseline/trial-03/codex-result.json"
+        },
+        {
+          "name": "labels.png",
+          "url": "../qualitative-baseline/trial-03/labels.png"
+        },
+        {
+          "name": "source.jpg",
+          "url": "../qualitative-baseline/trial-03/source.jpg"
+        }
+      ],
+      "source": "../qualitative-baseline/trial-03/source.jpg",
+      "display": null,
+      "expiry_observed": null,
+      "source_age_at_apply_ms": null,
+      "resources": null,
+      "hold_status_saved": false,
+      "retries": [
+        {
+          "status": "failed",
+          "error": "Camera reported stalled during startup; no image accepted.",
+          "recovery": "Camera resumed delivering frames without a device restart; retry uses an advancing frame ID."
+        }
+      ]
+    },
+    {
+      "id": "qualitative-baseline/trial-04",
+      "run": "qualitative-baseline",
+      "trial": "trial-04",
+      "status": "review_only",
+      "condition": "reappearance",
+      "labels": [
+        {
+          "identity": "A",
+          "label": "A: silver bottle",
+          "box": [
+            502,
+            114,
+            622,
+            459
+          ],
+          "uncertain": false,
+          "evidence": "The right bottle has the reflective silver body, narrow ridged screw cap, tapered shoulders, and vertical smartwater branding that distinguish A."
+        },
+        {
+          "identity": "B",
+          "label": "B: orange bottle",
+          "box": [
+            190,
+            25,
+            375,
+            458
+          ],
+          "uncertain": false,
+          "evidence": "The left bottle now shows its orange body again, together with the same metallic collar and wide gray hinged cap seen before and during occlusion."
+        }
+      ],
+      "metrics": {
+        "host_capture_to_image_ready_ms": null,
+        "codex_assisted_review_turnaround_ms": null,
+        "host_submit_to_commit_observed_ms": null,
+        "host_capture_to_commit_observed_ms": null,
+        "device_apply_to_frame_commit_ms": null,
+        "device_frame_to_frame_commit_ms": null
+      },
+      "failure": null,
+      "review": "B was uncertain when only its cap was exposed in trial 3. The newly visible orange body provides distinguishing evidence again, together with the unchanged cap and collar. A retains its silver body and branding. The matches use appearance rather than position.",
+      "captured_at": "2026-11-19T22:41:08.372633+00:00",
+      "files": [
+        {
+          "name": "capture.json",
+          "url": "../qualitative-baseline/trial-04/capture.json"
+        },
+        {
+          "name": "codex-result.json",
+          "url": "../qualitative-baseline/trial-04/codex-result.json"
+        },
+        {
+          "name": "labels.png",
+          "url": "../qualitative-baseline/trial-04/labels.png"
+        },
+        {
+          "name": "source.jpg",
+          "url": "../qualitative-baseline/trial-04/source.jpg"
+        }
+      ],
+      "source": "../qualitative-baseline/trial-04/source.jpg",
+      "display": null,
+      "expiry_observed": null,
+      "source_age_at_apply_ms": null,
+      "resources": null,
+      "hold_status_saved": false,
+      "retries": []
+    }
+  ],
+  "feedback": [
+    {
+      "run": "small-text",
+      "source": "wearer response in this conversation",
+      "scope": "initial small-text viewer, after the first two measured trials",
+      "reported": "It says expired right now, I have seen labels change but it is not really readable and does not match to each bottle when both are in view.",
+      "readability": "failed_or_difficult",
+      "object_alignment": "not_present",
+      "optical_latency_measured": false,
+      "interpretation": "Screenshot and frame commit prove software rendering, not readable optical presentation. The fixed-list viewer was not designed for physical object alignment.",
+      "url": "../small-text/operator-feedback.json"
+    },
+    {
+      "run": "large-text",
+      "source": "wearer response in this conversation",
+      "scope": "large-text viewer after trial-01; not a separate per-trial rating",
+      "reported": "Readable, but the labels are not really lined up with the display as much as I would hope, it would be nice if it was similar how to the bounding box of the capture image worked.",
+      "readability": "readable_per_wearer",
+      "object_alignment": "unsatisfactory; fixed list is not object-aligned",
+      "optical_latency_measured": false,
+      "interpretation": "Larger text was reported readable. Simultaneous font, duration and side-cue changes are not a controlled comparison. No calibrated physical alignment was implemented.",
+      "url": "../large-text/operator-feedback.json"
+    }
+  ],
+  "metadata": [
+    {
+      "run": "setup-diagnostics",
+      "data": {
+        "schema_version": 1,
+        "started_at": "2026-11-19T23:11:08.912980+00:00",
+        "provider_kind": "codex_conversation_vision",
+        "exact_model_version": null,
+        "operator_confirmed_identities": {
+          "A": "silver bottle",
+          "B": "orange bottle"
+        },
+        "identity_confirmation_source": "User confirmation in this session; boxes and optical readability not yet verified.",
+        "device": {
+          "model": "ARGF20",
+          "product": "RayNeoX3Pro",
+          "android": "12",
+          "sdk": "32",
+          "firmware": "SKQ1.250204.001 release-keys"
+        },
+        "host": {
+          "platform": "Linux-7.3.3-200.fc44.x86_64-x86_64-with-glibc2.43",
+          "python": "3.11.18",
+          "logical_cpus": 8
+        },
+        "transport": "USB ADB, app-private JSON files",
+        "resource_sampling": {
+          "interval_s": 0.5,
+          "device_hz": 100,
+          "device_page_bytes": 4096,
+          "scope": "App process CPU/RSS and Python bench process CPU/RSS; host child CPU includes ADB sampling overhead. Remote Codex compute is unavailable."
+        },
+        "display": {
+          "kind": "head_locked_snapshot_labels_in_both_eyes",
+          "expires_ms": 10000,
+          "max_snapshot_age_ms": 120000,
+          "commit_measurement": "Android frame commit callback; not optical visibility or binocular comfort"
+        },
+        "timing_definitions": {
+          "review_turnaround": "Host image-ready to submit-handler receipt; includes Codex conversation, tool operations and orchestration. Not isolated inference.",
+          "device_frame_to_commit": "Camera callback receipt to frame commit, both Android elapsedRealtimeNanos. Sensor timestamp not subtracted.",
+          "host_commit_observed": "Polling observation after device commit; includes polling/transport delay.",
+          "device_draw_recording": "CPU wall time recording Canvas commands, not GPU or optical presentation."
+        },
+        "design": "Repeated captures of one operator-confirmed stationary scene. Technical timing repeats, not independent accuracy trials.",
+        "apk_sha256": "583011405622eef5cca101f34362344dfea45209b6fee47f25a1efe75246a10a"
+      },
+      "url": "../setup-diagnostics/run-metadata.json"
+    },
+    {
+      "run": "small-text",
+      "data": {
+        "schema_version": 1,
+        "started_at": "2026-11-19T23:12:24.160727+00:00",
+        "provider_kind": "codex_conversation_vision",
+        "exact_model_version": null,
+        "operator_confirmed_identities": {
+          "A": "silver bottle",
+          "B": "orange bottle"
+        },
+        "identity_confirmation_source": "User confirmation in this session; boxes and optical readability not yet verified.",
+        "device": {
+          "model": "ARGF20",
+          "product": "RayNeoX3Pro",
+          "android": "12",
+          "sdk": "32",
+          "firmware": "SKQ1.250204.001 release-keys"
+        },
+        "host": {
+          "platform": "Linux-7.3.3-200.fc44.x86_64-x86_64-with-glibc2.43",
+          "python": "3.11.18",
+          "logical_cpus": 8
+        },
+        "transport": "USB ADB, app-private JSON files",
+        "resource_sampling": {
+          "interval_s": 0.5,
+          "device_hz": 100,
+          "device_page_bytes": 4096,
+          "scope": "App process CPU/RSS and Python bench process CPU/RSS; host child CPU includes ADB sampling overhead. Remote Codex compute is unavailable."
+        },
+        "display": {
+          "kind": "head_locked_snapshot_labels_in_both_eyes",
+          "expires_ms": 10000,
+          "max_snapshot_age_ms": 120000,
+          "commit_measurement": "Android frame commit callback; not optical visibility or binocular comfort"
+        },
+        "timing_definitions": {
+          "review_turnaround": "Host image-ready to submit-handler receipt; includes Codex conversation, tool operations and orchestration. Not isolated inference.",
+          "device_frame_to_commit": "Camera callback receipt to frame commit, both Android elapsedRealtimeNanos. Sensor timestamp not subtracted.",
+          "host_commit_observed": "Polling observation after device commit; includes polling/transport delay.",
+          "device_draw_recording": "CPU wall time recording Canvas commands, not GPU or optical presentation."
+        },
+        "design": "Repeated captures of one operator-confirmed stationary scene. Technical timing repeats, not independent accuracy trials.",
+        "apk_sha256": "b00856fef25afeaed60b2db3f0f97df9ec501f2ac92bbc20d0f92096e0c33269"
+      },
+      "url": "../small-text/run-metadata.json"
+    },
+    {
+      "run": "large-text",
+      "data": {
+        "schema_version": 1,
+        "started_at": "2026-11-19T23:16:17.425322+00:00",
+        "provider_kind": "codex_conversation_vision",
+        "exact_model_version": null,
+        "operator_confirmed_identities": {
+          "A": "silver bottle",
+          "B": "orange bottle"
+        },
+        "identity_confirmation_source": "User confirmation in this session; boxes and optical readability not yet verified.",
+        "device": {
+          "model": "ARGF20",
+          "product": "RayNeoX3Pro",
+          "android": "12",
+          "sdk": "32",
+          "firmware": "SKQ1.250204.001 release-keys"
+        },
+        "host": {
+          "platform": "Linux-7.3.3-200.fc44.x86_64-x86_64-with-glibc2.43",
+          "python": "3.11.18",
+          "logical_cpus": 8
+        },
+        "transport": "USB ADB, app-private JSON files",
+        "resource_sampling": {
+          "interval_s": 0.5,
+          "device_hz": 100,
+          "device_page_bytes": 4096,
+          "scope": "App process CPU/RSS and Python bench process CPU/RSS; host child CPU includes ADB sampling overhead. Remote Codex compute is unavailable."
+        },
+        "display": {
+          "kind": "head_locked_snapshot_labels_in_both_eyes",
+          "variant": "large_text_with_snapshot_side",
+          "expires_ms": 30000,
+          "max_snapshot_age_ms": 120000,
+          "commit_measurement": "Android frame commit callback; not optical visibility or binocular comfort"
+        },
+        "timing_definitions": {
+          "review_turnaround": "Host image-ready to submit-handler receipt; includes Codex conversation, tool operations and orchestration. Not isolated inference.",
+          "device_frame_to_commit": "Camera callback receipt to frame commit, both Android elapsedRealtimeNanos. Sensor timestamp not subtracted.",
+          "host_commit_observed": "Polling observation after device commit; includes polling/transport delay.",
+          "device_draw_recording": "CPU wall time recording Canvas commands, not GPU or optical presentation."
+        },
+        "design": "Repeated assistant-assisted captures with operator-confirmed A/B identities. Actual views may vary; record no-label scenes separately. Technical timing trials, not independent accuracy trials.",
+        "apk_sha256": "066efb9d79267935d55ef0efada5e42a3d44622fb5901e5757eb0716bff0554e"
+      },
+      "url": "../large-text/run-metadata.json"
+    }
+  ],
+  "resource_ranges": {
+    "device": {
+      "n": 6,
+      "median": 154.1796875,
+      "min": 152.765625,
+      "max": 156.8046875,
+      "p95": null
+    },
+    "host": {
+      "n": 6,
+      "median": 51.58984375,
+      "min": 51.40234375,
+      "max": 51.96484375,
+      "p95": null
+    }
+  },
+  "relocated_references": [
+    {
+      "original": "artifacts/vlm-probes/bottle-trials/trial-01/codex-result.json",
+      "status": "Relocated, present",
+      "archived": "../qualitative-baseline/trial-01/codex-result.json"
+    },
+    {
+      "original": "artifacts/vlm-probes/bottle-trials/trial-02/codex-result.json",
+      "status": "Relocated, present",
+      "archived": "../qualitative-baseline/trial-02/codex-result.json"
+    },
+    {
+      "original": "artifacts/vlm-probes/bottle-trials/trial-03/codex-result.json",
+      "status": "Relocated, present",
+      "archived": "../qualitative-baseline/trial-03/codex-result.json"
+    },
+    {
+      "original": "artifacts/vlm-probes/bottle-trials/trial-04/codex-result.json",
+      "status": "Relocated, present",
+      "archived": "../qualitative-baseline/trial-04/codex-result.json"
+    }
+  ],
+  "links": {
+    "original_report": "../report/index.html",
+    "manifest": "../manifest.json",
+    "methodology": "../README.md",
+    "resource_csv": "../report/phase-resources.csv",
+    "validation": "../validation.json"
+  }
+};

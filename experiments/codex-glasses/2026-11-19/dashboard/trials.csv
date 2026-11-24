@@ -1,0 +1,14 @@
+id,status,condition,expiry_observed,host_capture_to_image_ready_ms,codex_assisted_review_turnaround_ms,host_submit_to_commit_observed_ms,host_capture_to_commit_observed_ms,device_apply_to_frame_commit_ms,device_frame_to_frame_commit_ms
+setup-diagnostics/trial-01,failed,no_review,,,,,,,
+setup-diagnostics/trial-02,failed,two_labels,,2652.769088,14007.831987,,,,
+small-text/trial-01,completed,two_labels,True,2835.114371,9779.170213,212.65423,12826.938814,69.541042,10258.820204
+small-text/trial-02,completed,no_labels,True,1543.339622,14102.008827,182.651448,15827.999897,41.965104,14513.262755
+large-text/trial-01,completed,two_labels,True,2749.582018,11059.132194,229.166627,14037.880839,71.196198,11500.646297
+large-text/trial-02,completed,no_labels,False,2345.576234,11585.626453,173.956084,14105.158771,22.176719,11983.676662
+large-text/trial-03,failed,two_labels,,2220.675229,137708.800054,,,,
+large-text/trial-04,completed,two_labels,True,1549.933542,8453.078941,184.200802,10187.213285,23.48,8777.347965
+large-text/trial-05,completed,two_labels,True,1716.17012,8245.208318,184.538001,10145.916439,29.382813,8658.442966
+qualitative-baseline/trial-01,review_only,baseline,,,,,,,
+qualitative-baseline/trial-02,review_only,position_swap,,,,,,,
+qualitative-baseline/trial-03,review_only,partial_occlusion,,,,,,,
+qualitative-baseline/trial-04,review_only,reappearance,,,,,,,

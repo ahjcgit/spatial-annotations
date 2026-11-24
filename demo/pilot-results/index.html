@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>RayNeo snapshot results · November 19 pilot</title>
+  <link rel="stylesheet" href="dashboard.css">
+  <script src="data.js" defer></script><script src="dashboard.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#overview">Skip to results</a>
+<header>
+  <h1>RayNeo snapshot results</h1>
+  <p>November 19, 2026 · RayNeo X3 Pro · Two distinct bottles · USB ADB</p>
+  <nav aria-label="Report sections"><a href="#overview">Findings</a><a href="#timing">Timing</a><a href="#trials">Inspect trials</a><a href="#gaps">Missing evidence</a><a href="#next">Next steps</a></nav>
+</header>
+<main>
+<p id="load-error" role="alert">Loading archived results. If this remains visible, regenerate the dashboard with scripts/build_pilot_dashboard.py.</p>
+<noscript><p>This dashboard needs JavaScript. The original report and raw evidence remain in the adjacent report/ directory.</p></noscript>
+<section id="overview" aria-labelledby="finding-title">
+  <div class="overview">
+    <div>
+      <h2 id="finding-title">Delivery worked. Object alignment is still unresolved.</h2>
+      <p>The glasses captured an image, Codex reviewed it in a conversation, and Android acknowledged drawing the returned labels. The wearer reported larger text was readable, but the labels did not line up with the bottles.</p>
+      <p>This run used A = silver bottle and B = orange bottle. It did <strong>not</strong> run H0–H4 tracking, assign backend object UUIDs, or retrieve saved annotations.</p>
+    </div>
+    <div class="inventory">
+      <h3>What is in this archive</h3>
+      <dl id="inventory"></dl>
+      <p id="integrity" class="audit" role="status"></p>
+      <a href="analysis.json">Download audited analysis JSON</a>
+    </div>
+  </div>
+  <ol class="pipeline" aria-label="Actual tested workflow">
+    <li><strong>Physical camera</strong><span>One JPEG; capture then pauses</span></li>
+    <li><strong>Conversational review</strong><span>Codex + image tools + orchestration</span></li>
+    <li><strong>USB delivery</strong><span>Request ID and image hash checked</span></li>
+    <li><strong>Android frame commit</strong><span>Fixed list in both eye halves</span></li>
+  </ol>
+  <div class="table-wrap"><table id="findings-table"><caption>What this pilot supports</caption><thead><tr><th>Question</th><th>Evidence</th><th>Conclusion</th></tr></thead><tbody>
+    <tr><th>Can labels reach the device?</th><td id="delivery-finding"></td><td>Yes, at the software rendering boundary. A commit is not an optical latency measurement.</td></tr>
+    <tr><th>Can the wearer read them?</th><td>Small text: difficult. Larger text: reported readable.</td><td>Useful variant-level feedback; not a controlled or repeated readability study.</td></tr>
+    <tr><th>Do labels follow the physical object?</th><td>Device receives text and snapshot side cues, not the proposed boxes.</td><td>No. It draws a head-locked list. Camera-space boxes cannot establish eye alignment.</td></tr>
+    <tr><th>Does reasoning improve identity?</th><td>Four earlier reviews include a swap, partial occlusion, and reappearance.</td><td>Qualitative evidence only. No independent truth, tracking baseline, or accuracy estimate.</td></tr>
+  </tbody></table></div>
+</section>
+
+<section id="timing" aria-labelledby="timing-title">
+  <h2 id="timing-title">Where the time went</h2>
+  <p id="timing-conclusion"></p>
+  <p class="note">Only completed trials enter these timings. Failures stay in the trial browser. This is a mixed, non-randomized technical pilot; differences between text variants do not establish a font-size effect.</p>
+  <div class="timing-layout">
+    <div>
+      <label class="inline-label">Scenes <select id="timing-filter"><option value="all">All completed trials</option><option value="two_labels">Two-label scenes</option><option value="no_labels">No-label scenes</option></select></label>
+      <div class="legend"><span><i class="capture"></i>Capture + transfer</span><span><i class="review"></i>Review + tools</span><span><i class="delivery"></i>Response delivery</span></div>
+      <div id="timing-chart" aria-label="Host timing breakdown per completed trial"></div>
+      <p class="note">Host monotonic time only. The device commit interval below is nested within delivery; it must not be added again. P95 is withheld for this small pilot.</p>
+    </div>
+    <div class="timing-summary"><h3>All completed trials</h3><dl id="timing-stats"></dl><p class="note">Review time includes conversation and tool operations. It is not isolated VLM inference. Device commit is not measured photons.</p></div>
+  </div>
+  <details><summary>Timing by text variant and scene</summary><div class="table-wrap"><table><thead><tr><th>Variant / scene</th><th>n</th><th>Capture → commit (s)</th><th>Review + tools (s)</th><th>Delivery (ms)</th><th>Device apply → commit (ms)</th></tr></thead><tbody id="groups"></tbody></table></div><p class="note">Median (min–max). One-sample rows describe that trial only. Scene, order, warm state, review behavior and display duration changed together.</p></details>
+  <details><summary>Resource measurements and their limits</summary><p id="resources"></p><p>These are sampled Android app and Python bench process peaks, not remote-model or whole-system memory. Sampling was about every 0.5 seconds; it cannot reliably resolve a roughly 0.2-second delivery phase. Zero CPU tick increments during a hold do not establish zero energy cost.</p><a id="resource-link">Open phase-resource CSV</a></details>
+</section>
+
+<section id="trials" aria-labelledby="trial-title">
+  <h2 id="trial-title">Inspect the evidence</h2>
+  <div class="filters">
+    <label>Include<select id="trial-filter"><option value="all">All 13 trial records</option><option value="completed">Completed deliveries</option><option value="failed">Failed measured/setup attempts</option><option value="review_only">Earlier image-only reviews</option><option value="no_labels">No-label deliveries</option></select></label>
+    <label class="trial-select">Trial<select id="trial-select"></select></label>
+    <div class="step-controls"><button id="previous" type="button">Previous</button><button id="next-trial" type="button">Next</button></div>
+  </div>
+  <p id="trial-state" class="trial-state" aria-live="polite"></p>
+  <div class="evidence-layout">
+    <figure>
+      <div class="source-frame"><img id="source-image" alt=""><svg id="boxes" viewBox="0 0 1000 1000" preserveAspectRatio="none" aria-label="Approximate proposed image-space boxes"></svg></div>
+      <p id="source-missing" hidden></p>
+      <figcaption>Original camera image. Boxes are assistant proposals, not independently verified ground truth.</figcaption>
+      <label class="check"><input id="show-boxes" type="checkbox" checked> Show proposed boxes</label>
+      <a id="source-link" target="_blank" rel="noopener">Open original image</a>
+    </figure>
+    <div class="trial-detail">
+      <h3 id="trial-detail-title"></h3>
+      <p id="trial-explanation"></p><dl id="trial-metrics"></dl>
+      <ul id="labels" class="labels"></ul>
+      <figure id="display-figure"><a id="display-link" target="_blank" rel="noopener"><img id="display-image" alt="Android screenshot showing the two eye halves"></a><figcaption>Saved Android surface, not a through-the-lens photograph. Open for full size.</figcaption></figure>
+      <p id="display-missing" class="note" hidden></p>
+      <p id="expiry" class="note"></p>
+      <details><summary>Source files for this trial</summary><ul id="trial-files"></ul></details>
+    </div>
+  </div>
+  <h3 class="subsection">Wearer feedback, in their words</h3><div id="feedback" class="feedback"></div>
+  <h3 class="subsection">Retained failures</h3><div class="table-wrap"><table id="failure-table"><thead><tr><th>Attempt</th><th>Observed failure</th><th>Interpretation / next check</th></tr></thead><tbody id="failures"></tbody></table></div>
+  <p class="note">One additional camera-stall retry is recorded inside the earlier qualitative occlusion trial. It is separate from the three failed measured/setup attempts.</p>
+</section>
+
+<section id="gaps" aria-labelledby="gap-title">
+  <h2 id="gap-title">Missing files versus missing measurements</h2>
+  <p id="gap-intro"></p>
+  <div class="table-wrap"><table class="gap-table"><thead><tr><th>Evidence</th><th>Status</th><th>What to look for / why it matters</th></tr></thead><tbody>
+    <tr><th>Local Qwen smoke test</th><td><strong class="warn">Referenced, absent</strong></td><td><p><code>docs/VLM_CAMERA_PROBE.md</code> reports a 44.35-second response and incorrect cup/laptop proposals. Locate the actual run directory under <code>artifacts/vlm-probes/</code>: <code>source.png</code>, <code>input.jpg</code>, <code>response.json</code>, <code>result.json</code>, <code>proposals.png</code>, and any saved visual review. The run directory name is not recorded. That number is a documented claim, not a verified comparison here.</p></td></tr>
+    <tr><th>First Codex snapshot</th><td><strong class="warn">Referenced, absent</strong></td><td><p><code>artifacts/vlm-probes/session-2026-11-19/codex-frame-01/</code>: <code>source.jpg</code>, <code>capture.json</code>, <code>codex-result.json</code>, <code>codex-labels.png</code>. The guide explicitly names this earlier review. It is outside the four archived bottle snapshots.</p></td></tr>
+    <tr><th>Local model provenance</th><td><strong class="warn">External, not archived</strong></td><td><p><code>/home/ahjc/Coding/.toolchain/vlm/provenance.json</code>, plus launch/server logs if retained. This would verify the reported llama.cpp b12554 / Qwen3-VL-2B Q4_K_M setup. Model weights themselves are not needed for this analysis.</p></td></tr>
+    <tr><th>Build log and exact APKs</th><td>Referenced / intentionally excluded</td><td><p><code>large-text-build.log</code> is named in <code>validation.json</code>, but only summarized results are archived. APK hashes exist for both variants; matching APKs and historical small-text source were not archived. Useful for exact reproduction, not needed to recompute present timings. A newly built APK is not the historical binary.</p></td></tr>
+    <tr><th>Large-text / trial-02 final hold status</th><td><strong class="warn">Unresolved</strong></td><td><p>The frame committed, but automatic expiry was not observed. The saved result has no <code>display_hold.last_device_status</code>; that field was added after collection. If retained, the host bench log or device logcat may explain it. Otherwise, reproduce with the newer status logging. Missing acknowledgement does not prove labels stayed visible.</p></td></tr>
+    <tr><th>Original bottle result paths</th><td class="good">Relocated, present</td><td><p>The four <code>artifacts/vlm-probes/bottle-trials/trial-*/codex-result.json</code> references resolve to equivalent files under <code>qualitative-baseline/</code> in this archive. No need to resend these.</p></td></tr>
+    <tr><th>Accuracy, optical alignment, model cost</th><td>Not measured in this pilot</td><td><p>No independently verified identity/box labels, continuous video, camera-to-eye calibration, optical timing, exact Codex model/configuration, token/cost data, or H0–H4 comparison outputs. These require new measurements or separately retained records; they cannot be recovered from screenshot timestamps.</p></td></tr>
+  </tbody></table></div>
+  <p>Share the specific missing run folders and metadata if they exist. Do not replace this archive or send the entire toolchain. The current six-trial timing analysis is complete without those extras; a local-Qwen comparison is not.</p>
+  <details><summary>Audit details and relocated artifact references</summary><p id="audit-count"></p><ul id="audit-errors"></ul><ul id="relocated"></ul><a href="analysis.json">Full check results</a></details>
+</section>
+
+<section id="next" aria-labelledby="next-title">
+  <h2 id="next-title">What to do next</h2>
+  <ol class="next-steps">
+    <li><h3>Recover the omitted model-probe evidence</h3><p>Start with the Qwen run folder, its provenance file, and the first Codex snapshot listed above. Verify their input hashes and timing boundaries before comparing them with conversational review. <strong>Done when:</strong> each reported measurement has its actual input, response and configuration.</p></li>
+    <li><h3>Make placement useful, then measure it</h3><p>Use camera-space box overlays for the next software iteration. For see-through alignment, measure camera-to-eye mapping, per-eye offsets and distance-dependent error with the wearer. The current delivery path omits boxes; Android draws a list. <strong>Done when:</strong> static placement error and readability are recorded across positions and distances.</p></li>
+    <li><h3>Separate inference time from orchestration</h3><p>Run the same saved images through an explicitly timed local or authorized hosted endpoint. Record exact model/runtime, request/response times and usage. Add a freshness budget and movement invalidation before showing delayed labels. <strong>Done when:</strong> endpoint latency and stale-result rates are reproducible without a conversation in the timing loop.</p></li>
+    <li><h3>Test persistent identity under controlled conditions</h3><p>Collect separate reference/development/test images, independently label identities and boxes, and execute H0–H4 on the same held-out recordings. Use similar objects as planned, include swaps and occlusion, and keep failures. <strong>Done when:</strong> per-sequence wrong-object labels, correct coverage, recovery delay and reasoning cost can be compared.</p></li>
+    <li><h3>Close the display-lifecycle gap</h3><p>Repeat no-label trials with final status, pause/resume events and expiry acknowledgements saved. Capture per-trial wearer feedback. Power and thermal profiling should follow a stable display loop. <strong>Done when:</strong> commit, hold and clear outcomes are explicit, including interrupted trials.</p></li>
+  </ol>
+  <p class="decision"><strong>Research answer:</strong> this pilot demonstrates a real snapshot-to-device path. It does not yet show that visual reasoning improves persistent annotation correctness, or that its benefit outweighs its latency and cost.</p>
+</section>
+</main>
+<footer><p>Built from preserved November 19 evidence; raw files are unchanged.</p><div id="downloads"></div></footer>
+</body></html>
