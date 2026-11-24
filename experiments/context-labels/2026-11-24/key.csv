@@ -1,0 +1,13 @@
+probe,source,source_sha256,source_identity,region,xyxy
+P01,large-text/trial-02,2d50cc7361fab37ddbcf5063c738a602b65ae9cab0d1c15f9382332d5ffb7bc4,none,distractor,286 128 401 206
+P02,qualitative-baseline/trial-02,03a22d1f8df9f7e228902fab9890ca6d9b127444b8a99d7461dbaded33a9e78f,B,body interior,119 152 148 234
+P03,large-text/trial-02,2d50cc7361fab37ddbcf5063c738a602b65ae9cab0d1c15f9382332d5ffb7bc4,none,distractor,58 217 151 277
+P04,qualitative-baseline/trial-02,03a22d1f8df9f7e228902fab9890ca6d9b127444b8a99d7461dbaded33a9e78f,A,body interior,253 184 261 221
+P05,large-text/trial-04,5d90bfb764707cd12d43181687e3c5f6b9bf64ef12ef6caee8ea5833c96fc7db,A,body detail,269 149 309 276
+P06,qualitative-baseline/trial-02,03a22d1f8df9f7e228902fab9890ca6d9b127444b8a99d7461dbaded33a9e78f,B,closure,98 18 185 100
+P07,qualitative-baseline/trial-02,03a22d1f8df9f7e228902fab9890ca6d9b127444b8a99d7461dbaded33a9e78f,A,body detail,252 147 297 263
+P08,qualitative-baseline/trial-03,94a4c9d49a15bc990b5cfee4a0d48757411d98868712e322addc73983906efa9,B,occluded closure,87 15 183 108
+P09,qualitative-baseline/trial-02,03a22d1f8df9f7e228902fab9890ca6d9b127444b8a99d7461dbaded33a9e78f,A,closure,248 75 300 128
+P10,qualitative-baseline/trial-03,94a4c9d49a15bc990b5cfee4a0d48757411d98868712e322addc73983906efa9,none,occluder,7 138 84 272
+P11,large-text/trial-04,5d90bfb764707cd12d43181687e3c5f6b9bf64ef12ef6caee8ea5833c96fc7db,B,body interior,152 155 184 235
+P12,large-text/trial-04,5d90bfb764707cd12d43181687e3c5f6b9bf64ef12ef6caee8ea5833c96fc7db,A,closure,267 93 310 145

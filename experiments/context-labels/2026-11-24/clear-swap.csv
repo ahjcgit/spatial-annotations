@@ -1,0 +1,5 @@
+frame,side,box_xyxy,truth,fixed_slot,nearest_reference,cos_A,cos_B
+trial-02,left,96 15 185 295,B,A,A,0.96286,0.95451
+trial-02,right,244 72 303 295,A,B,A,0.97199,0.95330
+trial-04,left,92 15 179 295,B,A,A,0.96940,0.95057
+trial-04,right,241 74 302 296,A,B,A,0.97048,0.95513

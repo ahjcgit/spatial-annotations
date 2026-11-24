@@ -1,0 +1,32 @@
+{
+  "distinct_test_photos": 4,
+  "probe_count": 12,
+  "crop_only": {
+    "target_correct": 6,
+    "target_wrong": 0,
+    "target_abstain": 3,
+    "distractor_rejected": 3,
+    "distractor_falsely_labeled": 0
+  },
+  "current_scene": {
+    "target_correct": 9,
+    "target_wrong": 0,
+    "target_abstain": 0,
+    "distractor_rejected": 3,
+    "distractor_falsely_labeled": 0
+  },
+  "changed_choices": {
+    "P02": [
+      "unknown",
+      "B"
+    ],
+    "P04": [
+      "unknown",
+      "A"
+    ],
+    "P11": [
+      "unknown",
+      "B"
+    ]
+  }
+}

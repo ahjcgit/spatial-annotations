@@ -50,3 +50,13 @@ def test_existing_evidence_is_not_overwritten(tmp_path):
     with pytest.raises(ValueError, match='already contains evidence'):
         bench.Bench('unused-adb', 'unused-serial', tmp_path)
     assert metadata.read_text() == '{"original": true}'
+
+
+def test_custom_enrollment_names_survive_setup(tmp_path, monkeypatch):
+    import json
+    monkeypatch.setattr(bench.Bench, "device", lambda *args: b"100")
+    run = bench.Bench("unused", "unused", tmp_path, ("worn base", "scratched handle"))
+    metadata = json.loads((tmp_path / "run-metadata.json").read_text())
+    assert run.identities == metadata["operator_confirmed_identities"] == {
+        "A": "worn base", "B": "scratched handle"
+    }

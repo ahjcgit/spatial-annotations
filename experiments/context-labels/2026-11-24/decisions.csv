@@ -1,0 +1,13 @@
+probe,decision,visible_evidence
+P01,unknown,Rectangular equipment edge and background. No distinctive bottle part.
+P02,unknown,Uniform gray patch. No readable mark or identifiable closure.
+P03,unknown,Wrinkled transparent surface with markings. No reference-specific bottle feature.
+P04,unknown,Highlight on a narrow reflective surface. Material alone is insufficient.
+P05,A,Vertical smartwater lettering and barcode layout on a reflective cylinder match A.
+P06,B,Broad cap with a hinged latch and shiny collar matches B within this pair.
+P07,A,Vertical smartwater lettering beside the barcode matches A within this pair.
+P08,B,Broad cap with a rectangular hinged latch and collar matches B within this pair.
+P09,A,Narrow ridged screw cap above rounded metallic shoulders matches A within this pair.
+P10,unknown,Nutrition panel on a flexible surface. No distinguishing bottle detail.
+P11,unknown,Smooth gray patch with slight shading. No instance-specific detail.
+P12,A,Narrow ridged screw cap and tapered reflective neck match A within this pair.

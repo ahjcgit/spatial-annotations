@@ -342,6 +342,8 @@ Camera-image placement metrics do not establish optical/world alignment.
 
 ### Experimental two-object identity recovery
 
+Start with the [paired image experiment](experiments/context-labels/2026-11-24/README.md) and [next glasses session protocol](docs/CONTEXT_LABEL_GLASSES_SESSION.md) for context-aware, object-specific labels.
+
 The latest physical run is a separate **Codex-to-RayNeo snapshot pilot** with two bottles.
 Open its [results dashboard](experiments/codex-glasses/2026-11-19/dashboard/index.html)
 using the [analysis and serving guide](docs/CODEX_PILOT_ANALYSIS.md). The dashboard verifies

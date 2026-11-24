@@ -12,11 +12,13 @@ import math
 import os
 import shutil
 import statistics
+import subprocess
 from pathlib import Path
 from urllib.parse import quote
 
 ROOT = Path(__file__).resolve().parents[1]
 DEFAULT = ROOT / "experiments/codex-glasses/2026-11-19"
+EVIDENCE_COMMIT = "33666abf62b4e67117bedf75745c93e8c48b45a6"
 RUNS = ("setup-diagnostics", "small-text", "large-text", "qualitative-baseline")
 BOUNDARIES = {
     "host_capture_to_image_ready_ms": ("host", "handoffReadyNs", "captureStartNs"),
@@ -103,11 +105,15 @@ def build_data(archive, out, repo=ROOT):
         )
     for name, digest in manifest["final_source_sha256"].items():
         path = (repo / name).resolve()
-        check(
-            "Recorded source SHA-256",
-            path.is_relative_to(repo) and path.is_file() and sha(path) == digest,
-            name,
-        )
+        matches = path.is_relative_to(repo) and path.is_file() and sha(path) == digest
+        if not matches and path.is_relative_to(repo) and (repo / ".git").exists():
+            # The shipped bench can evolve after the archived experiment.
+            original = subprocess.run(
+                ["git", "cat-file", "blob", f"{EVIDENCE_COMMIT}:{name}"],
+                cwd=repo, capture_output=True,
+            )
+            matches = original.returncode == 0 and hashlib.sha256(original.stdout).hexdigest() == digest
+        check("Recorded source SHA-256", matches, name)
 
     qualitative = read(archive / "qualitative-baseline/trial-summary.json", {})
     conditions = {r["trial_id"]: r["condition"] for r in qualitative.get("trials", [])}
@@ -356,7 +362,7 @@ def build_data(archive, out, repo=ROOT):
     return {
         "schema_version": 1,
         "archive": archive.name,
-        "evidence_commit": "33666abf62b4e67117bedf75745c93e8c48b45a6",
+        "evidence_commit": EVIDENCE_COMMIT,
         "integrity": {
             "ok": all(c["passed"] for c in checks),
             "checks": checks,

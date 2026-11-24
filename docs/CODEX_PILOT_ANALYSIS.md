@@ -20,7 +20,7 @@ Open `http://<computer-LAN-IP>:8029/dashboard/` (on this development machine:
 `http://192.168.1.76:8029/dashboard/`). The generated dashboard is also committed and
 can be opened directly from `dashboard/index.html` without a server: data is embedded
 in a local JS file, not fetched from an API. Keep the adjacent evidence folders intact.
-The archived original report remains at `/report/`.
+The source audit checks the recorded hashes against the shipped files or their blobs at the evidence commit. Keep that commit in your clone when rebuilding after code changes. The archived original report remains at `/report/`.
 
 The dashboard provides findings, host-stage timing bars, scene filters, all 13 trial
 records, proposed box overlays, device screenshots, wearer feedback, retained failures,
@@ -98,7 +98,7 @@ in this checkout/archive; it does not assert that the file was never saved on th
 
 | Priority | Referenced artifact | Evidence that it existed / current status | Needed for |
 |---|---|---|---|
-| First | Actual Qwen run folder under `artifacts/vlm-probes/` | `docs/VLM_CAMERA_PROBE.md` says its first response took 44.35 s, with false cup/laptop proposals, and that output/review were retained. No corresponding raw run is committed. The actual directory name is not stated. | Verify Qwen output, request latency and errors; compare only after matching image/task/timing boundaries |
+| Optional historical comparison | Actual Qwen run folder under `artifacts/vlm-probes/` | `docs/VLM_CAMERA_PROBE.md` says its first response took 44.35 s, with false cup/laptop proposals, and that output/review were retained. No corresponding raw run is committed. The actual directory name is not stated. | Verify Qwen output, request latency and errors; compare only after matching image/task/timing boundaries |
 | First | `artifacts/vlm-probes/session-2026-11-19/codex-frame-01/` | The same guide explicitly names four files: `source.jpg`, `capture.json`, `codex-result.json`, `codex-labels.png`. None is included here. This is distinct from `bottle-trials/`. | Recover the first Codex review and input provenance |
 | With Qwen | `/home/ahjc/Coding/.toolchain/vlm/provenance.json` | Guide names it as the runtime/model revision, URL, size and SHA-256 record; it is outside Git. | Verify the reported llama.cpp b12554 / Qwen3-VL-2B Q4_K_M configuration |
 | Useful | `large-text-build.log` | `validation.json` says “BUILD SUCCESSFUL in large-text-build.log”; the log itself is absent and its full parent path is not recorded. | Independently inspect the historical build/lint output rather than its summary |
@@ -148,9 +148,7 @@ The audit resolves these old local paths rather than treating them as omissions.
 
 ## Next steps, with a decision at each stage
 
-1. Recover the referenced Qwen and initial Codex artifacts, if available. Verify exact
-   inputs and measurement boundaries. Decide whether the existing Qwen result is usable
-   as a smoke test or must be repeated; do not compare 44.35 s with 10.42 s as model speeds.
+1. Run the [same-model object session](CONTEXT_LABEL_GLASSES_SESSION.md). The [paired crop and scene experiment](../experiments/context-labels/2026-11-24/README.md) recovered three previously ambiguous regions in the archived frames. Test whether the same approach carries across viewpoints and rejects a third lookalike. The missing local-model files are optional for this question.
 2. Implement camera-space overlays as an image association feature. Separately measure
    camera-to-eye mapping/per-eye offsets and distance effects before promising aligned
    see-through labels. Record static placement error and wearer readability.

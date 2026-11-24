@@ -98,7 +98,7 @@ def metrics(host, device):
 
 
 class Bench:
-    def __init__(self, adb, serial, root):
+    def __init__(self, adb, serial, root, objects=("silver bottle", "orange bottle")):
         self.adb, self.serial, self.root = adb, serial, root
         if (root / 'run-metadata.json').exists() or any(root.glob('trial-*')):
             raise ValueError('Run directory already contains evidence; choose a new --out directory')
@@ -112,11 +112,12 @@ class Bench:
         self.device_page = int(self.device('shell', 'getconf', 'PAGESIZE').strip())
         self.host_hz = os.sysconf('SC_CLK_TCK')
         self.host_page = os.sysconf('SC_PAGE_SIZE')
+        self.identities = dict(zip(('A', 'B'), objects, strict=True))
         metadata = {
             'schema_version': 1, 'started_at': datetime.now(timezone.utc).isoformat(),
             'provider_kind': 'codex_conversation_vision', 'exact_model_version': None,
-            'operator_confirmed_identities': {'A': 'silver bottle', 'B': 'orange bottle'},
-            'identity_confirmation_source': 'User confirmation in this session; boxes and optical readability not yet verified.',
+            'operator_confirmed_identities': self.identities,
+            'identity_confirmation_source': 'Operator-supplied enrollment names. See the run enrollment record for image evidence.',
             'device': {k: self.device('shell', 'getprop', v).decode().strip() for k,v in {
                 'model':'ro.product.model','product':'ro.product.name','android':'ro.build.version.release','sdk':'ro.build.version.sdk','firmware':'ro.build.display.id'}.items()},
             'host': {'platform':platform.platform(),'python':platform.python_version(),'logical_cpus':os.cpu_count()},
@@ -262,7 +263,7 @@ class Bench:
                 'metrics':values,'transfer_bytes':{'camera_jpeg':current['jpeg_bytes'],'device_label_json':len(payload)},
                 'provider_kind':'codex_conversation_vision','isolated_inference_measured':False,'optical_visibility_verified':False,
                 'resource_summary':resource_summary(self.samples),
-                'operator_confirmed_identities':{'A':'silver bottle','B':'orange bottle'}}
+                'operator_confirmed_identities':self.identities}
             write(folder/'result.json',summary)
             return summary
         except Exception as error:
@@ -313,5 +314,7 @@ if __name__=='__main__':
     p=argparse.ArgumentParser(description=__doc__)
     p.add_argument('--adb',default='adb');p.add_argument('--serial',required=True)
     p.add_argument('--out',type=Path,required=True);p.add_argument('--port',type=int,default=8028)
+    p.add_argument('--objects', nargs=2, metavar=('NAME_A', 'NAME_B'), default=('silver bottle', 'orange bottle'),
+                   help='Operator-confirmed enrollment names, in A/B order (recorded locally).')
     args=p.parse_args()
-    uvicorn.run(create_app(Bench(args.adb,args.serial,args.out)),host='127.0.0.1',port=args.port,access_log=False)
+    uvicorn.run(create_app(Bench(args.adb,args.serial,args.out,args.objects)),host='127.0.0.1',port=args.port,access_log=False)

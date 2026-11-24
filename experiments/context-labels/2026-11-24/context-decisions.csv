@@ -1,0 +1,13 @@
+probe,decision,visible_evidence
+P01,unknown,The outlined equipment sits behind the laptop. Neither reference bottle is visible.
+P02,B,The boxed surface continues up the same bottle to the broad latched lid.
+P03,unknown,The outlined crinkled bag has no bottle body or cap attached.
+P04,A,The narrow strip lies on the metal cylinder beside the vertical smartwater lettering under a screw cap.
+P05,A,The printed body and narrow screw cap match A.
+P06,B,The hinged cap connects to the wide straight-sided bottle.
+P07,A,The vertical lettering and barcode are on the narrow screw-cap bottle.
+P08,B,The outlined hinged closure matches B within this pair. The bag hides the body.
+P09,A,The screw cap connects to the tapered metal body with lettering.
+P10,unknown,The target is the nutritional panel on the foreground bag. The bottle behind it is a different surface.
+P11,B,The plain patch belongs to the continuous broad straight body under the hinged lid.
+P12,A,The outlined screw cap sits over the lettered metal cylinder.

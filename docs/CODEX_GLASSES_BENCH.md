@@ -27,6 +27,8 @@ adb -s YOUR_SERIAL install -r android/app/build/outputs/apk/debug/app-debug.apk
   --out artifacts/codex-glasses-bench/new-run
 ```
 
+For a new enrolled pair, pass `--objects "name for A" "name for B"` when starting the bench. The descriptions are saved in the local run metadata. The defaults reproduce the silver/orange enrollment.
+
 The bench binds localhost:8028. `--adb` accepts an explicit ADB path.
 Use a fresh `--out` directory; existing evidence is never overwritten.
 Allow camera permission in the debug app before collection. The new activity uses the camera
