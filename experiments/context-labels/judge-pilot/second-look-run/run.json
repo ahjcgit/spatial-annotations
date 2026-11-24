@@ -1,0 +1,58 @@
+{
+  "seal": {
+    "observations": "ef9e390375fcb974f52c78cb0e2bde2ae1cd3f23092cfa2c7d027b1ce9c60586",
+    "truth": "4d626a8fbca8ec91d0a3e7b67c58a5a27ea994a300c0db3779c350fe7e77fe4d"
+  },
+  "provider": "interactive",
+  "config": {
+    "enabled": false,
+    "vlm_enabled": false,
+    "model": "",
+    "timeout_s": 20,
+    "concurrency": 2,
+    "max_image_dimension": 640,
+    "cooldown_s": 30,
+    "requests_per_minute": 6,
+    "max_tracks_per_request": 4,
+    "max_objects": 8,
+    "max_references": 3,
+    "response_ttl_s": 5,
+    "max_attempts": 2,
+    "acceptance": "manual",
+    "gap_s": 1,
+    "track_ttl_s": 3,
+    "temporal_similarity": 0.97,
+    "overlap_iou": 0.25,
+    "input_usd_per_million": null,
+    "output_usd_per_million": null,
+    "endpoint_configured": false
+  },
+  "model": "interactive",
+  "max_calls": 8,
+  "seed": 241130,
+  "repeats": 1,
+  "arms": [
+    "adaptive",
+    "fixed-look"
+  ],
+  "variants": [
+    "genuine"
+  ],
+  "cases": [
+    "p02",
+    "p03"
+  ],
+  "planned": 4,
+  "pass": "manual",
+  "cache_sha256": null,
+  "calibration_sha256": null,
+  "prompt_sha256": "68533f4da14b5efc0ece4b9165ba25d6580811a70437de2a45eb1c8a41773093",
+  "platform": "Linux-5.15.0-198-generic-x86_64-with-glibc2.35",
+  "versions": {
+    "pillow": "13.0.0",
+    "numpy": "2.2.6",
+    "httpx": "0.28.1"
+  },
+  "started_utc": "2026-11-24T09:42:09.705926+00:00",
+  "pid": 298365
+}

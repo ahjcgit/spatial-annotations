@@ -127,6 +127,8 @@ def payload(request, config):
 
 
 class OpenAICompatible:
+    build_body = staticmethod(payload)
+
     def __init__(self, config, transport=None):
         self.config = config
         self.transport = transport
@@ -134,7 +136,7 @@ class OpenAICompatible:
     async def match(self, request):
         if not self.config.vlm_enabled:
             raise ProviderFailure("vlm_disabled")
-        body = await asyncio.to_thread(payload, request, self.config)
+        body = await asyncio.to_thread(self.build_body, request, self.config)
         headers = (
             {"Authorization": "Bearer " + self.config.api_key}
             if self.config.api_key

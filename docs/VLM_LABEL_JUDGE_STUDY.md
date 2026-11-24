@@ -2,6 +2,8 @@
 
 **Primary question.** On the same incoming view and the same proposed identity, does a VLM with recent visual history let the wearer select the correct physical object before the scene changes more often than the local policy alone? Count displaying the wrong note and leaving an old note on screen as failures even if corrected later. The [archived replay](../experiments/context-labels/temporal-judge/README.md) motivates testing harder transitions: earlier photos changed zero of eight paired decisions.
 
+Use the [experiment runner and field commands](LABEL_JUDGE_RUN.md) and inspect the [executed wrong-hint and second-look pilot](../experiments/context-labels/judge-pilot/README.md).
+
 ### 1. Prepare the objects and blind the evaluation
 
 Use three items of the same model and color. Enroll A and B with front, back and side references showing persistent body details such as a dent or seam. Keep C unregistered. Use two different harmless notes. Define identity as the body and record an underside ID the wearer’s camera cannot see. Keep a truth log with body ID, side, accessory, actual manipulation and timestamp. Capture an independent witness view or check the hidden IDs at each reveal. Seal the truth before reviewing predictions. Use opaque request IDs and strip note text, filenames, truth, spoken instructions and setup labels from model inputs.

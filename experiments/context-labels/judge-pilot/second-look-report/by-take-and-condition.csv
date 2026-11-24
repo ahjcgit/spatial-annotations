@@ -1,0 +1,12 @@
+arm,variant,phase,group,value,n,correct,wrong_body,unsupported_show,abstain,justified_withhold,late,failures,calls
+adaptive,genuine,initial,take,qualitative-baseline,2,1,0,0,0,1,0,0,2
+adaptive,genuine,initial,condition,occlusion,1,0,0,0,0,1,0,0,1
+adaptive,genuine,initial,condition,swap,1,1,0,0,0,0,0,0,1
+fixed-look,genuine,initial,take,qualitative-baseline,2,1,0,0,0,1,0,0,2
+fixed-look,genuine,initial,condition,occlusion,1,0,0,0,0,1,0,0,1
+fixed-look,genuine,initial,condition,swap,1,1,0,0,0,0,0,0,1
+fixed-look,genuine,second,take,qualitative-baseline,2,1,0,0,0,1,0,0,2
+fixed-look,genuine,second,condition,occlusion,1,0,0,0,0,1,0,0,1
+fixed-look,genuine,second,condition,reveal,1,1,0,0,0,0,0,0,1
+adaptive,genuine,second,take,qualitative-baseline,1,1,0,0,0,0,0,0,1
+adaptive,genuine,second,condition,reveal,1,1,0,0,0,0,0,0,1

@@ -1,0 +1,145 @@
+{
+  "provider": "interactive",
+  "pass": "manual",
+  "groups": [
+    {
+      "eligible_targets": 1,
+      "decoy_or_empty": 0,
+      "false_labels_on_decoy_or_empty": 0,
+      "raw_candidate_correct_on_eligible": 1,
+      "arm": "adaptive",
+      "variant": "genuine",
+      "phase": "initial",
+      "n": 2,
+      "correct": 1,
+      "wrong_body": 0,
+      "unsupported_show": 0,
+      "abstain": 0,
+      "justified_withhold": 1,
+      "late": 0,
+      "failures": 0,
+      "calls": 2,
+      "hint_outcomes": {
+        "correct_hint_accepted": 1,
+        "bad_hint_withheld": 1
+      },
+      "latency": {
+        "samples": 2,
+        "mean_ms": 4435.1929955000005,
+        "median_ms": 4435.1929955000005,
+        "p95_ms": null
+      },
+      "median_cpu_ms": 9.792776,
+      "max_sampled_rss_mib": 65.5390625,
+      "total_input_bytes": 265876,
+      "usage_tokens": null,
+      "cost_usd": null,
+      "offline_correct_by_deadline": null,
+      "observed_wearer_correct_on_time": null
+    },
+    {
+      "eligible_targets": 1,
+      "decoy_or_empty": 0,
+      "false_labels_on_decoy_or_empty": 0,
+      "raw_candidate_correct_on_eligible": 1,
+      "arm": "fixed-look",
+      "variant": "genuine",
+      "phase": "initial",
+      "n": 2,
+      "correct": 1,
+      "wrong_body": 0,
+      "unsupported_show": 0,
+      "abstain": 0,
+      "justified_withhold": 1,
+      "late": 0,
+      "failures": 0,
+      "calls": 2,
+      "hint_outcomes": {
+        "bad_hint_withheld": 1,
+        "correct_hint_accepted": 1
+      },
+      "latency": {
+        "samples": 2,
+        "mean_ms": 5125.082115499999,
+        "median_ms": 5125.082115499999,
+        "p95_ms": null
+      },
+      "median_cpu_ms": 8.958763000000001,
+      "max_sampled_rss_mib": 65.5390625,
+      "total_input_bytes": 265876,
+      "usage_tokens": null,
+      "cost_usd": null,
+      "offline_correct_by_deadline": null,
+      "observed_wearer_correct_on_time": null
+    },
+    {
+      "eligible_targets": 1,
+      "decoy_or_empty": 0,
+      "false_labels_on_decoy_or_empty": 0,
+      "raw_candidate_correct_on_eligible": 1,
+      "arm": "fixed-look",
+      "variant": "genuine",
+      "phase": "second",
+      "n": 2,
+      "correct": 1,
+      "wrong_body": 0,
+      "unsupported_show": 0,
+      "abstain": 0,
+      "justified_withhold": 1,
+      "late": 0,
+      "failures": 0,
+      "calls": 2,
+      "hint_outcomes": {
+        "correct_hint_accepted": 1,
+        "bad_hint_withheld": 1
+      },
+      "latency": {
+        "samples": 2,
+        "mean_ms": 5468.0598835,
+        "median_ms": 5468.0598835,
+        "p95_ms": null
+      },
+      "median_cpu_ms": 8.739109,
+      "max_sampled_rss_mib": 65.5390625,
+      "total_input_bytes": 257723,
+      "usage_tokens": null,
+      "cost_usd": null,
+      "offline_correct_by_deadline": null,
+      "observed_wearer_correct_on_time": null
+    },
+    {
+      "eligible_targets": 1,
+      "decoy_or_empty": 0,
+      "false_labels_on_decoy_or_empty": 0,
+      "raw_candidate_correct_on_eligible": 1,
+      "arm": "adaptive",
+      "variant": "genuine",
+      "phase": "second",
+      "n": 1,
+      "correct": 1,
+      "wrong_body": 0,
+      "unsupported_show": 0,
+      "abstain": 0,
+      "justified_withhold": 0,
+      "late": 0,
+      "failures": 0,
+      "calls": 1,
+      "hint_outcomes": {
+        "correct_hint_accepted": 1
+      },
+      "latency": {
+        "samples": 1,
+        "mean_ms": 7030.3954220000005,
+        "median_ms": 7030.3954220000005,
+        "p95_ms": null
+      },
+      "median_cpu_ms": 8.459671,
+      "max_sampled_rss_mib": 65.5390625,
+      "total_input_bytes": 127010,
+      "usage_tokens": null,
+      "cost_usd": null,
+      "offline_correct_by_deadline": null,
+      "observed_wearer_correct_on_time": null
+    }
+  ]
+}
