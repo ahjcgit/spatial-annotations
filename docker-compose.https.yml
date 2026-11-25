@@ -2,6 +2,9 @@
 services:
   backend:
     ports: !reset []
+    environment:
+      # Only Caddy can reach the backend here, so trust its X-Forwarded-For for client IPs.
+      FORWARDED_ALLOW_IPS: "*"
   caddy:
     image: caddy:2-alpine
     ports:

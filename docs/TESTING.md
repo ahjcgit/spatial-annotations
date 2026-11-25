@@ -12,6 +12,7 @@ python3 -m venv .venv
 
 Backend tests use temporary SQLite databases. They cover authentication, note
 permissions, group membership, validation, persistence, and companion/API routes.
+See [login rate limit tests](LOGIN_RATE_LIMIT_TESTS.md) for the limiter coverage.
 Android JVM tests cover QR decoding, sessions, URL policy, HTTP calls, and scan state.
 Gradle writes reports to `android/app/build/reports/`.
 

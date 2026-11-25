@@ -12,6 +12,7 @@ from sqlalchemy import select, or_, and_, text, delete
 from sqlalchemy.exc import IntegrityError
 from .database import Base, configure_database
 from .models import User, Group, Membership, PhysicalObject, Annotation, SessionToken
+from .ratelimit import LoginLimiter
 from .schemas import (Credentials, UserOut, TokenOut, GroupCreate, GroupOut, MemberCreate,
                       ObjectCreate, ObjectPatch, ObjectOut, AnnotationCreate, AnnotationPatch, AnnotationOut)
 from .security import db_session, require_user, optional_user, bearer, digest, hasher, check_password, issue_token, DUMMY_HASH
@@ -35,6 +36,11 @@ def create_app(database_url=None):
     ttl = int(os.getenv("TOKEN_TTL_HOURS", "24"))
     if not 1 <= ttl <= 720:
         raise ValueError("TOKEN_TTL_HOURS must be 1..720")
+    attempts_per_ip = int(os.getenv("LOGIN_ATTEMPTS_PER_IP_PER_MINUTE", "20"))
+    failures_per_account = int(os.getenv("LOGIN_FAILURES_PER_ACCOUNT_PER_15_MINUTES", "5"))
+    if not 1 <= attempts_per_ip <= 1000 or not 1 <= failures_per_account <= 1000:
+        raise ValueError("Login rate limits must be 1..1000")
+    app.state.login_limiter = limiter = LoginLimiter(attempts_per_ip, failures_per_account)
 
     @app.exception_handler(RequestValidationError)
     async def validation_error(_, exc):
@@ -101,11 +107,18 @@ def create_app(database_url=None):
         return user
 
     @app.post("/auth/login", response_model=TokenOut)
-    def login(data: Credentials, db=Depends(db_session)):
+    def login(data: Credentials, request: Request, db=Depends(db_session)):
+        ip = request.client.host if request.client else "unknown"
+        # Checked before hashing so throttled requests cost no Argon2 work.
+        wait = limiter.check(ip, data.username)
+        if wait:
+            raise HTTPException(429, "Too many login attempts. Try again later.", headers={"Retry-After": str(wait)})
         user = db.scalar(select(User).where(User.username == data.username))
         valid = check_password(user.password_hash if user else DUMMY_HASH, data.password)
         if not user or not valid:
+            limiter.failed(ip, data.username)
             raise HTTPException(401, "Invalid username or password")
+        limiter.succeeded(ip, data.username)
         return issue_token(db, user, ttl)
 
     @app.post("/auth/logout", status_code=204)

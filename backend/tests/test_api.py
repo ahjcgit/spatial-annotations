@@ -41,6 +41,56 @@ def test_authentication(client):
     assert client.get("/users/me", headers=headers).status_code == 401
 
 
+def test_login_failures_throttled_per_ip_and_username(client, users):
+    wrong = {"username": "alice", "password": "wrong password"}
+    for _ in range(5):
+        assert client.post("/auth/login", json=wrong).status_code == 401
+    throttled = client.post("/auth/login", json={**wrong, "password": "correct-horse-test"})
+    assert throttled.status_code == 429
+    assert 1 <= int(throttled.headers["Retry-After"]) <= 900
+    assert "correct-horse-test" not in throttled.text
+    # Another account from the same IP, and the same account from another IP, still work.
+    assert client.post("/auth/login", json={"username": "bob", "password": "correct-horse-test"}).status_code == 200
+    with TestClient(client.app, client=("203.0.113.9", 50000)) as other:
+        assert other.post("/auth/login", json={"username": "alice", "password": "correct-horse-test"}).status_code == 200
+
+
+def test_login_success_clears_failures(client, users):
+    for _ in range(4):
+        assert client.post("/auth/login", json={"username": "alice", "password": "wrong password"}).status_code == 401
+    assert client.post("/auth/login", json={"username": "alice", "password": "correct-horse-test"}).status_code == 200
+    for _ in range(4):
+        assert client.post("/auth/login", json={"username": "alice", "password": "wrong password"}).status_code == 401
+
+
+def test_login_attempts_throttled_per_ip(tmp_path, monkeypatch):
+    monkeypatch.setenv("LOGIN_ATTEMPTS_PER_IP_PER_MINUTE", "3")
+    with TestClient(create_app(f"sqlite:///{tmp_path}/limits.db")) as client:
+        credentials = {"username": "alice", "password": "correct-horse-test"}
+        client.post("/auth/register", json=credentials)
+        for _ in range(3):
+            assert client.post("/auth/login", json=credentials).status_code == 200
+        assert client.post("/auth/login", json=credentials).status_code == 429
+        with TestClient(client.app, client=("203.0.113.9", 50000)) as other:
+            assert other.post("/auth/login", json=credentials).status_code == 200
+
+
+def test_sliding_window_expires():
+    from app.ratelimit import SlidingWindow
+    now = [0.0]
+    window = SlidingWindow(2, 60, clock=lambda: now[0])
+    assert window.acquire("ip") == 0 and window.acquire("ip") == 0
+    assert window.acquire("ip") == 60
+    now[0] = 59.5
+    assert window.acquire("ip") == 1
+    now[0] = 60
+    assert window.acquire("ip") == 0
+    bounded = SlidingWindow(1, 60, max_keys=2, clock=lambda: now[0])
+    for key in ("a", "b", "c"):
+        bounded.hit(key)
+    assert list(bounded.hits) == ["b", "c"]
+
+
 def test_expired_tokens(client, users):
     with client.app.state.session_factory() as db:
         token = db.scalar(select(SessionToken).where(SessionToken.user_id == users["bob"]["id"]))

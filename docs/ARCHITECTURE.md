@@ -92,8 +92,15 @@ certificates in named volumes. Certificate issuance requires reachable DNS/ports
 
 Keep `.env`, credentials, and SDK binaries local. Back up SQLite through its backup
 API or stop the service before copying the database and WAL files. `docker compose
-down -v` deletes the data volume. The prototype has no password recovery, login rate
-limiter, or schema migrations; account for those before a public deployment.
+down -v` deletes the data volume. The prototype has no password recovery or schema
+migrations; account for those before a public deployment.
+
+`POST /auth/login` is rate limited in memory before any password hashing: 20 attempts
+per client IP per minute (`LOGIN_ATTEMPTS_PER_IP_PER_MINUTE`) and 5 failures per IP and
+username per 15 minutes (`LOGIN_FAILURES_PER_ACCOUNT_PER_15_MINUTES`). A successful
+login clears that username's failures. Throttled requests get 429 with `Retry-After`.
+Limits reset on restart and assume one Uvicorn worker. The HTTPS override sets
+`FORWARDED_ALLOW_IPS` so limits apply to real client IPs rather than Caddy's.
 
 ## Optional model-assisted identification (November 9 extension)
 

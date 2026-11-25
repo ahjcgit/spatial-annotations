@@ -6,6 +6,8 @@ services:
     environment:
       DATABASE_URL: ${DATABASE_URL:-sqlite:////data/annotations.db}
       TOKEN_TTL_HOURS: ${TOKEN_TTL_HOURS:-24}
+      LOGIN_ATTEMPTS_PER_IP_PER_MINUTE: ${LOGIN_ATTEMPTS_PER_IP_PER_MINUTE:-20}
+      LOGIN_FAILURES_PER_ACCOUNT_PER_15_MINUTES: ${LOGIN_FAILURES_PER_ACCOUNT_PER_15_MINUTES:-5}
     volumes:
       - annotations-data:/data
     restart: unless-stopped
